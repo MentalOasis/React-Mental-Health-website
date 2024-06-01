@@ -1,0 +1,42 @@
+
+
+.container-fluid {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 20px;
+    font-family: manrope;
+}
+
+.custom-btn-width {
+width: 200px;
+}
+
+.text-right-margin {
+    margin-right: 10px;
+}
+
+
+
+/* Estilo para los íconos de las redes sociales */
+.social-icons a {
+    margin-right: 10px;
+    /* Espacio entre los íconos */
+}
+
+/* Estilo para el texto de las redes sociales */
+.mini-paragraph {
+    font-size: 14px;
+    /* Tamaño del texto */
+    margin-bottom: 15px;
+    /* Espacio inferior */
+}
+
+.hover-underline:hover {
+  color: rgb(188, 143, 255) !important;
+  text-decoration: underline !important;
+}
+
+.hover-sin-underline:hover {
+  color: rgb(188, 143, 255) !important;
+  
+}

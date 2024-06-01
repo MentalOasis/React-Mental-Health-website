@@ -1,0 +1,77 @@
+
+.container-fluid {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 20px;
+    font-family: manrope;
+}
+
+.custom-btn-width {
+width: 200px;
+}
+
+.text-right-margin {
+    margin-right: 10px;
+}
+
+ /* Estilo para el botón de Invitado */
+ .btn-invitado {
+    background-color: #E6D4CF;
+    /* Color de fondo */
+    border-color: #E6D4CF;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
+}
+
+.btn-invitado:hover{
+  background-color: #fca0dc;
+    /* Color de fondo */
+    border-color: #E6D4CF;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
+}
+
+.btn-registrarse:hover{
+  background-color: #d09def;
+    /* Color de fondo */
+    border-color: #DDCFE6;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
+}
+
+
+
+/* Estilo para el botón de Registrarse */
+.btn-registrarse {
+    background-color: #DDCFE6;
+    /* Color de fondo */
+    border-color: #DDCFE6;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
+}
+
+/* Estilos de hover para ambos botones */
+.btn-invitado:hover,
+.btn-registrarse:hover {
+    opacity: 0.8;
+    /* Reducción de la opacidad al pasar el mouse */
+}
+
+/* Estilos de sombreado para el texto centrado al hacer hover */
+.centered-text:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    /* Sombreado del texto */
+}
+
+/* Estilo de degradado para el navbar */
+.navbar {
+    background-image: linear-gradient(to right, #E4A9BF, #CFE6DD, #A3C9CA);
+    /* Degradado de tres colores pasteles */
+}
+
+
+
