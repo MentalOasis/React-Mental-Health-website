@@ -1,4 +1,3 @@
-
 const Img = {
 
     image1 : new URL('./angry.png', import.meta.url).href,

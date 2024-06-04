@@ -1,0 +1,24 @@
+
+.btn-editar {
+    background-color: #edebf0e8;
+    color: black;
+    border-radius: 12px;
+    border: none;
+    padding-left: 6%; 
+    padding-right: 6%;
+}
+
+.btn-editar:hover {
+    background-color: #BD9EDC;
+    color: black;
+}
+
+.btn-largo {
+    width: 350px;
+}
+
+.altura {
+    height: 100%;
+
+
+}
