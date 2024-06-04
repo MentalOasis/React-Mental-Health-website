@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./stylesAccordion.css";
-import image1 from "./Imagenes/Designer (43).jpeg";
-import image2 from "./Imagenes/Designer (67) (1).jpeg";
-// import image3 from "./public/pic/Designer (52).jpeg";
-// import image4 from "./public/pic/Designer (39).jpeg";
-// import image5 from "./public/pic/Designer (64).jpeg";
+import image1 from "/pic/Designer (43).jpeg"; ///CUIDADO, NO FUNCIONA CON ./
+import image2 from "/pic/Designer (67) (1).jpeg";
+import image3 from "/pic/Designer (52).jpeg";
+import image4 from "/pic/Designer (39).jpeg";
+import image5 from "/pic/Designer (64).jpeg";
 import EmojiChart from './EmojiChart.jsx';
 
 
@@ -96,7 +96,7 @@ export const ImgAccordion = () => {
           );
         })}
       </div>
-      <EmojiRating/>
+      <EmojiChart/>
       </div>
       
     </>
