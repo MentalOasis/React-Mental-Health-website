@@ -5,7 +5,7 @@ import image2 from "/pic/Designer (67) (1).jpeg";
 import image3 from "/pic/Designer (52).jpeg";
 import image4 from "/pic/Designer (39).jpeg";
 import image5 from "/pic/Designer (64).jpeg";
-import EmojiChart from './EmojiChart.jsx';
+// import EmojiChart from './EmojiChart.jsx';
 
 
 
@@ -63,7 +63,7 @@ export const ImgAccordion = () => {
         className="image-accordion-background"
         style={{ backgroundImage: `url(${items[active].image})` }}
       ></div>
-      <div className= "background"> 
+      
         <div className="title-container">
           <h1>¿Cómo me siento?</h1>
         </div>
@@ -96,8 +96,8 @@ export const ImgAccordion = () => {
           );
         })}
       </div>
-      <EmojiChart/>
-      </div>
+      {/* <EmojiChart/> */}
+     
       
     </>
   );
