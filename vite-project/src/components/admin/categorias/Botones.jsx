@@ -1,7 +1,7 @@
 import BtnIzquierda from "./BtnIzquierda";
 import Sidebar from "./Sidebar";
-import { hacerClick, hacerClick2 } from "/src/categoriasR.js";
-import './adminboton.css'
+import { hacerClick, hacerClick2 } from './categoriasR.js';
+import './AdminBoton.css'
 
 const temas = [
   { categoria: "Hábitos Saludables", items: ["Hábitos saludables", "Alimentación", "Ejercicio"] },
@@ -18,7 +18,7 @@ const Botones = () => {
 
             {/* <BtnIzquierda /> */}
             <div className= "altura">
-            <Sidebar/>
+            {/* <Sidebar/> */}
             </div>
 
           </div>

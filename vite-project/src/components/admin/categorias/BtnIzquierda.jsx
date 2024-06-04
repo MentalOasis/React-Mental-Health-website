@@ -1,5 +1,5 @@
 import React from 'react';
-import { botones, alerta, alerta1, alerta2, alerta3, alerta4 } from '/src/categoriasR.js';
+import { botones, alerta, alerta1, alerta2, alerta3, alerta4 } from './categoriasR.js';
 
 
 const BtnIzquierda = () => {

@@ -1,0 +1,18 @@
+.contenedor {
+    display: flex;
+    flex-direction: row; /* Para que los elementos se coloquen uno al lado del otro */
+    justify-content: center; /* Para alinear los elementos en el centro horizontalmente */
+    align-items: stretch; /* Para que ambos elementos ocupen toda la altura */
+}
+
+/* Estilos para el Sidebar */
+.sidebar {
+    flex: 0 0 auto; /* Para que el Sidebar no crezca ni se encoja */
+    width: 250px; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+/* Estilos para los Botones */
+.botones {
+    flex: 1 1 auto; /* Para que los Botones ocupen el espacio restante */
+    /* Puedes añadir estilos adicionales según tus necesidades */
+}
