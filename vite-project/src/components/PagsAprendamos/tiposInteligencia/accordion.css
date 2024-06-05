@@ -1,0 +1,143 @@
+
+.image-accordion-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    transition: 0.3s;
+    
+  }
+  
+  .title-container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    padding: 40px; 
+    /* Añadido espacio interno al contenedor del título */
+  }
+  
+  .title-container h1 {
+    font-size: 38px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .background2{
+    background-image: url(./inteligencias/fondolila1.jpg);
+    /* background-color: rgb(211, 211, 244); */
+    background-size: cover;
+    background-position: center;
+    overflow-y: visible;
+    border: none !important;
+    margin: 0;
+    padding: 0;
+    
+  }
+  
+  .image-accordion {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    font-family: "Euclid Circular A", "Poppins";
+    justify-content: center;
+    padding-top: 40px;              
+    padding-bottom: 100px;        
+  }
+  
+  .image-accordion-item {
+    position: relative;
+    overflow: hidden;
+    width: 70px; /* esto controla las imagenes inactivas */
+    height: 625px;
+    border-radius: 36px;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0.65;
+    transition: 0.5s;
+    justify-content: center;
+    border: rgb(0, 0, 0) 1px solid;
+  
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+   }
+  
+  .image-accordion-item:hover {
+    opacity: 0.8;
+  }
+  
+  .image-accordion :is(h2, p) {
+    margin: 0;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); */
+  }
+  
+  .image-accordion-item h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  }
+  
+  .image-accordion-item p {
+    color: rgb(255, 255, 255);
+  }
+  
+  .image-accordion-item.active {
+    width: 450px;
+    opacity: 1;
+  }
+  
+  .image-accordion-item .material-symbols-outlined {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    color: rgb(0 0 0 / 90%);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    font-size: 28px;
+  }
+  
+  .image-accordion-item .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 450px;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    padding: 80px 20px 30px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0%), rgb(0 0 0 / 85%));
+    transition: 0.25s;
+  }
+  
+  .image-accordion-item.active .content {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .image-accordion-item img {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 100%;
+    filter: grayscale(0.5);
+  }
+  
+  
