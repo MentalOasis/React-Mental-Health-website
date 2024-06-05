@@ -8,11 +8,12 @@ import './footer.css'
 const Footer = () => {
     return ( 
         
-<footer>
-  <div className="container-fluid text-start" style={{width: '100%', margin: "0px", padding: "0px"}} >
+<footer >
+
+  <div className="container-fluid text-start " style={{ width: '100%', margin: "0px", padding: "0px"}} >
       <div className="row p-3 bg-secondary text-white" >
-          <div className="col mb-3 ">  
-              <div className="xhifire-logo text-center">
+          <div className="col mb-3  ">  
+              <div className="xhifire-logo text-center ">
                   <img src={mentaloasislogo} alt="XHIFIRE2024" className="logo-image" width="100"/>
                   <p className="text-body-secondary mb-0">© <span className="fw-semibold">XHIFIRE2024</span></p>
               </div>
@@ -84,6 +85,7 @@ const Footer = () => {
           </div>
       </div>
   </div>
+
 </footer>
 
     
