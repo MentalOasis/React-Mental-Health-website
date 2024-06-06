@@ -2,6 +2,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import  mentaloasislogo from '/pic/mentaloasislogo.png';
 import './footer.css'
+import { Link } from 'react-router-dom';
 
 
 
@@ -52,19 +53,19 @@ const Footer = () => {
               </div>
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">
-              <p className="h5 mb-3 hover-underline">SOBRE NOSOTRAS</p>
+              <p className="h5 mb-3 hover-sin-underline">SOBRE NOSOTRAS</p>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Nuestra Historia</a>
+                  <Link className="text-white text-decoration-none hover-underline" to="/sobre-nosotras">Nuestra Historia</Link>
               </div>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Nuestra Misión</a>
+                  <Link className="text-white text-decoration-none hover-underline" to="/sobre-nosotras">Nuestra Misión</Link>
               </div>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Nuestros Valores</a>
+                  <Link className="text-white text-decoration-none hover-underline" to="/sobre-nosotras">Nuestros Valores</Link>
               </div>
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">
-              <p className="h5 mb-3 hover-underline">LÍNEAS DE EMERGENCIA</p>
+              <Link className="h5 mb-3 hover-underline" to="/lineas-de-emergencia">LÍNEAS DE EMERGENCIA</Link>
               <div className="mb-2">
                   <a className="text-white text-decoration-none hover-sin-underline" href="#">Línea libre para niñas, niños y
                       adolescentes:
