@@ -51,7 +51,7 @@ juega con puzzles y crea mapas conceptuales.
   },
   {
     header: "Tipos de inteligencia ",
-    image: Int.image2,
+    image: Int.image3,
     symbol: "home", 
     text: `A lo largo de la historia, se han propuesto diversas clasificaciones sobre la inteligencia. En la actualidad, una teoría destacada es la de Howard Gardner, que postula que la inteligencia no se limita a características específicas, sino que consiste en una variedad de habilidades interrelacionadas. 
     Según esta teoría, todas las personas poseen diferentes tipos de inteligencia y en diversas medidas, influenciadas por factores biológicos, personales y culturales. 
@@ -87,7 +87,7 @@ juega con puzzles y crea mapas conceptuales.
   },
   {
     header: "Inteligencia Intrapersonal  ",
-    image: Int.image3,
+    image: Int.image2,
     symbol: "sentiment_very_satisfied",
     text: `Poseen esta inteligencia aquellas personas que se caracterizan por reflexionar sobre sus emociones y que desafían su zona de confort. 
     ¿Cómo puedes desarrollarla? Puedes participar en charlas de habilidades blandas y ser parte de juegos que promuevan la reflexión y la perspectiva.

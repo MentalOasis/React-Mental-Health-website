@@ -48,7 +48,7 @@
     font-family: "Euclid Circular A", "Poppins";
     justify-content: center;
     padding-top: 40px;              
-    padding-bottom: 100px;        
+    padding-bottom: 150px;        
   }
   
   .image-accordion-item {
@@ -137,7 +137,7 @@
     left: 50%;
     translate: -50% -50%;
     height: 100%;
-    filter: grayscale(0.5);
+    filter: grayscale(0.3);
   }
   
   
