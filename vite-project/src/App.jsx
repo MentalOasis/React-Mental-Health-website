@@ -4,10 +4,6 @@ import { BrowserRouter , Routes, Route } from 'react-router-dom';
 // componentes
 import Footer from './components/PagNavFooter/Footer'
 import Navbar from './components/PagNavFooter/Navbar'
-import ImgAccordion from './components/PagsAprendamos/comoMeSiento/ImgAccordion'
-import EmojiChart from './components/PagsAprendamos/comoMeSiento/EmojiChart'
-import Botones from './components/admin/categorias/Botones';
-import Accordion2 from './components/PagsAprendamos/tiposInteligencia/Accordion2'
 // views listas
 import ComoMeSiento from './views/ComoMeSiento';
 import Plantilla from './views/Plantilla';
