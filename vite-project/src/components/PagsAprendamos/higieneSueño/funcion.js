@@ -15,11 +15,11 @@ export function showRectangle(event, index) {
 export function hideRectangle(index) {
     const rectangle = document.getElementById(`rectangle-${index}`);
     const stars = document.querySelectorAll('.star');
-    const star = stars[index];
+    
 
     rectangle.style.display = 'none';
-    stars.forEach(star => {
-        star.style.visibility = 'visible';
-        star.style.opacity = '1';
-    });
+    if (stars[index]) {
+        stars[index].style.visibility = 'visible';
+        stars[index].style.opacity = '1';
+    }
 }

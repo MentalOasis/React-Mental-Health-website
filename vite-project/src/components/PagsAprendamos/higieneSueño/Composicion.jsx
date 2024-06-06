@@ -53,7 +53,7 @@ const Composicion = () => {
                 </div>
             ))}
             <div className="rectangle" id="rectangle" onClick={hideRectangle}>
-                <p>¡Hola! Soy un rectángulo con texto adentro.</p>
+               
             </div>
         </div>
     );
