@@ -2,6 +2,7 @@
 import React from 'react';
 import './NavBarTransparente.css';
 import mentaloasislogo from '/pic/mentaloasislogo.png';
+import { Link } from 'react-router-dom';
 
 
 const NavBarTransparente = () => {
@@ -18,33 +19,35 @@ const NavBarTransparente = () => {
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link active fw-semibold centered-text" aria-current="page" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Inicio</a>
+              <Link className="nav-link active fw-semibold centered-text" aria-current="page" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Inicio</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Juego Salud Mental</a>
+              <Link className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Juego Salud Mental</Link>
             </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link fw-semibold centered-text dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Aprendamos</a>
+            <li className="nav-item dropdown d-flex flex">
+            <Link className="nav-link fw-semibold centered-text " to="/aprendamos" style={{ color: 'white', fontWeight: 'bold', paddingRight: '0px' }}>Aprendamos</Link>
+              <Link className="nav-link fw-semibold centered-text dropdown-toggle" to="/aprendamos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}></Link>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item fw-semibold" href="#">¿Cómo Me Siento?</a></li>
-                <li><a className="dropdown-item fw-semibold" href="#">Higiene del Sueño</a></li>
-                <li><a className="dropdown-item fw-semibold" href="#"> Salud Física</a></li>
-                <li><a className="dropdown-item fw-semibold" href="#"> Tipos de Inteligencia </a></li>
+                <li><Link className="dropdown-item fw-semibold" to="/aprendamos/como-me-siento">Como Me Siento</Link></li>
+                <li><Link className="dropdown-item fw-semibold" to="/aprendamos/higiene-del-sueño">Higiene Del Sueño</Link></li>
+                <li><Link className="dropdown-item fw-semibold" to="/aprendamos/salud-fisica"> Salud fisica</Link></li>
+                <li><Link className="dropdown-item fw-semibold" to="/aprendamos/tabla-nutricion"> Tabla De Nutrición </Link></li>
+                <li><Link className="dropdown-item fw-semibold" to="/aprendamos/tipos-de-inteligencia"> Tipos De Inteligencia </Link></li>
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Consejos</a>
+              <Link className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold', paddingRight: '25px' }}>Consejos</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold' }}>Sobre Nosotras</a>
+              <Link className="nav-link fw-semibold centered-text" href="#" style={{ color: 'white', fontWeight: 'bold' }}>Sobre Nosotras</Link>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link btn btn-outline-success rounded-pill me-2 btn-invitado" style={{ width: "100px", fontSize: "15px" }} href="#"><span className="centered-text">Invitado</span></a>
+              <Link className="nav-link btn btn-outline-success rounded-pill me-2 btn-invitado" style={{ width: "100px", fontSize: "15px" }} href="#"><span className="centered-text">Invitado</span></Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link btn btn-outline-primary rounded-pill btn-registrarse" style={{ width: "100px", fontSize: "15px" }} href="#"><span className="centered-text">Registrarse</span></a>
+              <Link className="nav-link btn btn-outline-primary rounded-pill btn-registrarse" style={{ width: "100px", fontSize: "15px" }} href="#"><span className="centered-text">Registrarse</span></Link>
             </li>
           </ul>
         </div>
