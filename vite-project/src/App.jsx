@@ -14,10 +14,11 @@ import HigieneSueño from './views/HigSueño';
 import Aprendamos from './views/Aprendamos';
 import Consejos from './views/Consejos';
 import Emergencia from './views/Emergencia';
-import Inicio from './views/Inicio';
+import Inicio from './views/InicioHome';
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
+import InicioStart from './views/InicioHome';
 
 
 function App() {
@@ -36,9 +37,10 @@ return (
 
   <BrowserRouter>
     <Routes>
+      <Route index element={<InicioStart />} /> 
 
       <Route path="/" element={<Plantilla />}>
-        <Route index element={<Inteligencia />} />   
+          
         {/* debe haber un index o solo se ve la plantilla!!! cuando tengamos inicio lo cambiamos */}
         <Route path="/admin/categorias" element={<Categorias />} />
         <Route path="/aprendamos/tipos-de-inteligencia" element={<Inteligencia />} />
