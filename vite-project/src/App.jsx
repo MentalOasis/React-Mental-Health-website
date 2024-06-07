@@ -19,7 +19,6 @@ import Categorias from './components/admin/categorias/Categorias';
 import Aprendamos from './views/Aprendamos';
 import Consejos from './views/Consejos';
 import Emergencia from './views/Emergencia';
-import Inicio from './views/InicioHome';
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
