@@ -1,7 +1,8 @@
-import BtnIzquierda from "./BtnIzquierda";
-import Sidebar from "./Sidebar";
+import BtnIzquierda from "./BtnIzquierda.jsx";
+import Sidebar from "./Sidebar.jsx";
 import { hacerClick, hacerClick2 } from './categoriasR.js';
 import './AdminBoton.css'
+import { Link } from 'react-router-dom';
 
 const temas = [
   { categoria: "Hábitos Saludables", items: ["Hábitos saludables", "Alimentación", "Ejercicio"] },
@@ -9,7 +10,7 @@ const temas = [
   { categoria: "Higiene del Sueño", items: ["Higiene del sueño", "Insomnio", "Apnea del sueño"] },
 ];
 
-const Botones = () => {
+const Categorias = () => {
   return (
     <div className="container-fluid" style={{ marginBottom: "60px", marginLeft: "-12px"}}>
       <div className="page-container " >
@@ -39,7 +40,7 @@ const Botones = () => {
             ))}
             <div className="row mt-5" style={{ marginRight: "250px" }}>
               <div className="d-grid gap-2 col-4 mx-auto mt-5">
-                <a onClick={hacerClick2} className="btn btn-outline-secondary btn-editar btn-largo m-2 text-center" href="#" role="button">Nuevo tema</a>
+                <Link to="/admin/nuevo-tema" className="btn btn-outline-secondary btn-editar btn-largo m-2 text-center" href="#" role="button">Nuevo tema</Link>
               </div>
             </div>
           </div>
@@ -49,4 +50,4 @@ const Botones = () => {
   );
 }
 
-export default Botones;
+export default Categorias;

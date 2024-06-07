@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: "15px" }}>
+    <nav className="navbar navbar-color navbar-expand-lg navbar-light bg-light" style={{ padding: "15px" }}>
       <div className="container-fluid px-4">
         <a className="navbar-brand" href="#">
           <img loading="lazy" src={mentaloasislogo} width="45" height="" className="d-inline-block align-top me-3" alt="Logo" />

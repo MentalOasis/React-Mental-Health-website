@@ -62,8 +62,8 @@ const AccountSettings = () => {
           name="account-settings-form"
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          labelCol={{ span: 8 }} // Ancho de la etiqueta
-          wrapperCol={{ span: 16 }} // Ancho del campo
+          labelCol={{ span: 10 }} // Ancho de la etiqueta
+          wrapperCol={{ span: 20 }} // Ancho del campo
         >
           <Form.Item
             label="Nombre de usuario"

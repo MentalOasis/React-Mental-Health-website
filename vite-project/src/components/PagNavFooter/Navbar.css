@@ -68,7 +68,7 @@ width: 200px;
 }
 
 /* Estilo de degradado para el navbar */
-.navbar {
+.navbar-color {
     background-image: linear-gradient(to right, #E4A9BF, #CFE6DD, #A3C9CA);
     /* Degradado de tres colores pasteles */
 }
