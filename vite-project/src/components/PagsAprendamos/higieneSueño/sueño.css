@@ -11,7 +11,7 @@
 } */
 
 .background3 {
-    background-image: url(./public/pic/fondoSueño.jpeg);
+    background-image: url(/public/pic/fondoSueño.jpeg);
     height: 100%;
     width: 100%;
     background-size: cover;

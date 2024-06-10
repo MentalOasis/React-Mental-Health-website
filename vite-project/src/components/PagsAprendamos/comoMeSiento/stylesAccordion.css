@@ -24,8 +24,8 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   }
   
-  .background{
-    background-image: url(./pic/comomesiento2.png);
+  .fondo-cms{
+    background-image: url(/pic/comomesiento2.png);
     background-size: cover;
     background-position: center;
     overflow-y: visible;
