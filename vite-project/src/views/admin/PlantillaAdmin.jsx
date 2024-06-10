@@ -10,7 +10,9 @@ return (
         <Navbar />
         <div className="contenedor">
             <Sidebar />
+            <div className="altura-min-admin">
             <Outlet />
+            </div>
         </div>
     </>
 )

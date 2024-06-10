@@ -46,7 +46,7 @@ return (
 
       <Route path="/" element={<Plantilla />}>
           
-        <Route path="/admin/categorias" element={<Categorias />} />
+       
         <Route path="/aprendamos/tipos-de-inteligencia" element={<Inteligencia />} />
         <Route path="/aprendamos/como-me-siento" element={<ComoMeSiento />} />
         <Route path="/aprendamos/higiene-del-sueño" element={<HigieneSueño />} />
