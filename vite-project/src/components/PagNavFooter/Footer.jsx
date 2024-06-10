@@ -38,8 +38,8 @@ const Footer = () => {
       </div>
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">
-              <p className="h5 mb-3 hover-sin-underline">MENÚ RÁPIDO</p>
-              <div className="mb-2">
+              <a className="h5 mb-3 hover-sin-underline">MENÚ RÁPIDO</a>
+              <div className="mb-2 mt-4">
                   <a className="text-white text-decoration-none hover-underline" href="#">ODS 3</a>
               </div>
               <div className="mb-2">
@@ -53,8 +53,8 @@ const Footer = () => {
               </div>
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">
-              <p className="h5 mb-3 hover-sin-underline">SOBRE NOSOTRAS</p>
-              <div className="mb-2">
+              <a className="h5 mb-3 hover-sin-underline">SOBRE NOSOTRAS</a>
+              <div className="mb-2 mt-4">
                   <Link className="text-white text-decoration-none hover-underline" to="/sobre-nosotras">Nuestra Historia</Link>
               </div>
               <div className="mb-2">
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">
               <Link className="h5 mb-3 hover-underline" to="/lineas-de-emergencia">LÍNEAS DE EMERGENCIA</Link>
-              <div className="mb-2">
+              <div className="mb-2 mt-4">
                   <a className="text-white text-decoration-none hover-sin-underline" href="#">Línea libre para niñas, niños y
                       adolescentes:
                       1515</a>
