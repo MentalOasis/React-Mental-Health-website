@@ -10,10 +10,10 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-color navbar-expand-lg navbar-light bg-light" style={{ padding: "15px" }}>
       <div className="container-fluid px-4">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/admin/dashboard">
           <img loading="lazy" src={mentaloasislogo} width="45" height="" className="d-inline-block align-top me-3" alt="Logo" />
           <span style={{ fontSize: "1em", fontStyle: "italic", color: 'black', fontWeight: 'bold' }} className="fw-semibold centered-text me-3">MENTAL OASIS</span>
-        </a>
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

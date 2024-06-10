@@ -14,6 +14,7 @@ import AccountSettings from './components/admin/configuracionCuentaAdm/AccountSe
 import AdminDashboard  from './components/admin/dashboard/AdminDashBoard';
 import AddNewCategoryForm from './components/admin/nuevoTema/AddNewCategoryForm';
 import Categorias from './components/admin/categorias/Categorias';
+import InicioStart from './views/InicioHome';
 
 // views que faltan
 import Aprendamos from './views/Aprendamos';
@@ -22,7 +23,7 @@ import Emergencia from './views/Emergencia';
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
-import InicioStart from './views/InicioHome';
+
 
 
 function App() {
