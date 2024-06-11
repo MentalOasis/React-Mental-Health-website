@@ -1,5 +1,6 @@
+import React from "react";
 
-const TarjetaLecturaaa = () => {
+const TarjetaLectura = () => {
     return(
 
         <div className="row">
@@ -13,7 +14,7 @@ const TarjetaLecturaaa = () => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">
-                                    <img src={pic/imagenLectura.jpg} className="img-fluid imgTLectura"/>
+                                    <img src="/pic/imagenLectura.jpg" className="img-fluid imgTLectura"/>
                                 </div>
                                 <div className="col-8">
                                     <h5 className="card-title text-start mb-4 fw-semibold">Beneficios de lectura</h5>
@@ -31,4 +32,4 @@ const TarjetaLecturaaa = () => {
 
 
 
-export default TarjetaLecturaaa;
+export default TarjetaLectura;

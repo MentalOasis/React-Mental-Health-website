@@ -1,4 +1,4 @@
-
+import React from "react";
 
 // const TarjetaDeportesss = () => {
 //     return(
@@ -39,14 +39,12 @@
 // export default TarjetaDeportesss;
 
 
-import imagen1 from '/pic/WhatsApp Image 2024-04-28 at 16.52.06 (1).jpeg';
-import imagen2 from '/pic/Designer (63).jpeg';
 
-const TarjetaDeportesss = () => {
+const TarjetaDeportesT = () => {
     return (
         <div className="row">
             <div className="col-4">
-                <img id="imagenACambiar" src={imagen1} className="img-fluid" alt="Descripción de la imagen"/>
+                <img id="imagenACambiar" src="/pic/WhatsApp Image 2024-04-28 at 16.52.06 (1).jpeg" className="img-fluid" alt="Descripción de la imagen"/>
             </div>
             <div className="col-4 mt-5 offset-md-7 text-center">
                 <h3 className="text-center fw-semibold">Deportes - Talleres</h3>
@@ -58,7 +56,7 @@ const TarjetaDeportesss = () => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">
-                                    <img src={imagen2} alt="Descripción de la imagen" className="img-fluid"/>
+                                    <img src="/pic/Designer (63).jpeg" alt="Descripción de la imagen" className="img-fluid"/>
                                 </div>
                                 <div className="col-8">
                                     <h5 className="card-title text-start mb-4 fw-semibold">Beneficios del Deporte</h5>
@@ -73,4 +71,4 @@ const TarjetaDeportesss = () => {
     );
 }
 
-export default TarjetaDeportesss;
+export default TarjetaDeportesT;

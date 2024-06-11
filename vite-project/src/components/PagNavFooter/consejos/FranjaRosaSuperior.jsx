@@ -1,5 +1,7 @@
+import React from "react";
 
-const FranjaRosa = () => {
+
+const FranjaRosaSuperior = () => {
     return (
         <div className="mt-5 filtro-rosado">
             <h1 className="text-center fw-semibold mt-5 texto-blanco">Explora Pasatiempos Saludables</h1>
@@ -16,4 +18,4 @@ const FranjaRosa = () => {
 }
 
 
-export default FranjaRosa;
+export default FranjaRosaSuperior;

@@ -1,5 +1,6 @@
+import React from "react";
 
-const TarjetaYogaaa = () => {
+const TarjetaYoga = () => {
     return(
         <div className="row mt-5">
             <div className="col-4 text-center offset-md-1 textos">
@@ -12,7 +13,7 @@ const TarjetaYogaaa = () => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">
-                                    <img src={pic/Designer (47).jpeg} alt="100px" className="img-fluid"/>
+                                    <img src="/pic/Designer (47).jpeg" alt="100px" className="img-fluid"/>
                                 </div>
                                 <div className="col-8">
                                     <h5 className="card-title text-start mb-4 fw-semibold">Descubre el Mundo Yoga</h5>
@@ -23,8 +24,8 @@ const TarjetaYogaaa = () => {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <img id="imagen2" src={pic/Designer (52).jpeg} class="img-fluid"/>
+                <div className="col-md-5">
+                    <img id="imagen2" src="/pic/Designer (52).jpeg" className="img-fluid"/>
                 </div>
             </div>
         </div>
@@ -33,4 +34,4 @@ const TarjetaYogaaa = () => {
 
 
 
-export default TarjetaYogaaa;
+export default TarjetaYoga;

@@ -1,6 +1,6 @@
+import React from "react";
 
-
-const TarjetaMeditaciónnn = () => {
+const TarjetaMeditación = () => {
     return(
         <div className="row espaciadorfinal">
             <div className="col-4 mt-5 text-center offset-md-1 textos espaciotexto">
@@ -14,7 +14,7 @@ const TarjetaMeditaciónnn = () => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">
-                                    <img src={pic/Designer (20).jpeg} alt="Descripción de la imagen" className="img-fluid"/>
+                                    <img src="/pic/Designer (20).jpeg" alt="Descripción de la imagen" className="img-fluid"/>
                                 </div>
                                 <div className="col-8">
                                     <h5 className="card-title text-start mb-4 fw-semibold">Beneficios de la meditación</h5>
@@ -26,7 +26,7 @@ const TarjetaMeditaciónnn = () => {
                     </div>
                 </div>
                 <div id="imagenFinal" className="col-md-5">
-                    <img src={pic/Designer (91).jpeg} alt="100px" width="400px"/>
+                    <img src="/pic/Designer (91).jpeg" alt="100px" width="400px"/>
                 </div>
             </div>
         </div>
@@ -38,4 +38,4 @@ const TarjetaMeditaciónnn = () => {
 
 
 
-export default TarjetaMeditaciónnn;
+export default TarjetaMeditación;

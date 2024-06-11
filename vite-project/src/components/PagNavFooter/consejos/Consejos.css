@@ -29,3 +29,85 @@ width: 200px;
 
 } 
 
+#imagen2 {
+    width: 350px;
+    height: 350px;
+    margin-left: 140px;
+    margin-top: -120px;
+}
+
+/* #tarjeta {
+    margin-left: 80px;
+} */
+
+.textos {
+    margin-left: 130px;
+}
+
+
+#tarjeta2 {
+    margin-left: 15px;
+}
+
+
+#imagenACambiar {
+    width: 350px;
+    height: 350px;
+    margin-left: 120px;
+    margin-bottom: -500px;
+
+}
+
+
+
+#imagenFinal {
+    margin-left: 90px;
+    margin-top:-150px;
+}
+
+.espaciadorfinal {
+    
+    margin-left: 20px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.textoDestacado:hover {
+    color: fuchsia;
+
+}
+
+.filtro-rosado {
+   
+    position:relative;
+    padding-top: 10px;
+    top: -48px;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background-color: rgba(184, 87, 187, 0.5);
+    background-size: cover;
+    background-size: 100%;
+    
+}
+    
+ 
+
+.texto-blanco {
+    color: white;
+    margin-top: 100px;
+    
+}
+
+.botónGris {
+    background-color: rgb(157, 83, 154);
+}
+
+.botónGris:hover {
+    background-color: rgb(230, 137, 207);
+}
+
+.imgTLectura {
+    width: 180px;
+    height: 150px;
+}
