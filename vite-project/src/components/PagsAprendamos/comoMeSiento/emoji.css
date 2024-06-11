@@ -1,9 +1,9 @@
-body {
+/* body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Hace que el cuerpo ocupe todo el alto de la ventana */
+    min-height: 100vh; 
     margin: 0;
-  }
+  } */
 
 .title-container h3 {
     font-size: 28px;
@@ -19,6 +19,8 @@ body {
     /* text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.9); */
     
   }
+
+
 
 .emoji-container {
     text-align: center;

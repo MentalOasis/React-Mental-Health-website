@@ -87,7 +87,7 @@ export const ImgAccordion = () => {
               <div className="content">
               
               
-                <div className="card">
+                <div className="efecto-vidrio">
                   <h2>{item.header}</h2>
                   <p>{item.text}</p>
                 </div>

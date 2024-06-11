@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-// import "../comoMeSiento/stylesAccordion.css";
+import "../comoMeSiento/stylesAccordion.css";
 import "./accordion.css";
 import Int from './inteligencias/Int.jsx';
 
@@ -104,34 +104,34 @@ export const ImgAccordion = () => {
   return (
     <>
       <div
-        className="image-accordion-background"
+        className="image-accordion-background-int"
         style={{ backgroundImage: `url(${items[active].image})` }}
       ></div>
       
-        <div className="title-container">
+        <div className="title-container-int">
           <h1>Tipos de inteligencia y la importancia de cada uno en la sociedad</h1>
         </div>
-        <div className="image-accordion">
+        <div className="image-accordion-int">
         {items.map((item, index) => {
           const isActive = active === index ? "active" : "";
           return (
             <div
               key={item.image}
-              className={`image-accordion-item ${isActive}`}
+              className={`image-accordion-item-int  ${isActive}`}
               onClick={() => handleToggle(index)}
             >
              
               <img src={item.image} />
               
               {active !== index && (
-                  <span className="image-accordion-item material-symbols-outlined">{item.symbol}</span>
+                  <span className="image-accordion-item-int material-symbols-outlined">{item.symbol}</span>
                 )}
                 
             
               <div className="content">
               
               
-                <div className="card">
+                <div className="efecto-vidrio-int">
                   <h2>{item.header}</h2>
                   <p>{item.text}</p>
                 </div>
