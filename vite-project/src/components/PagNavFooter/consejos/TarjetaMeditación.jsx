@@ -2,7 +2,7 @@ import React from "react";
 
 const TarjetaMeditación = () => {
     return(
-        <div className="row espaciadorfinal">
+        <div className="row espaciadorfinalTM">
             <div className="col-4 mt-5 text-center offset-md-1 textos espaciotexto">
                 <h3 className="text-start fw-semibold">Meditación</h3>
                 <p className="mt-5 text-start">Practicar la meditación para la calma interior y la claridad.</p>
@@ -25,7 +25,7 @@ const TarjetaMeditación = () => {
                         </div>
                     </div>
                 </div>
-                <div id="imagenFinal" className="col-md-5">
+                <div id="imagenFinalTM" className="col-md-5">
                     <img src="/pic/Designer (91).jpeg" alt="100px" width="400px"/>
                 </div>
             </div>

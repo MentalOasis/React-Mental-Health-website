@@ -4,13 +4,13 @@ const TarjetaLectura = () => {
     return(
 
         <div className="row">
-            <div className="col-4 mt-5 text-start offset-md-1 textos">
+            <div className="col-4 mt-5 text-start offset-md-1 textosTL">
                 <h3 className="fw-semibold">Lectura</h3>
                 <p className="mt-5">Lectura de libros para la relajación y el crecimiento personal.</p>
             </div>
             <div className="row mt-3 mb-5">
                 <div className="offset-md-1 col-md-10">
-                    <div id="tarjeta2" className="card textoDestacado">
+                    <div id="tarjeta2TL" className="card textoDestacado">
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">

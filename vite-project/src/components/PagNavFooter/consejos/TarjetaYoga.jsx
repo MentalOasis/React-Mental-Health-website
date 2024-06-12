@@ -25,7 +25,7 @@ const TarjetaYoga = () => {
                     </div>
                 </div>
                 <div className="col-md-5">
-                    <img id="imagen2" src="/pic/Designer (52).jpeg" className="img-fluid"/>
+                    <img id="imagen2TY" src="/pic/Designer (52).jpeg" className="img-fluid"/>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
 
 
 
-.custom-btn-width {
+.custom-btn-widthFRS {
 
 width: 200px;
 
@@ -29,7 +29,7 @@ width: 200px;
 
 } 
 
-#imagen2 {
+#imagen2TY {
     width: 350px;
     height: 350px;
     margin-left: 140px;
@@ -40,17 +40,17 @@ width: 200px;
     margin-left: 80px;
 } */
 
-.textos {
+.textosTL {
     margin-left: 130px;
 }
 
 
-#tarjeta2 {
+#tarjeta2TL {
     margin-left: 15px;
 }
 
 
-#imagenACambiar {
+#imagenTDeportes {
     width: 350px;
     height: 350px;
     margin-left: 120px;
@@ -60,19 +60,19 @@ width: 200px;
 
 
 
-#imagenFinal {
+#imagenFinalTM {
     margin-left: 90px;
     margin-top:-150px;
 }
 
-.espaciadorfinal {
+.espaciadorfinalTM {
     
     margin-left: 20px;
     margin-top: 80px;
     margin-bottom: 50px;
 }
 
-.textoDestacado:hover {
+.textoDestacadoTD:hover {
     color: fuchsia;
 
 }
@@ -93,17 +93,17 @@ width: 200px;
     
  
 
-.texto-blanco {
+.texto-blancoFRS {
     color: white;
     margin-top: 100px;
     
 }
 
-.botónGris {
+.botónGrisFRS {
     background-color: rgb(157, 83, 154);
 }
 
-.botónGris:hover {
+.botónGrisFRS:hover {
     background-color: rgb(230, 137, 207);
 }
 

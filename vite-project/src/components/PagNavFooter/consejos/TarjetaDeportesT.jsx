@@ -4,7 +4,7 @@ const TarjetaDeportesT = () => {
     return (
         <div className="row">
             <div className="col-4">
-                <img id="imagenACambiar" src="/pic/WhatsApp Image 2024-04-28 at 16.52.06 (1).jpeg" className="img-fluid" alt="Descripción de la imagen"/>
+                <img id="imagenTDeportes" src="/pic/WhatsApp Image 2024-04-28 at 16.52.06 (1).jpeg" className="img-fluid" alt="Descripción de la imagen"/>
             </div>
             <div className="col-4 mt-5 offset-md-7 text-center">
                 <h3 className="text-center fw-semibold">Deportes - Talleres</h3>
@@ -12,7 +12,7 @@ const TarjetaDeportesT = () => {
             </div>
             <div className="row mt-3 mb-5">
                 <div className="offset-md-7 col-md-5 tarjetaDeportes">
-                    <div className="card textoDestacado">
+                    <div className="card textoDestacadoTD">
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-4">
