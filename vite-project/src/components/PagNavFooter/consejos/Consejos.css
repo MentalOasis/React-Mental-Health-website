@@ -1,0 +1,111 @@
+.page-container {
+
+    margin-top: 80px;
+
+    margin-left: 20px;
+
+    margin-right: 20px;
+
+    font-family: manrope;
+
+}
+
+
+
+
+.custom-btn-widthFRS {
+
+width: 200px;
+
+}
+
+
+
+.text-right-margin {
+
+    margin-right: 10px;
+
+} 
+
+#imagen2TY {
+    width: 350px;
+    height: 350px;
+    margin-left: 140px;
+    margin-top: -120px;
+}
+
+/* #tarjeta {
+    margin-left: 80px;
+} */
+
+.textosTL {
+    margin-left: 130px;
+}
+
+
+#tarjeta2TL {
+    margin-left: 15px;
+}
+
+
+#imagenTDeportes {
+    width: 350px;
+    height: 350px;
+    margin-left: 140px;
+    margin-bottom: -500px;
+
+}
+
+
+#imagenFinalTM {
+    margin-left: 90px;
+    margin-top:-150px;
+}
+
+.espaciadorfinalTM {
+    
+    margin-left: 20px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.textoDestacadoTD:hover {
+    color: fuchsia;
+
+}
+
+.filtro-rosado {
+   
+    position:relative;
+    padding-top: 10px;
+    top: -48px;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background-color: rgba(184, 87, 187, 0.5);
+    background-size: cover;
+    background-size: 100%;
+    
+}
+    
+ 
+
+.texto-blancoFRS {
+    color: white;
+    margin-top: 100px;
+    
+}
+
+.botónGrisFRS {
+    background-color: rgb(157, 83, 154);
+}
+
+.botónGrisFRS:hover {
+    background-color: rgb(230, 137, 207);
+}
+
+.imgTLectura {
+    width: 180px;
+    height: 150px;
+}
+
