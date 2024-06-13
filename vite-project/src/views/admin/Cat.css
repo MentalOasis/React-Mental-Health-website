@@ -7,7 +7,7 @@
     display: flex;
 }
 
-.contenedor {
+.contenedor-admin {
     display: flex;
     flex-direction: row; /* Para que los elementos se coloquen uno al lado del otro */
     justify-content: center; /* Para alinear los elementos en el centro horizontalmente */

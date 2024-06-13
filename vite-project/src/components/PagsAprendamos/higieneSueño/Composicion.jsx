@@ -37,7 +37,7 @@ const Composicion = () => {
     ];
 
     return (
-        <div className="container">
+        <div className="container-sueño">
             <h1 className="titulo-sueño"> Higiene Del Sueño</h1>
             {filas.map((fila, filaIndex) => (
                 <div className={`stars-row ${fila.length === 3 ? 'stars-3' : 'stars-2'}`} key={filaIndex}>

@@ -47,7 +47,7 @@ const EmojiChart = () => {
           </div>
         ))}
       </div>
-      <div className="text-center mt-3 message card">{message}</div>
+      <div className="text-center mt-3 message efecto-vidrio">{message}</div>
     </div>
   );
 };

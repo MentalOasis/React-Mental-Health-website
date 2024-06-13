@@ -1,0 +1,133 @@
+
+.fondo-aprendamos {
+    background-color: rgba(239, 142, 250, 0.195); /* Azul violeta con 30% de opacidad */
+    height: 43vh;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.textodark {
+    color: black;
+}
+
+.tarjetas {
+    margin-top: 50px;
+    margin-left: 40px;
+    width: 50vw;
+}
+
+.imagentarjeta {
+    padding-left: 30px;
+}
+
+.reproductormusica {
+    margin-top: 160px;
+}
+
+.tarjeta2 {
+    margin-bottom: 70px;
+}
+
+.margen-pagina{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.color-btn-next {
+   
+    background-color: rgb(90, 197, 255);
+    
+
+}
+
+.btn-aprendamos:hover{
+    background-color: #d09def;
+      /* Color de fondo */
+      border-color: #DDCFE6;
+      /* Color del borde */
+      color: #000000;
+      /* Color del texto */
+      opacity: 0.8;
+  }
+  
+  
+  
+  /* Estilo para el botón de Registrarse */
+  .btn-aprendamos {
+      background-color: rgba(239, 142, 250, 0.195);
+      /* Color de fondo */
+      border-color: #DDCFE6;
+      /* Color del borde */
+      color: #000000;
+      /* Color del texto */
+      width:fit-content;
+      font-size: 15px;
+  }
+
+  .container-cardAP {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+  }
+  
+  .right-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .detalles-ap {
+    font-weight: 500;
+   font-size: 15px;
+   margin-left: 8vh;
+   margin-right: 8vh;
+   margin-top: 3vh;
+  
+   letter-spacing: 0.05em;
+  }
+  
+  
+
+/* ----------------------- */
+
+.music-player {
+    width: 300px;
+    background-color: #ace0e9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #0d7be9, -10px -10px 20px #45c4f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.album-cover {
+    width: 200px;
+    height: 200px;
+    background-image: url('./pic/imagen5.jpg');
+    background-color: #ebfcc3;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    
+}
+
+.song-info {
+    text-align: center;
+}
+
+.song-title, .artist {
+    margin: 0;
+}
+
+audio {
+    margin-top: 20px;
+    width: 100%;
+}

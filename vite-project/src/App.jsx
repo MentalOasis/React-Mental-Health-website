@@ -4,6 +4,7 @@ import { BrowserRouter , Routes, Route } from 'react-router-dom';
 // componentes
 import Footer from './components/PagNavFooter/Footer'
 import Navbar from './components/PagNavFooter/Navbar'
+import TituloBloque from './components/PagNavFooter/aprendamos/TituloBloque';
 // views listas
 import ComoMeSiento from './views/ComoMeSiento';
 import Plantilla from './views/Plantilla';
@@ -23,6 +24,7 @@ import Emergencia from './views/Emergencia';
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
+// import GameContainer from './juego/GameContainer';
 
 
 
@@ -32,7 +34,7 @@ function App() {
   // return (
   //   <>
   //     {/* <Navbar/> */}
-  //     <Composicion/>
+  //     <TituloBloque/>
   //     {/* <Footer/>   */}
   //     {/* <Categorias/> */}
   //   </>
@@ -70,6 +72,8 @@ return (
         <Route path="/admin/configuracion" element={<AccountSettings/>} />
         
       </Route>
+
+      {/* <Route path="/juego" element={<GameContainer />} /> */}
 
 
     </Routes>
