@@ -8,7 +8,7 @@ const Consejos = () => {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito1.jpeg" className="card-img-top card-img mx-auto d-block" alt="..." style={{ width: "100px" }}/>
+                        <img src="/pic/perrito1.jpeg" className="card-img-top card-img mx-auto d-block" alt="..." style={{ width: "100%" }}/>
                         <div className="card-body">
                             <h5 className="card-title">Recuerda que todos somos diferentes, por lo tanto visita a tu nutricionista para que te apoye con una pauta adaptada a tus necesidades.</h5>
                         </div>
@@ -17,7 +17,7 @@ const Consejos = () => {
                 <div className="col">
                     <div className="card h-100">
                         <img src="/pic/perrito2.jpeg" className="card-img-top card-img mx-auto d-block " alt="..."
-style={{ width: "100px" }}/>
+style={{ width: "100%" }}/>
                         <div className="card-body">
                             <h5 className="card-title">Recuerda apoyar tus procesos de cambios de hábitos con un psicologo/a.</h5>
                         </div>
@@ -25,7 +25,7 @@ style={{ width: "100px" }}/>
                 </div>
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito3.jpeg" className="card-img-top card-img mx-auto d-block" alt="..." style={{ width: "100px" }}/>
+                        <img src="/pic/perrito3.jpeg" className="card-img-top card-img mx-auto d-block" alt="..." style={{ width: "100%" }}/>
                         <div className="card-body">
                             <h5 className="card-title">No sientas culpa por comer comida rápida de vez en cuando, también es sano y válido darse gustos.</h5>
                         </div>
