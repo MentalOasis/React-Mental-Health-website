@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Card1 from '../components/PagNavFooter/aprendamos/Card1';
 import Card2 from '../components/PagNavFooter/aprendamos/Card2';
@@ -42,3 +43,4 @@ const Aprendamos = () => {
 }
 
 export default Aprendamos
+
