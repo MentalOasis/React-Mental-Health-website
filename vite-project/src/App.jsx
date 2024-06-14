@@ -16,15 +16,17 @@ import AdminDashboard  from './components/admin/dashboard/AdminDashBoard';
 import AddNewCategoryForm from './components/admin/nuevoTema/AddNewCategoryForm';
 import Categorias from './components/admin/categorias/Categorias';
 import InicioStart from './views/InicioHome';
-
-// views que faltan
 import Aprendamos from './views/Aprendamos';
 import Consejos from './views/Consejos';
 import Emergencia from './views/Emergencia';
+
+// views que faltan
+
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
 // import GameContainer from './juego/GameContainer';
+import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
 
 
 
@@ -74,6 +76,7 @@ return (
       </Route>
 
       {/* <Route path="/juego" element={<GameContainer />} /> */}
+      <Route path="/registrarse" element={<Iniciar />} />
 
 
     </Routes>
