@@ -412,10 +412,12 @@ const questions = [
 // FUNCIÓN PARA SORTEAR LAS PREGUNTAS ALEATORIAMENTE:
 
 // Función para obtener una pregunta aleatoria
-function obtenerPreguntaAleatoria() {
+let currentQuestionIndex = 0;
+export function obtenerPreguntaAleatoria() {
     currentQuestionIndex = Math.floor(Math.random() * questions.length);
     return questions[currentQuestionIndex];
 }
 
 var pregunta = obtenerPreguntaAleatoria();
 console.log(pregunta.titulo);
+

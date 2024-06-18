@@ -25,8 +25,9 @@ import Emergencia from './views/Emergencia';
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
-// import GameContainer from './juego/GameContainer';
+import GameContainer from './juego/GameContainer';
 import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
+
 
 
 
@@ -75,7 +76,7 @@ return (
         
       </Route>
 
-      {/* <Route path="/juego" element={<GameContainer />} /> */}
+      <Route path="/juego" element={<GameContainer />} />
       <Route path="/registrarse" element={<Iniciar />} />
 
 
