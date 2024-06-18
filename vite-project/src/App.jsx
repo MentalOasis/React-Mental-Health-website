@@ -4,6 +4,7 @@ import { BrowserRouter , Routes, Route } from 'react-router-dom';
 // componentes
 import Footer from './components/PagNavFooter/Footer'
 import Navbar from './components/PagNavFooter/Navbar'
+import TituloBloque from './components/PagNavFooter/aprendamos/TituloBloque';
 // views listas
 import ComoMeSiento from './views/ComoMeSiento';
 import Plantilla from './views/Plantilla';
@@ -15,14 +16,17 @@ import AdminDashboard  from './components/admin/dashboard/AdminDashBoard';
 import AddNewCategoryForm from './components/admin/nuevoTema/AddNewCategoryForm';
 import Categorias from './components/admin/categorias/Categorias';
 import InicioStart from './views/InicioHome';
-
-// views que faltan
 import Aprendamos from './views/Aprendamos';
 import Consejos from './views/Consejos';
 import Emergencia from './views/Emergencia';
+
+// views que faltan
+
 import SaludFisica from './views/SaludFisica';
 import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
+// import GameContainer from './juego/GameContainer';
+import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
 
 
 
@@ -32,7 +36,7 @@ function App() {
   // return (
   //   <>
   //     {/* <Navbar/> */}
-  //     <Composicion/>
+  //     <TituloBloque/>
   //     {/* <Footer/>   */}
   //     {/* <Categorias/> */}
   //   </>
@@ -70,6 +74,9 @@ return (
         <Route path="/admin/configuracion" element={<AccountSettings/>} />
         
       </Route>
+
+      {/* <Route path="/juego" element={<GameContainer />} /> */}
+      <Route path="/registrarse" element={<Iniciar />} />
 
 
     </Routes>

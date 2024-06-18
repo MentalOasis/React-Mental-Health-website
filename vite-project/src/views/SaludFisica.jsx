@@ -3,8 +3,8 @@ import './SaludFisica.css'; // Importa el archivo CSS para los estilos
 
 const ConsejosVidaSana = () => {
     return (
-        <div>
-            <div className="card">
+        <div className="row">
+            <div className="card card-salud">
                 <div className="face front">
                     <img src="/pic/Designer (43).jpeg" alt="" width="300" />
                     <h3>ALGUNOS CONSEJOS DE VIDA SANA</h3>
@@ -37,7 +37,7 @@ const ConsejosVidaSana = () => {
                     </p>
                 </div>
             </div>
-            <div className="card narrower"> {/* Agrega la clase "narrower" al segundo card */}
+            <div className="card card-salud narrower"> {/* Agrega la clase "narrower" al segundo card */}
                 <div className="face front">
                     <img src="/pic/Designer (58).jpeg" alt="" width="300" />
                     <h3>ACTIVIDAD FÍSICA</h3>

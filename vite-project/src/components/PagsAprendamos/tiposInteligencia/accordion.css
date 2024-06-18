@@ -1,5 +1,5 @@
 
-.image-accordion-background {
+.image-accordion-background-int {
     position: fixed;
     inset: 0;
     z-index: -1;
@@ -10,7 +10,7 @@
     
   }
   
-  .title-container {
+  .title-container-int {
     position: relative;
     z-index: 3;
     text-align: center;
@@ -19,7 +19,7 @@
     /* Añadido espacio interno al contenedor del título */
   }
   
-  .title-container h1 {
+  .title-container-int h1 {
     font-size: 38px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
@@ -39,7 +39,7 @@
     
   }
   
-  .image-accordion {
+  .image-accordion-int {
     position: relative;
     z-index: 2;
     display: flex;
@@ -51,7 +51,7 @@
     padding-bottom: 150px;        
   }
   
-  .image-accordion-item {
+  .image-accordion-item-int {
     position: relative;
     overflow: hidden;
     width: 70px; /* esto controla las imagenes inactivas */
@@ -66,39 +66,40 @@
   
   }
   
-  .card {
+  .efecto-vidrio-int {
     background: rgba(255, 255, 255, 0.3);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     border: 1.5px solid rgba(209, 213, 219, 0.3);
+    border-radius: 8px;
    }
   
-  .image-accordion-item:hover {
+  .image-accordion-item-int:hover {
     opacity: 0.8;
   }
   
-  .image-accordion :is(h2, p) {
+  .image-accordion-int :is(h2, p) {
     margin: 0;
     /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); */
   }
   
-  .image-accordion-item h2 {
+  .image-accordion-item-int h2 {
     font-size: 24px;
     font-weight: 400;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   }
   
-  .image-accordion-item p {
+  .image-accordion-item-int p {
     color: rgb(255, 255, 255);
   }
   
-  .image-accordion-item.active {
+  .image-accordion-item-int.active {
     width: 450px;
     opacity: 1;
   }
   
-  .image-accordion-item .material-symbols-outlined {
+  .image-accordion-item-int .material-symbols-outlined {
     display: grid;
     place-items: center;
     width: 50px;
@@ -109,7 +110,7 @@
     font-size: 28px;
   }
   
-  .image-accordion-item .content {
+  .image-accordion-item-int .content {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -125,12 +126,12 @@
     transition: 0.25s;
   }
   
-  .image-accordion-item.active .content {
+  .image-accordion-item-int.active .content {
     opacity: 1;
     visibility: visible;
   }
   
-  .image-accordion-item img {
+  .image-accordion-item-int img {
     position: absolute;
     z-index: 0;
     top: 50%;

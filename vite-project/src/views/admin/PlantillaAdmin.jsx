@@ -8,7 +8,7 @@ const PlantillaAdmin = () => {
 return (
     <>
         <Navbar />
-        <div className="contenedor">
+        <div className="contenedor-admin">
             <Sidebar />
             <div className="altura-min-admin">
             <Outlet />
