@@ -16,8 +16,7 @@ const Consejos = () => {
                 </div>
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito2.jpeg" className="card-img-top card-img mx-auto d-block " alt="..."
-style={{ width: "100%" }}/>
+                        <img src="/pic/perrito2.jpeg" className="card-img-top card-img mx-auto d-block " alt="..." style={{ width: "100%" }}/>
                         <div className="card-body">
                             <h5 className="card-title">Recuerda apoyar tus procesos de cambios de hábitos con un psicologo/a.</h5>
                         </div>
