@@ -1,7 +1,8 @@
 
-import React, { useEffect, useRef} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs"; // Importa Kaboom
-import { obtenerPreguntaAleatoria } from './preguntas';
+
+import axios from 'axios';
 
 
 
@@ -13,7 +14,7 @@ const Game = () => {
 		// Initialize Kaplay.js with the DOM element reference
 		const k = kaboom({
 		  global: true,
-		  width: 1440,
+		  width: 1400,
           height: 880,
 		  canvas: gameContainerRef.current,
 		  background: [141, 183, 255],        
@@ -96,8 +97,8 @@ k.loadSprite("quarzo-rosa", "/sprites/quarzo-rosa.png");
 k.loadSprite("ice-tree", "/sprites/ice-tree.png");
 k.loadSprite("ice-tree2", "/sprites/ice-tree2.png");
 k.loadSprite("snow-man", "/sprites/snow-man.png");
-k.loadSprite("fondo", "/sprites/fondo.jpg");
-// k.loadSprite("negro", "/sprites/negro.jpeg");
+
+
 
 // FONDOS
 k.loadSprite("montaña", "/sprites/Fondo1Montaña.png");
@@ -106,37 +107,18 @@ k.loadSprite("bosque", "/sprites/Fondo3Bosque.png");
 k.loadSprite("nieve", "/sprites/Fondo5Nieve.png");
 k.loadSprite("espacio", "/sprites/Fondo6Espacio.png");
 k.loadSprite("anaranjado", "/sprites/Anaranjado1.png");
+k.loadSprite("fondo", "/sprites/fondo.jpg");
+
+
+
+//---------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-console.log(questions);
-let currentQuestionIndex = 0;
-let questionVisible = false;
 
-// Lógica para mostrar la pregunta y las opciones de respuesta
-function showQuestion() {
-questionVisible = true;
-// const question = questions[currentQuestionIndex];
-const question = obtenerPreguntaAleatoria();
-const questionElem = document.getElementById('question');
-const optionAElem = document.getElementById('optionA');
-const optionBElem = document.getElementById('optionB');
-const optionCElem = document.getElementById('optionC');
-const optionDElem = document.getElementById('optionD');
-
-questionElem.innerText = question.titulo;
-optionAElem.innerText = question.opcionA;
-optionBElem.innerText = question.opcionB;
-optionCElem.innerText = question.opcionC;
-optionDElem.innerText = question.opcionD;
-
-document.getElementById('question-container').style.display = 'block';
-}
-
-
-k.setGravity(2200)
+k.setGravity(2500)
 
 // custom component controlling enemy patrol movement
 function patrol(speed = 60, dir = -1) {
@@ -157,7 +139,7 @@ function patrol(speed = 60, dir = -1) {
 }
 
 // define some constants
-const JUMP_FORCE = 1320
+const JUMP_FORCE = 1220  //1320
 const MOVE_SPEED = 480
 const FALL_DEATH = 2400
 const BIG_JUMP_FORCE = 1600
@@ -206,48 +188,9 @@ function big() {
 
 
 const LEVELS = [
-
-	// // nivel nieve interior (subterraneo)
-	// [   "ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjjjj",
-	// 	"ñ ñ               ñ$$$$$$             |           ",
-	// 	"ñ ñ   ($        $ ñ$$($$$             |           ",
-	// 	"ñ ñ   ll          ñ$$$$$$             |           ",
-	// 	"ñ ñ         ${  ¨ ñññññññ             } ;         ",
-	// 	"ñ ñ     $ññññ|ñññññ                   lll{        ",
-	// 	"ñ ñ    ;ññ   |              ll           |        ",
-	// 	"ñ ñ,,,ññ     |                           |        ",
-	//     "ñ ñññññ      |                           |  ,$$$, ",
-	// 	"ñ            }  [~~~~](                  |  lllll ",
-	// 	"ñ     ( ¨    lll     ll                  |        ",
-	// 	"ñ     lll      ;                         |    $   ",
-	// 	"ñ           $hhh!                        |        ",
-	// 	"ñ   ;$ g  $ hñññh    $ ( $        h,g , >}    (  ,",
-	// 	"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhhhh",
-	// 	"ñññññññññññññññññññññññññññññ > >ñññññññññññññññññ",
-	// 	"ññññññññññññññññññññññññññññññññññññññññññññññññññ",
-	// ],
-    
-	// nivel nieve exterior
-	[   
-		
-		"                                                  ",
-		"             $           (                        ",
-	    "             $          hh      $                 ",
-		"             $                   $                ",
-		"             $                    $               ",
-		"             $     h              $               ",
-		"     $z$           ñ              $               ",
-		"    hhhhh         hñ                              ",
-		"                  ññh                             ",
-		"                 hñññ                             ",
-		"      (      i > ññññ ¨  i   >  z       ¨i    : ¨ ",
-		"jjjjjjjjjjjjjjjjjññññjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
-		
-
-	],
 	
 	
-     // nivel nieve completo
+     // nivel nieve completo, demasiado grande, no poner
 	// [   
 		
 	// 	"ñ ñ                                               ",
@@ -281,7 +224,7 @@ const LEVELS = [
 	// ],
 	
 
-	// nivel selva
+	// nivel selva, listo
 	[   
 		
 		"                                                ",
@@ -297,9 +240,8 @@ const LEVELS = [
 		"    |     ¬¬¬          °u $       $        ¬¬¬  ",
 		"    |                  °  $                     ",
 		"    |                  °  $                     ",
-		" a  }   ^^  vv   r  >  °  (v  av    r   g g    r",
-		"¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    ¬¬¬¬¬¬¬¬¬¬¬¬¬",
-		
+		" a  }   ^^  vv   r  >  °  (v av     r   g g    r",
+		"¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    ¬¬¬¬¬¬¬¬¬¬¬¬¬",	
 	],
 
 	// nivel rosadito
@@ -327,9 +269,11 @@ const LEVELS = [
     "£      b   b  x x xtx xtx      £",
     "55555555555555555555555555555555",
 ],
+
+// // nivel mar
 [
     "     0      o",
-    "?   ==   3   ",
+    "?   ==       ",
     "        $$   ",
     "  %    ===   ",
     "             ",
@@ -350,17 +294,58 @@ const LEVELS = [
 		"===========================",
 	],
 
-	// nivel spikes, falta poner plataforma con pregunta al final
-	[
-		"      $    $    $    $     $",
-		"      $    $    $    $     $",
-		"                            ",
-		"                            ",
-		"   `                        ",
-		"                            ",
-		"                            ",
-		"  ^^^^>^^^^>^^^^>^^^^>^^^^^@",
-		" ===========================",
+	// nivel spikes
+	[   
+		"   `                             ",
+		"      $    $    $    $     $     ",
+		"      $    $    $    $     $     ",
+		"                                 ",
+		"                                 ",
+		"                                 ",
+		"                           (     ",
+		"                           =     ",
+		"  ^^^^>^^^^>^^^^>^^^^>^^^^^     @",
+		" ================================",
+	],
+	
+	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
+	[ 
+	 "ñ ñ      .                                      ",
+		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
+		"ñ ñ               ñ$$$$$$             |         ",
+		"ñ ñ   ($        $ ñ$$($$$             |         ",
+		"ñ ñ   ll          ñ$$$$$$             |         ",
+		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
+		"ñ ñ     $ñññ |ñññññ                   lll{      ",
+		"ñ ñ    ;ññ   |              ll           |      ",
+		"ñ ñ,,,ññ     |                           |      ",
+	 "ñ ñññññ      |                           | ,$$$,",
+		"ñ            }  [~~~~](                  | lllll",
+		"ñ     ( ¨    lll     ll                  |      ",
+		"ñ     lll      ;                         |   $  ",
+		"ñ           $hhh!                        |      ",
+		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
+		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
+		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
+		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
+	],
+    
+	// nivel nieve exterior, ULTIMO NIVEL (es como que llego a su casita)
+	[   
+		
+		"        w                       w                  ",
+		"                                                  ",
+		"             $           (                        ",
+	    "             $          hh      $                 ",
+		"             $                   $                ",
+		"             $                    $               ",
+		"             $     h              $               ",
+		"     $z$           ñ              $               ",
+		"    hhhhh         hñ                              ",
+		"                  ññh                             ",
+		"                 hñññ                             ",
+		"      (      i > ññññ ¨  i   >  z       ¨i    : ¨ ",
+		"jjjjjjjjjjjjjjjjjññññjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
 	],
 ]
 
@@ -374,12 +359,12 @@ const levelConf = {
 		"=": () => [k.sprite("grass"), estatico, k.area(), k.anchor("bot"), hide, "platform"],
 		"0": () => [k.sprite("bag"), k.area(), hide, k.anchor("bot")],
 		"$": () => [k.sprite("coin"), k.area(), k.pos(0, -15), k.anchor("bot"), hide, "coin"],
-		"%": () => [k.sprite("prize"), k.area(), k.anchor("bot"), hide, "prize"],
+		"%": () => [k.sprite("prize"), estatico,  k.area(), k.anchor("bot"), hide, "prize"],
 		"^": () => [k.sprite("spike"), k.area(), k.anchor("bot"), hide, "danger"],
 		"#": () => [k.sprite("apple"), k.area(), k.anchor("bot"), k.body(), hide, "apple"],
 		">": () => [k.sprite("ghosty"), k.area(), k.anchor("bot"), k.body(), patrol(), hide, "enemy"],
 		"@": () => [k.sprite("portal"), k.area(), k.scale(2), k.anchor("bot"), k.pos(0, -12), hide, "portal"],
-		"p": () => [k.sprite("pipe"), k.area({ scale: 0.5 }), k.scale(2), k.anchor("bot"), hide, "stairs"],
+		"p": () => [k.sprite("pipe"), estatico, k.area({ scale: 0.5 }), k.scale(2), k.anchor("bot"), hide, "stairs"],
 		"s": () => [k.sprite("stairs"), k.area({ scale: 1.2 }), k.scale(1.4), k.pos(0, 5), k.anchor("bot"), hide, "stairs"],
 		"3": () => [k.sprite("btfly"), k.area(), k.pos(0, -9), k.anchor("bot"), hide],
 		"f": () => [k.sprite("flower"), k.anchor("bot"), hide],
@@ -387,8 +372,8 @@ const levelConf = {
 		"g": () => [k.sprite("gigagantrum"), k.area(), k.anchor("bot"), k.body(), patrol(), hide, "dangerous"],
 		"d": () => [k.sprite("door"), k.area({ scale: 0.5 }), k.anchor("bot"), k.pos(0, -12), hide, "portal"],
 		"k": () => [k.sprite("key"), k.area(), k.pos(0, -9), k.anchor("bot"), hide],
-		"1": () => [k.sprite("surprise"), k.area(), k.scale(3.2), k.anchor("bot"), hide, "coin-surprise"],
-		"*": () => [k.sprite("surprise"), k.area(), k.scale(3.2), k.anchor("bot"), hide, "prize"],
+		"1": () => [k.sprite("surprise"), estatico, k.area(), k.scale(3.2), k.anchor("bot"), hide, "coin-surprise"],
+		"*": () => [k.sprite("surprise"), estatico, k.area(), k.scale(3.2), k.anchor("bot"), hide, "prize"],
 		"2": () => [k.sprite("unboxed"), estatico, k.area(), k.scale(3.2), k.anchor("bot"), hide, "platform"],
 		"4": () => [k.sprite("brick"), estatico, k.area(), k.scale(3.2), k.anchor("bot"), hide, "platform"],
 		"5": () => [k.sprite("blue-brick"), estatico, k.area(), k.scale(1.6), k.anchor("bot"), hide, "platform"],
@@ -406,19 +391,19 @@ const levelConf = {
 		"8": () => [k.sprite("purple-heart"), k.area(), k.scale(0.1), k.anchor("bot"), k.body(), hide, "apple"],
 		")": () => [k.sprite("tree2"), k.area(), k.pos(0, 15), k.anchor("bot"), hide],
 		"¬": () => [k.sprite("grass-forest"), estatico , k.area(), k.scale(0.18), k.pos(0, -25), k.anchor("bot"), hide, "platform"],
-		"[": () => [k.sprite("bridge1"), k.area({ scale: 0.18 }), k.pos(-20, 28), k.scale(0.3), k.anchor("bot"), hide],
-		"~": () => [k.sprite("bridge2"), k.area({ scale: 0.3 }), k.pos(-20, 30), k.scale(0.3), k.anchor("bot"), hide],
-		"]": () => [k.sprite("bridge3"), k.area({ scale: 0.1 }), k.pos(-20, 12), k.scale(0.3), k.anchor("bot"), hide],
+		"[": () => [k.sprite("bridge1"), estatico, k.area({ scale: 0.18 }), k.pos(-20, 28), k.scale(0.3), k.anchor("bot"), hide],
+		"~": () => [k.sprite("bridge2"), estatico, k.area({ scale: 0.3 }), k.pos(-20, 30), k.scale(0.3), k.anchor("bot"), hide],
+		"]": () => [k.sprite("bridge3"), estatico, k.area({ scale: 0.1 }), k.pos(-20, 12), k.scale(0.3), k.anchor("bot"), hide],
 		"{": () => [k.sprite("ladder1"), k.area(), k.scale(0.27), k.pos(0, -8), k.anchor("bot"), hide, "ladder"],
 		"|": () => [k.sprite("ladder2"), k.area(), k.scale(0.14), k.anchor("bot"), hide, "ladder"],
 		"}": () => [k.sprite("ladder3"), k.area(), k.scale(0.14), k.pos(0, 10), k.anchor("bot"), hide, "ladder"],
-		"°": () => [k.sprite("rock-block"), k.area(), k.scale(0.18), k.anchor("bot"), hide, "platform"],
+		"°": () => [k.sprite("rock-block"), estatico, k.area(), k.scale(0.18), k.anchor("bot"), hide, "platform"],
 		"+": () => [k.sprite("cueva"), k.area({ scale: 0.3 }), k.scale(2), k.anchor("bot"), k.pos(0, 15), hide, "portal"],
 		"a": () => [k.sprite("tree-f"), k.area(), k.scale(2.2), k.pos(0, 3), k.anchor("bot"), hide],
 		"q": () => [k.sprite("tree-f1"), k.area(), k.scale(2.2), k.pos(0, 3), k.anchor("bot"), hide],
 		"r": () => [k.sprite("tree-f2"), estatico, k.area({ scale: 0.6 }), k.scale(0.5), k.pos(0, 3), k.anchor("bot"), hide, 'platform'],
 		"u": () => [k.sprite("rama"), k.pos(-4, 15), k.anchor("bot"), hide],
-		"v": () => [k.sprite("plant"), k.scale(0.4), k.pos(0, 8), hide],
+		"v": () => [k.sprite("plant"), k.scale(0.4), k.pos(0, -40), hide],
 		"l": () => [k.sprite("ice-thin"), estatico, k.area({ scale: 0.8 }), k.pos(0, -20), k.scale(0.3), k.anchor("bot"), hide,],
 		"h": () => [k.sprite("ice2"), estatico, k.area({ scale: 1 }), k.pos(0, 5), k.scale(1.2), k.anchor("bot"), hide,],
 		"j": () => [k.sprite("ice-tierra"), estatico, k.area({ scale: 0.8 }), k.pos(0, 0), k.scale(0.8), k.anchor("bot"), hide,],
@@ -427,11 +412,11 @@ const levelConf = {
 		",": () => [k.sprite("quarzo-rosa"), k.area({ scale: 0.4 }), k.scale(0.15), k.pos(0, 0), k.anchor("bot"), hide, "danger",],
 		";": () => [k.sprite("quarzo-celeste"), k.area(), k.scale(0.4), k.pos(0, 10), k.anchor("bot"), hide,],
 		":": () => [k.sprite("casa"), k.area({ scale: 0.2 }), k.scale(1.1), k.anchor("bot"), k.pos(-100, 20), hide, "portal",],
-		"w": () => [k.sprite("fondo"), k.anchor("bot"), k.pos(18, 260), k.scale(1), hide,],
+		"w": () => [k.sprite("fondo"), k.anchor("bot"), k.pos(-200, 900), k.scale(2.5), hide,],
 		"z": () => [k.sprite("ice-tree2"), k.area(), k.pos(0, 0), k.scale(1), k.anchor("bot"), hide,],
 		"¨": () => [k.sprite("snow-man"), k.area(), k.scale(0.3), k.pos(0, 15), k.anchor("bot"), hide,],
-		"/": () => [k.sprite("montaña"), k.anchor("bot"), k.pos(1500, 1200), k.scale(2)],
-		"?": () => [k.sprite("mar"), k.anchor("bot"), k.pos(1500, 900), k.scale(2)],
+		"/": () => [k.sprite("montaña"), k.anchor("bot"), k.pos(1000, 1200), k.scale(2)],
+		"?": () => [k.sprite("mar"), k.anchor("bot"), k.pos(1000, 900), k.scale(2)],
 		"¿": () => [k.sprite("bosque"), k.anchor("bot"), k.pos(1100, 1100), k.scale(2)],
 		"¡": () => [k.sprite("nieve"), k.anchor("bot"), k.pos(800, 1100), k.scale(1.8)],
 		".": () => [k.sprite("espacio"), k.anchor("bot"), k.pos(800, 1100), k.scale(2)],
@@ -446,6 +431,10 @@ const levelConf = {
 
 	},  
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+
 
 scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) => {
 
@@ -493,11 +482,11 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 	// if player onCollide with any obj with "danger" tag, lose
 	player.onCollide("danger", () => {
 		go("lose")
-		play("hit")
+		
 	})
 
 	player.onCollide("portal", () => {
-		play("portal")
+		
 		if (levelId + 1 < LEVELS.length) {
 			go("game", {
 				levelId: levelId + 1,
@@ -543,9 +532,9 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 	player.onGround((l) => {
 		if (l.is("enemy")) {
 			player.jump(JUMP_FORCE * 1.5)
-			destroy(l)
+			k.destroy(l)
 			addKaboom(player.pos)
-			play("powerup")
+			
 		}
 	})
 
@@ -553,7 +542,7 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 		// if it's not from the top, die
 		if (!col.isBottom()) {
 			go("lose")
-			play("hit")
+			
 		}
 	})
 
@@ -564,7 +553,7 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 			apple.jump()
 			
 			destroy(obj)
-			play("blip")
+			
 		}
 		
 	})
@@ -575,7 +564,7 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 		if (l.is("dangerous")) {
 			destroy(l)
 			k.addKaboom(player.pos)
-			play("powerup")
+			
 		}
 	})
 
@@ -586,7 +575,7 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 		if (obj.is("prize") ) {
 			const apple = level.spawn("8", obj.tilePos.sub(0, 1)) //ahora es corazon
 			apple.jump()
-			play("blip")
+			
 		}
 		if (obj.is('coin-surprise')) {
 			level.spawn('$', obj.tilePos.sub(0, 1))
@@ -601,49 +590,111 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 	})
 
 
-// Lógica para esconder la pregunta
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+
+async function obtenerPreguntas() {
+    try {
+        const response = await axios.get('http://localhost:7000/api/admin/mostrar-preguntas');
+        return response.data.data; // Asumiendo que la respuesta tiene la estructura { data: { data: [...] } }
+    } catch (error) {
+        console.error('Error al obtener preguntas:', error);
+        return [];
+    }
+}
+
+let questions = [];
+let currentQuestionIndex = 0;
+let questionVisible = false;
+
+// Función para obtener una pregunta aleatoria
+function obtenerPreguntaAleatoria() {
+    currentQuestionIndex = Math.floor(Math.random() * questions.length);
+    return questions[currentQuestionIndex];
+}
+
+async function showQuestion() {
+    if (questions.length === 0) {
+        questions = await obtenerPreguntas();
+    }
+
+    if (questions.length === 0) {
+        console.error('No hay preguntas disponibles');
+        return;
+    }
+
+    questionVisible = true;
+    const question = obtenerPreguntaAleatoria();
+    const questionElem = document.getElementById('question');
+    const optionAElem = document.getElementById('optionA');
+    const optionBElem = document.getElementById('optionB');
+    const optionCElem = document.getElementById('optionC');
+    const optionDElem = document.getElementById('optionD');
+
+    questionElem.innerText = question.titulo;
+    optionAElem.innerText = question.opcionA;
+    optionBElem.innerText = question.opcionB;
+    optionCElem.innerText = question.opcionC;
+    optionDElem.innerText = question.opcionD;
+
+    document.getElementById('question-container').style.display = 'block';
+}
+
 function hideQuestion() {
     questionVisible = false;
     document.getElementById('question-container').style.display = 'none';
-    player.move(MOVE_SPEED, 0)
-    }
+    player.move(MOVE_SPEED, 0);
+}
 
 // Función para verificar la respuesta
 function checkAnswer(answer) {
-    const question = obtenerPreguntaAleatoria();
+    const question = questions[currentQuestionIndex];
+	console.log(question.correcta)
+	console.log(answer)
     if (answer === question.correcta) {
         player.biggify(6);
         hideQuestion();
-        player.move(MOVE_SPEED, 0); // Activar movimiento automáticamente
-		k.add([
-			text("Correcto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
-		]);
-		score += 1
+        score += 1; // Incrementa el puntaje
 		scoreLabel.text = "Puntaje: " + score
+        // document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
+        k.add([
+            text("¡Correcto! ¡Haz click para moverte!"), anchor("left"),
+        ]);
     } else {
         hideQuestion();
-		k.add([
-			text("Incorrecto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
-		])
+        k.add([
+            text("¡Incorrecto! ¡Haz click para moverte!"), anchor("left"),
+        ]);
     }
     onKeyPress(() => {
         player.move(MOVE_SPEED, 0);
     });
 }
 
- // Eventos de clic para los botones de respuesta
-document.getElementById('optionA').addEventListener('click', () => checkAnswer('a'));
-document.getElementById('optionB').addEventListener('click', () => checkAnswer('b'));
-document.getElementById('optionC').addEventListener('click', () => checkAnswer('c'));
-document.getElementById('optionD').addEventListener('click', () => checkAnswer('d'));
+// Eventos de clic para los botones de respuesta
+document.getElementById('optionA').addEventListener('click', () => checkAnswer('opcionA'));
+document.getElementById('optionB').addEventListener('click', () => checkAnswer('opcionB'));
+document.getElementById('optionC').addEventListener('click', () => checkAnswer('opcionC'));
+document.getElementById('optionD').addEventListener('click', () => checkAnswer('opcionD'));
 
-	// player grows big onCollide with an "apple" obj
-	player.onCollide("apple", (a) => {
-		destroy(a)
-        showQuestion();
-		// as we defined in the big() component
-		play("powerup")
-	})
+player.onCollide("apple", (a) => {
+    destroy(a);
+    showQuestion();
+});
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 	let coinPitch = 0
 // creo que coinPitch es para el sonido de moneda, pero yo no escucho nada...
@@ -655,9 +706,7 @@ document.getElementById('optionD').addEventListener('click', () => checkAnswer('
 
 	player.onCollide("coin", (c) => {
 		destroy(c)
-		play("coin", {
-			detune: coinPitch,
-		})
+		
 		coinPitch += 100
 		coins += 1
 		coinsLabel.text = "Monedas: " + coins
@@ -761,728 +810,3 @@ go("game")
 
 
 
-
-
-
-
-// kaboom({
-// 	// background: [141, 183, 255],
-// 	background: [0, 0, 0],
-// })
-
-
-// // load assets platformer, funciona con live server, no path
-// loadSprite("bag", "/sprites/bag.png")
-// loadSprite("ghosty", "/sprites/ghosty.png")
-// loadSprite("spike", "/sprites/spike.png")
-// loadSprite("grass", "/sprites/grass.png")
-// loadSprite("steel", "/sprites/steel.png")
-// loadSprite("prize", "/sprites/jumpy.png")
-// loadSprite("apple", "/sprites/apple.png")
-// loadSprite("portal", "/sprites/portal.png")
-// loadSprite("coin", "/sprites/coin.png")
-// loadSound("coin", "/examples/sounds/score.mp3")
-// loadSound("powerup", "/examples/sounds/powerup.mp3")
-// loadSound("blip", "/examples/sounds/blip.mp3")
-// loadSound("hit", "/examples/sounds/hit.mp3")
-// loadSound("portal", "/examples/sounds/portal.mp3")
-
-
-// //SPRITES NUEVAS, cargadas desde carpeta, son de kaboom
-// loadSprite("btfly", "/sprites/btfly.png") 
-// loadSprite("cloud", "/sprites/cloud.png")
-// loadSprite("door", "/sprites/door.png")
-// loadSprite("key", "/sprites/key.png")
-// loadSprite("moon", "/sprites/moon.png")
-// loadSprite("sun", "/sprites/sun.png")
-// loadSprite("gigagantrum", "/sprites/gigagantrum.png")
-// loadSprite("lightening", "/sprites/lightening.png")
-// // SPRITES MARIO
-// loadSprite("blue-brick", "/sprites/blue-brick.png")
-// loadSprite("blue-evil-shroom", "/sprites/blue-evil-shroom.png")
-// loadSprite("blue-steel", "/sprites/blue-steel.png")
-// loadSprite("blue-wall", "/sprites/blue-wall.png")
-// loadSprite("brick", "/sprites/brick.png")
-// loadSprite("evil-shroom", "/sprites/evil-shroom.png")
-// loadSprite("mushm", "/sprites/mushroom-mario.png")
-// loadSprite("pipe", "/sprites/pipe.png") 
-// loadSprite("red-wall", "/sprites/red-wall.png")
-// loadSprite("surprise", "/sprites/surprise.png")
-// loadSprite("unboxed", "/sprites/unboxed.png")
-// loadSprite("flower", "/sprites/flower.png") 
-// // SPRITES EXTRA zelda
-// loadSprite("stairs", "/sprites/stairs.png") 
-// loadSprite("skeleton", "/sprites/skeleton.png")
-// loadSprite("linternas", "/sprites/linternas.png") 
-// loadSprite("peligro", "/sprites/peligro.png") 
-// // SPRITES PERSONALIZADAS XHISFIRE
-// loadSprite("chi", "/sprites/chi2.png") 
-// loadSprite("cofre", "/sprites/cofre.png")
-// loadSprite("sign", "/sprites/1874317.png") 
-// loadSprite("pink-grass", "/sprites/pink-grass.png") 
-// loadSprite("pink-tree", "/sprites/pink-tree.png")
-// loadSprite("purple-heart", "/sprites/purple-heart.png")
-// loadSprite("tree2", "/sprites/tree2.png")
-// //sprites selva
-// loadSprite("ladder1", "/sprites/ladder1.png" )
-// loadSprite("ladder2", "/sprites/ladder2.png" )
-// loadSprite("ladder3", "/sprites/ladder3.png" )
-// loadSprite("bridge1", "/sprites/bridge1.png" )
-// loadSprite("bridge2", "/sprites/bridge2.png" )
-// loadSprite("bridge3", "/sprites/bridge3.png" )
-// loadSprite("grass-forest", "/sprites/grass-forest.png" )
-// loadSprite("rock-block", "/sprites/rock-block.png" )
-// loadSprite("tree-f", "/sprites/tree-f.png" )
-// loadSprite("tree-f1", "/sprites/tree-f1.png" )
-// loadSprite("tree-f2", "/sprites/tree-f2.png" )
-// loadSprite("cueva", "/sprites/cueva.png" )
-// loadSprite("rama", "/sprites/rama.png" )
-// loadSprite("plant", "/sprites/plant.png" )
-// // sprites hielo
-// loadSprite("ice-thin", "/sprites/ice1.png" )
-// // loadSprite("ice", "/sprites/ice.png" )
-// loadSprite("ice2", "/sprites/ice2.png" )
-// loadSprite("ice-tierra", "/sprites/ice3.png" )
-// loadSprite("ice-blanco", "/sprites/ice-blanco.jpg" )
-// loadSprite("casa", "/sprites/casa.png" )
-// loadSprite("quarzo-celeste", "/sprites/quarzo-celeste.png" )
-// loadSprite("quarzo-rosa", "/sprites/quarzo-rosa.png" )
-// loadSprite("ice-tree", "/sprites/ice-tree.png")
-// loadSprite("ice-tree2", "/sprites/ice-tree2.png")
-// loadSprite("snow-man", "/sprites/snow-man.png")
-// loadSprite("fondo", "/sprites/fondo.jpg" ), 
-// // loadSprite("negro", "/sprites/negro.jpeg" )
-
-
-// // FONDOS
-// loadSprite("montaña", "/sprites/Fondo1Montaña.png"),
-// loadSprite("mar", "/sprites/Fondo2Mar.png"),
-// loadSprite("bosque", "/sprites/Fondo3Bosque.png"),
-// loadSprite("nieve", "/sprites/Fondo5Nieve.png"),
-// loadSprite("espacio", "/sprites/Fondo6Espacio.png"),
-// loadSprite("anaranjado", "/sprites/Anaranjado1.png")
-
-
-
-
-// console.log(questions);
-// let currentQuestionIndex = 0;
-// let questionVisible = false;
-
-// // Lógica para mostrar la pregunta y las opciones de respuesta
-// function showQuestion() {
-// questionVisible = true;
-// // const question = questions[currentQuestionIndex];
-// const question = obtenerPreguntaAleatoria();
-// const questionElem = document.getElementById('question');
-// const optionAElem = document.getElementById('optionA');
-// const optionBElem = document.getElementById('optionB');
-// const optionCElem = document.getElementById('optionC');
-// const optionDElem = document.getElementById('optionD');
-
-// questionElem.innerText = question.titulo;
-// optionAElem.innerText = question.opcionA;
-// optionBElem.innerText = question.opcionB;
-// optionCElem.innerText = question.opcionC;
-// optionDElem.innerText = question.opcionD;
-
-// document.getElementById('question-container').style.display = 'block';
-// }
-
-
-// setGravity(3200)
-
-// // custom component controlling enemy patrol movement
-// function patrol(speed = 60, dir = -1) {
-// 	return {
-// 		id: "patrol",
-// 		require: [ "pos", "area" ],
-// 		add() {
-// 			this.on("collide", (obj, col) => {
-// 				if (col.isLeft() || col.isRight()) {
-// 					dir = -dir
-// 				}
-// 			})
-// 		},
-// 		update() {
-// 			this.move(speed * dir, 0)
-// 		},
-// 	}
-// }
-
-// // define some constants
-// const JUMP_FORCE = 1320
-// const MOVE_SPEED = 480
-// const FALL_DEATH = 2400
-// const BIG_JUMP_FORCE = 1600
-// let CURRENT_JUMP_FORCE = JUMP_FORCE
-
-
-// // custom component that makes stuff grow big
-// function big() {
-// 	let timer = 0
-// 	let isBig = false
-// 	let destScale = 1
-// 	return {
-// 		// component id / name
-// 		id: "big",
-// 		// it requires the scale component
-// 		require: [ "scale" ],
-// 		// this runs every frame
-// 		update() {
-// 			if (isBig) {
-// 				timer -= dt()
-// 				if (timer <= 0) {
-// 					this.smallify()
-					
-// 				}
-// 			}
-// 			this.scale = this.scale.lerp(vec2(destScale), dt() * 6)
-// 		},
-// 		// custom methods
-// 		isBig() {
-// 			return isBig
-// 		},
-// 		smallify() {
-// 			destScale = 1
-// 			timer = 0
-// 			isBig = false
-// 			CURRENT_JUMP_FORCE = JUMP_FORCE
-// 		},
-// 		biggify(time) {
-// 			destScale = 2
-// 			timer = time
-// 			isBig = true
-// 			CURRENT_JUMP_FORCE = BIG_JUMP_FORCE
-// 		},
-// 	}
-// }
-
-
-// const LEVELS = [
-
-// 	// nivel nieve interior (subterraneo)
-// 	[   "ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjjjj",
-// 		"ñ ñ               ñ$$$$$$             |           ",
-// 		"ñ ñ   ($        $ ñ$$($$$             |           ",
-// 		"ñ ñ   ll          ñ$$$$$$             |           ",
-// 		"ñ ñ         ${  ¨ ñññññññ             } ;         ",
-// 		"ñ ñ     $ññññ|ñññññ                   lll{        ",
-// 		"ñ ñ    ;ññ   |              ll           |        ",
-// 		"ñ ñ,,,ññ     |                           |        ",
-// 	    "ñ ñññññ      |                           |  ,$$$, ",
-// 		"ñ            }  [~~~~](                  |  lllll ",
-// 		"ñ     ( ¨    lll     ll                  |        ",
-// 		"ñ     lll      ;                         |    $   ",
-// 		"ñ           $hhh!                        |        ",
-// 		"ñ   ;$ g  $ hñññh    $ ( $        h,g , >}    (  ,",
-// 		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhhhh",
-// 		"ñññññññññññññññññññññññññññññ > >ñññññññññññññññññ",
-// 		"ññññññññññññññññññññññññññññññññññññññññññññññññññ",
-// 	],
-    
-// 	// nivel nieve exterior
-// 	[   
-		
-// 		"                                                  ",
-// 		"             $           (                        ",
-// 	    "             $          hh      $                 ",
-// 		"             $                   $                ",
-// 		"             $                    $               ",
-// 		"             $     h              $               ",
-// 		"     $z$           ñ              $               ",
-// 		"    hhhhh         hñ                              ",
-// 		"                  ññh                             ",
-// 		"                 hñññ                             ",
-// 		"      (      i > ññññ ¨  i   >  z       ¨i    : ¨ ",
-// 		"jjjjjjjjjjjjjjjjjññññjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
-		
-
-// 	],
-	
-	
-//      // nivel nieve completo
-// 	// [   
-		
-// 	// 	"ñ ñ                                               ",
-// 	// 	"ñ ñ          $           (                        ",
-// 	//  "ñ ñ          $          hh      $                 ",
-// 	// 	"ñ ñ          $                   $                ",
-// 	// 	"ñ ñ          $                    $               ",
-// 	// 	"ñ ñ          $     h              $               ",
-// 	// 	"ñ ñ  $z$           ñ              $               ",
-// 	// 	"ñ ñ hhhhh         hñ                              ",
-// 	// 	"ñ ñ               ññh                             ",
-// 	// 	"ñ ñ              hñññ                             ",
-// 	// 	"ñ ñ   (   {j i > ññññ ¨  i   >  z    j  ¨i    : ¨ ",
-// 	// 	"ñ ñjjjjjjj|jjjjjjññññjjjjjjjjjjjjjjjjj{jjjjjjjjjjj",
-// 	// 	"ñ ñ       |       ñ$$$$$$             |           ",
-// 	// 	"ñ ñ   ($  |     $ ñ$$($$$             |           ",
-// 	// 	"ñ ñ   ll  |       ñ$$$$$$             |           ",
-// 	// 	"ñ ñ       } ${  ¨ ñññññññ             } ;         ",
-// 	// 	"ñ ñ     $ññññ|ñññññ                   lll{        ",
-// 	// 	"ñ ñ    ;ññ   |              ll           |        ",
-// 	// 	"ñ ñ,,,ññ     |                           |        ",
-// 	//  "ñ ñññññ      |                           |  ,$$$, ",
-// 	// 	"ñ            }  [~~~~](                  |  lllll ",
-// 	// 	"ñ     ( ¨    lll     ll                  |        ",
-// 	// 	"ñ     lll      ;                         |    $   ",
-// 	// 	"ñ           $hhh!                        |        ",
-// 	// 	"ñ   ;$ g  $ hñññh    $ ( $        h,g , >}    (  ,",
-// 	// 	"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhhhh",
-// 	// 	"ñññññññññññññññññññññññññññññ > >ñññññññññññññññññ",
-// 	// 	"ññññññññññññññññññññññññññññññññññññññññññññññññññ",
-// 	// ],
-	
-
-// 	// nivel selva
-// 	[   
-		
-// 		"                                                ",
-// 		"¿          $   $($  $                           ",
-// 		"                            q + q      ($a       ",
-// 		"                            ¬¬¬¬¬    {¬¬¬¬      ",
-// 		"            [~~~~~~~]                |          ",
-// 		"          ¬¬        ¬¬    $          |          ",
-// 		"     ( q                  $          |          ",
-// 		"    {¬¬¬                  $         v}          ",
-// 		"    |                  (  $         ¬¬          ",
-// 		"    |     $$           °  $                ($$  ",
-// 		"    |     ¬¬¬          °u $       $        ¬¬¬  ",
-// 		"    |                  °  $                     ",
-// 		"    |                  °  $                     ",
-// 		" a  }   ^^  vv   r  >  °  (v  av    r   g g    r",
-// 		"¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    ¬¬¬¬¬¬¬¬¬¬¬¬¬",
-		
-// 	],
-
-// 	// nivel rosadito
-//     [  
-//     " /              c           ",  
-//     "                            ",                                    
-//     "    c              c        ",
-//     "           6             o  ",
-//     "   1   1*_1_                ",
-//     "                            ",
-//     "                  (         ",
-//     "  f )  f  e   e f _    ! i i",
-//     "___________________    444s4",
-// ],
-
-// // nivel mario underground
-// [
-//     "£  .                           £",
-//     "£                              £",
-//     "£                              £",
-//     "£                              £",
-//     "£   1*1*11          x x        £",
-//     "£                 x x x        £",
-//     "£               x x x x x  @   £",
-//     "£      b   b  x x xtx xtx      £",
-//     "55555555555555555555555555555555",
-// ],
-// [
-//     "     0      o",
-//     "?   ==   3   ",
-//     "        $$   ",
-//     "  %    ===   ",
-//     "             ",
-//     "    ^^ f> = @",
-//     " ============",
-// ],
-// 	[
-// 		"  ¡                       $",
-// 		"                          $",
-// 		"                          $",
-// 		"                          $",
-// 		"                          $",
-// 		"           $$         =   $",
-// 		"  %      ====         =   $",
-// 		"                      =   $",
-// 		"                      =    ",
-// 		"       ^^      = >    =   @",
-// 		"===========================",
-// 	],
-
-// 	// nivel spikes, falta poner plataforma con pregunta al final
-// 	[
-// 		"      $    $    $    $     $",
-// 		"      $    $    $    $     $",
-// 		"                            ",
-// 		"                            ",
-// 		"   `                        ",
-// 		"                            ",
-// 		"                            ",
-// 		"  ^^^^>^^^^>^^^^>^^^^>^^^^^@",
-// 		" ===========================",
-// 	],
-// ]
-
-// const static= body({ isStatic: true })
-// const hide = offscreen({ hide: true })
-// // define what each symbol means in the level graph
-// const levelConf = {
-// 	tileWidth: 64,
-// 	tileHeight: 64,
-// 	tiles: {
-// 		"=": () => [sprite("grass"), area(), static, anchor("bot"), hide,"platform",],
-// 		// "-": () => [sprite("steel"), area(), static, hide, anchor("bot"),],
-// 		"0": () => [sprite("bag"), area(), static, hide, anchor("bot"),],
-// 		"$": () => [sprite("coin"),area(),pos(0, -15),anchor("bot"),hide,"coin",],
-// 		"%": () => [sprite("prize"),area(),static,anchor("bot"),hide,"prize",],
-// 		"^": () => [sprite("spike"),area(),static,anchor("bot"),hide,"danger",],
-// 		"#": () => [sprite("apple"),area(),anchor("bot"),body(),hide,"apple",],
-// 		">": () => [sprite("ghosty"),area(),anchor("bot"),body(),patrol(),hide,"enemy",],
-// 		"@": () => [sprite("portal"),area(), scale(2), anchor("bot"),pos(0, -12),hide,"portal",],
-//         "p": () => [sprite("pipe"),area({ scale: 0.5 }), scale(2), anchor("bot"),hide,"stairs",],
-//         "s": () => [sprite("stairs"),area({ scale: 1.2 }),scale (1.4), pos(0, 5), anchor("bot"), hide, "stairs",],
-//         "3": () => [sprite("btfly"),area(),pos(0, -9),anchor("bot"),hide,],
-//         "f": () => [sprite("flower"), anchor("bot"),hide,],
-//         // "m": () => [sprite("moon"),area(),pos(0, -9),anchor("bot"),hide,],
-//         "c": () => [sprite("cloud"),area(), scale(2), pos(0, -9),anchor("bot"),hide,],
-//         // "o": () => [sprite("sun"),area(),scale(2), pos(0, -9),anchor("bot"),hide,],
-//         "g": () => [sprite("gigagantrum"),area(),anchor("bot"),body(),patrol(),hide,"dangerous",],
-//         "d": () => [sprite("door"),area({ scale: 0.5 }),anchor("bot"),pos(0, -12),hide,"portal",],
-//         "k": () => [sprite("key"),area(),pos(0, -9),anchor("bot"),hide,],
-//         "1": () => [sprite("surprise"), area(),  scale(3.2), static, anchor("bot"), hide,"coin-surprise",],
-// 		"*": () => [sprite("surprise"), area(),  scale(3.2), static, anchor("bot"), hide,"prize",],
-//         "2": () => [sprite("unboxed"), area(),  scale(3.2), static, anchor("bot"), hide,"platform",],
-//         "4": () => [sprite("brick"), area(), scale(3.2),  static, anchor("bot"), hide, "platform",],
-//         "5": () => [sprite("blue-brick"), area(), scale(1.6),static, anchor("bot"), hide,"platform",],
-//         "x": () => [sprite("blue-steel"), area({ scale: 0.8 }),  scale(1.6), static, anchor("bot"), hide,"platform",],
-//         "£": () => [sprite("blue-wall"), area(), scale(1.6),static, anchor("bot"), hide,"platform",],
-//         // "9": () => [sprite("red-wall"), area(),  scale(3.2), static, anchor("bot"), hide,"platform",],
-//         "t": () => [sprite("skeleton"),area(),anchor("bot"),body(),patrol(),hide,"danger",],
-//         "e": () => [sprite("evil-shroom"),area({ scale: 0.5 }), scale(3.2), anchor("bot"),body(),patrol(),hide,"dangerous",],
-//         "b": () => [sprite("blue-evil-shroom"),area({ scale: 0.8 }), scale(1.6), anchor("bot"),body(),patrol(),hide,"dangerous",],
-//         "y": () => [sprite("mushm"),area(),  scale(3.2), anchor("bot"),body(),patrol(),hide,],
-// 		"i": () => [sprite("linternas"),area(),anchor("bot"),hide,],
-//         "!": () => [sprite("sign"),area(), scale(0.15), pos(0, 10), anchor("bot"),hide,],
-// 		"(": () => [sprite("cofre"),area(),pos(0,8), static,anchor("bot"),hide,"cofre",],
-// 		"_":  () => [sprite("pink-grass"), area(), scale(0.042), static, anchor("bot"), hide,"platform",],
-//         "6": () => [sprite("pink-tree"),area(), scale(0.4), pos(0,3), anchor("bot"),hide,],
-// 		"8": () => [sprite("purple-heart"),area(), scale(0.1), anchor("bot"), body(), hide, "apple"],
-// 		")": () => [sprite("tree2"),area(), pos(0,15), anchor("bot"),hide,],
-// 		"¬": () => [sprite("grass-forest"), area(), scale(0.18), pos(0,-25), static, anchor("bot"), hide,"platform",],
-// 		"[": () => [sprite("bridge1"), area({ scale: 0.18 }), pos(-20,28), scale(0.3), static, anchor("bot"), hide,],
-// 		"~": () => [sprite("bridge2"), area({ scale: 0.3 }), pos(-20,30), scale(0.3) , static,  anchor("bot"), hide, ],
-// 		"]": () => [sprite("bridge3"), area({ scale: 0.1 }), pos(-20,12), scale(0.3), static, anchor("bot"), hide,],
-// 		"{": () => [sprite("ladder1"), area(), scale(0.27),pos(0,-8), anchor("bot"), hide,"ladder"],
-// 		"|": () => [sprite("ladder2"), area(), scale(0.14), anchor("bot"), hide,"ladder"],
-// 		"}": () => [sprite("ladder3"), area(), scale(0.14), pos(0,10), anchor("bot"), hide,"ladder"],
-// 		"°":  () => [sprite("rock-block"), area(), scale(0.18), static, anchor("bot"), hide,"platform",],
-// 		"+": () => [sprite("cueva"),area({ scale: 0.3 }), scale(2), anchor("bot"),pos(0, 15),hide,"portal",],
-// 		"a": () => [sprite("tree-f"),area(), scale(2.2), pos(0,3), anchor("bot"),hide, ],
-// 		"q": () => [sprite("tree-f1"),area(), scale(2.2), pos(0,3), anchor("bot"),hide, ],
-// 		"r": () => [sprite("tree-f2"),area({ scale: 0.6 }), scale(0.5), pos(0,3), static, anchor("bot"),hide, 'platform'],
-// 		"u": () => [sprite("rama"), pos(-4,15), anchor("bot"),hide,],
-// 		"v": () => [sprite("plant"),  scale(0.4), pos(0, 8), anchor("bot"),hide,],
-// 		"l": () => [sprite("ice-thin"),  area({ scale: 0.8 }), pos(0, -20), scale(0.3), static, anchor("bot"), hide,],
-// 		"h":  () => [sprite("ice2"),  area({ scale: 1 }),  pos(0, 5), scale(1.2), static, anchor("bot"), hide,],
-// 		"j":  () => [sprite("ice-tierra"),  area({ scale: 0.8 }), pos(0, 0), scale(0.8), static, anchor("bot"), hide,],
-// 		"i":  () => [sprite("ice-tree"),area(), scale(0.5), pos(0, 0), anchor("bot"),hide, ],
-// 		"ñ": () => [sprite("ice-blanco"),  area({ scale: 1 }), pos(0, -18), scale(4.6), static, anchor("bot"), hide,],
-// 		",": () => [sprite("quarzo-rosa"),area({ scale: 0.4 }), scale(0.15),  pos(0,0),  static,anchor("bot"),hide,"danger",],
-// 		";": () => [sprite("quarzo-celeste"),area(), scale(0.4), pos(0,10), anchor("bot"),hide,],
-// 		":":  () => [sprite("casa"),area({ scale: 0.2 }), scale(1.1), anchor("bot"),pos(-100, 20),hide,"portal",],
-// 		"w": () => [sprite("fondo"), anchor("bot"), pos(18,260),   scale(1), hide,],
-// 		"z": () => [sprite("ice-tree2"),area(), pos(0, 0),  scale(1), anchor("bot"),hide, ],
-// 		"¨": () => [sprite("snow-man"),area(), scale(0.3), pos(0,15), anchor("bot"),hide, ],
-// 		"/": () => [sprite("montaña"), anchor("bot"), pos(1500, 1200), scale(2)],
-// 		"?": () => [sprite("mar"), anchor("bot"), pos(1500, 900), scale(2)],
-// 		"¿": () => [sprite("bosque"), anchor("bot"), pos(1100, 1100), scale(2)],
-// 		"¡": () => [sprite("nieve"), anchor("bot"), pos(800, 1100), scale(1.8)],
-// 		".": () => [sprite("espacio"), anchor("bot"), pos(800, 1100), scale(2)],
-// 		"`": () => [sprite("anaranjado"), anchor("bot"), pos(800, 1100), scale(3),]
-// 		// "&":
-// 		// "<":
-// 		// "7":
-// 		// "<":
-		
-
-
-// 	},  
-// }
-
-// scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) => {
-
-// 	// add level to scene
-// 	const level = addLevel(LEVELS[levelId ?? 0], levelConf)
-
-
-// 	// define player object
-// 	const player = add([
-// 		sprite("chi"),
-// 		pos(64, 0),
-// 		area(),
-// 		scale(0.5),
-// 		// makes it fall to gravity and jumpable
-// 		body(),
-// 		// the custom component we defined above
-// 		big(),
-// 		anchor("bot"),
-// 	])
-
-	
-
-
-// 	// action() runs every frame
-// 	player.onUpdate(() => {
-// 		// center camera to player
-// 		camPos(player.pos)
-// 		// check fall death
-// 		if (player.pos.y >= FALL_DEATH) {
-// 			go("lose")
-// 		}
-// 	})
-
-// 	player.onBeforePhysicsResolve((collision) => {
-// 		if (collision.target.is(["platform", "soft"]) && player.isJumping()) {
-// 			collision.preventResolution()
-// 		}
-// 	})
-
-// 	player.onPhysicsResolve(() => {
-// 		// Set the viewport center to player.pos
-// 		camPos(player.pos)
-// 	})
-
-// 	// if player onCollide with any obj with "danger" tag, lose
-// 	player.onCollide("danger", () => {
-// 		go("lose")
-// 		play("hit")
-// 	})
-
-// 	player.onCollide("portal", () => {
-// 		play("portal")
-// 		if (levelId + 1 < LEVELS.length) {
-// 			go("game", {
-// 				levelId: levelId + 1,
-// 				coins: coins,
-// 				score: score, 
-// 			})
-// 		} else {
-// 			go("win")
-// 		}
-// 	})
-
-// 	player.onCollide('stairs', () => {
-// 		onKeyPress('down', () => {
-// 			if (levelId + 1 < LEVELS.length) {
-// 				go("game", {
-// 					levelId: levelId + 1,
-// 					coins: coins,
-// 					score: score, 
-// 				})
-// 			} else {
-// 				go("win")
-// 			}
-// 		})
-// 	})
-
-// 	player.onCollideUpdate("ladder", (ladder) => {
-// 		if (isKeyDown("up")) {
-// 			player.move(0, 300)
-// 			player.pos.y += -5
-// 			player.jump(0)
-// 		}
-	
-// 		if (isKeyReleased("up")) {
-// 			player.move(0, 0); 
-// 			player.pos.y += -5
-// 		}
-// 	})
-
-	
-
-	
-
-// 	player.onGround((l) => {
-// 		if (l.is("enemy")) {
-// 			player.jump(JUMP_FORCE * 1.5)
-// 			destroy(l)
-// 			addKaboom(player.pos)
-// 			play("powerup")
-// 		}
-// 	})
-
-// 	player.onCollide(("enemy", "dangerous"), (e, col) => {
-// 		// if it's not from the top, die
-// 		if (!col.isBottom()) {
-// 			go("lose")
-// 			play("hit")
-// 		}
-// 	})
-
-// 	// Si toca el cofre, aparece corazon
-// 	player.onCollide((obj) => {
-// 		if (obj.is("cofre")) {
-// 			const apple = level.spawn("8", obj.tilePos.sub(0, 1)) 
-// 			apple.jump()
-			
-// 			destroy(obj)
-// 			play("blip")
-// 		}
-		
-// 	})
-
-
-	
-// 	player.onGround((l) => {
-// 		if (l.is("dangerous")) {
-// 			destroy(l)
-// 			addKaboom(player.pos)
-// 			play("powerup")
-// 		}
-// 	})
-
-	
-
-// 	// grow an apple if player's head bumps into an obj with "prize" tag
-// 	player.onHeadbutt((obj) => {
-// 		if (obj.is("prize") ) {
-// 			const apple = level.spawn("8", obj.tilePos.sub(0, 1)) //ahora es corazon
-// 			apple.jump()
-// 			play("blip")
-// 		}
-// 		if (obj.is('coin-surprise')) {
-// 			level.spawn('$', obj.tilePos.sub(0, 1))
-// 			destroy(obj)
-// 			level.spawn('2', obj.tilePos.sub(0, 0))
-// 		}
-// 		if (obj.is('mushroom-surprise')) {  //aun no se usa
-// 			level.spawn('y', obj.tilePos.sub(0, 1))
-// 		    destroy(obj)
-// 		    level.spawn('2', obj.tilePos.sub(0, 0))
-// 		}
-// 	})
-
-
-// // Lógica para esconder la pregunta
-// function hideQuestion() {
-//     questionVisible = false;
-//     document.getElementById('question-container').style.display = 'none';
-//     player.move(MOVE_SPEED, 0)
-//     }
-
-// // Función para verificar la respuesta
-// function checkAnswer(answer) {
-//     const question = questions[currentQuestionIndex];
-//     if (answer === question.correcta) {
-//         player.biggify(6);
-//         hideQuestion();
-//         player.move(MOVE_SPEED, 0); // Activar movimiento automáticamente
-// 		add([
-// 			text("Correcto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
-// 		]);
-// 		score += 1
-// 		scoreLabel.text = "Puntaje: " + score
-//     } else {
-//         hideQuestion();
-// 		add([
-// 			text("Incorrecto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
-// 		])
-//     }
-//     onKeyPress(() => {
-//         player.move(MOVE_SPEED, 0);
-//     });
-// }
-
-//  // Eventos de clic para los botones de respuesta
-// document.getElementById('optionA').addEventListener('click', () => checkAnswer('a'));
-// document.getElementById('optionB').addEventListener('click', () => checkAnswer('b'));
-// document.getElementById('optionC').addEventListener('click', () => checkAnswer('c'));
-// document.getElementById('optionD').addEventListener('click', () => checkAnswer('d'));
-
-// 	// player grows big onCollide with an "apple" obj
-// 	player.onCollide("apple", (a) => {
-// 		destroy(a)
-//         showQuestion();
-// 		// as we defined in the big() component
-// 		play("powerup")
-// 	})
-
-// 	let coinPitch = 0
-// // creo que coinPitch es para el sonido de moneda, pero yo no escucho nada...
-// 	onUpdate(() => {
-// 		if (coinPitch > 0) {
-// 			coinPitch = Math.max(0, coinPitch - dt() * 100)
-// 		}
-// 	})
-
-// 	player.onCollide("coin", (c) => {
-// 		destroy(c)
-// 		play("coin", {
-// 			detune: coinPitch,
-// 		})
-// 		coinPitch += 100
-// 		coins += 1
-// 		coinsLabel.text = "Monedas: " + coins
-// 	})
-
-// 	const coinsLabel = add([
-// 		text("Monedas: ",  coins),
-// 		pos(24, 24),
-// 		fixed(),
-// 	])
-
-// 	const scoreLabel = add([
-// 		text("Puntaje: ", score),
-// 		pos(24, 64),
-// 		fixed(),
-// 	])
-
-// 	function jump() {
-// 		// these 2 functions are provided by body() component
-// 		if (player.isGrounded()) {
-// 			player.jump(CURRENT_JUMP_FORCE)
-// 		}
-// 	}
-
-// 	// jump with space
-// 	onKeyPress("space", jump)
-
-// 	onKeyDown("left", () => {
-// 		player.move(-MOVE_SPEED, 0)
-// 	})
-
-// 	onKeyDown("right", () => {
-// 		player.move(MOVE_SPEED, 0)
-// 	})
-
-// 	onKeyPress("down", () => {
-// 		player.weight = 3
-// 	})
-
-// 	onKeyRelease("down", () => {
-// 		player.weight = 1
-// 	})
-
-// 	onGamepadButtonPress("south", jump)
-
-// 	onGamepadStick("left", (v) => {
-// 		player.move(v.x * MOVE_SPEED, 0)
-// 	})
-
-// 	onKeyPress("f", () => {
-// 		setFullscreen(!isFullscreen())
-// 	})
-
-// })
-
-// // score, coins, coinsLabel, scoreLabel dice que no estan definidas si las pongo aqui :c
-// scene("lose", () => {
-// 	add([
-// 		text("Perdiste! intentalo de nuevo!"), 
-// 	])
-// 	onKeyPress(() => go("game"))
-// })
-
-// scene("win", () => {
-// 	add([
-// 		text("You Win"),
-// 	])
-// 	onKeyPress(() => go("game"))
-// })
-
-// go("game")

@@ -409,15 +409,91 @@ const questions = [
 
 ]
 
-// FUNCIÓN PARA SORTEAR LAS PREGUNTAS ALEATORIAMENTE:
+//-------------------------------------------------------------------------------------------------------------------
 
-// Función para obtener una pregunta aleatoria
-let currentQuestionIndex = 0;
-export function obtenerPreguntaAleatoria() {
-    currentQuestionIndex = Math.floor(Math.random() * questions.length);
-    return questions[currentQuestionIndex];
-}
+// // FUNCIÓN PARA SORTEAR LAS PREGUNTAS ALEATORIAMENTE:
 
-var pregunta = obtenerPreguntaAleatoria();
-console.log(pregunta.titulo);
+// // Función para obtener una pregunta aleatoria
+// let currentQuestionIndex = 0;
+// export function obtenerPreguntaAleatoria() {
+//     currentQuestionIndex = Math.floor(Math.random() * questions.length);
+//     return questions[currentQuestionIndex];
+// }
+
+// var pregunta = obtenerPreguntaAleatoria();
+// console.log(pregunta.titulo);
+
+
+
+// let questionVisible = false;
+
+// // Lógica para mostrar la pregunta y las opciones de respuesta
+// export function showQuestion() {
+// questionVisible = true;
+// // const question = questions[currentQuestionIndex];
+// const question = obtenerPreguntaAleatoria();
+// const questionElem = document.getElementById('question');
+// const optionAElem = document.getElementById('optionA');
+// const optionBElem = document.getElementById('optionB');
+// const optionCElem = document.getElementById('optionC');
+// const optionDElem = document.getElementById('optionD');
+
+// questionElem.innerText = question.titulo;
+// optionAElem.innerText = question.opcionA;
+// optionBElem.innerText = question.opcionB;
+// optionCElem.innerText = question.opcionC;
+// optionDElem.innerText = question.opcionD;
+
+// document.getElementById('question-container').style.display = 'block';
+// }
+
+
+
+// // Lógica para esconder la pregunta
+// export function hideQuestion() {
+//     questionVisible = false;
+//     document.getElementById('question-container').style.display = 'none';
+//     player.move(MOVE_SPEED, 0)
+//     }
+
+// // Función para verificar la respuesta
+// export function checkAnswer(answer) {
+//     const question = obtenerPreguntaAleatoria();
+//     if (answer === question.correcta) {
+//         player.biggify(6);
+//         hideQuestion();
+//         player.move(MOVE_SPEED, 0); // Activar movimiento automáticamente
+// 		k.add([
+// 			text("Correcto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
+// 		]);
+// 		score += 1
+// 		scoreLabel.text = "Puntaje: " + score
+//     } else {
+//         hideQuestion();
+// 		k.add([
+// 			text("Incorrecto!,  HAZ CLICK PARA MOVERTE!!"), anchor("left"), 
+// 		])
+//     }
+//     onKeyPress(() => {
+//         player.move(MOVE_SPEED, 0);
+//     });
+// }
+
+
+//  // Eventos de clic para los botones de respuesta
+// //  document.getElementById('optionA').addEventListener('click', () => checkAnswer('a'));
+// //  document.getElementById('optionB').addEventListener('click', () => checkAnswer('b'));
+// //  document.getElementById('optionC').addEventListener('click', () => checkAnswer('c'));
+// //  document.getElementById('optionD').addEventListener('click', () => checkAnswer('d'));
+
+// player.onCollide("apple", (a) => {
+//     destroy(a)
+//     showQuestion();
+//     // as we defined in the big() component
+    
+// })
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
