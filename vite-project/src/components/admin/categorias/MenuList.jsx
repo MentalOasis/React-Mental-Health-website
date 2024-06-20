@@ -21,10 +21,10 @@ const MenuList = ({ darkTheme }) => {
             <Link  to="/admin/dashboard">  Home </Link>
             </Menu.Item>
             <Menu.Item key="editar" icon={<FolderAddFilled />}>
-            <Link to="/admin/">   Editar Preguntas </Link>
+            <Link to="/admin/editar-preguntas">   Editar Preguntas </Link>
             </Menu.Item>
             <Menu.Item key="crear" icon={<EditFilled />}>
-            <Link to="/admin/">   Crear Preguntas </Link>
+            <Link to="/admin/crear-preguntas">   Crear Preguntas </Link>
             </Menu.Item>
             <Menu.Item key="categoria" icon={<DatabaseFilled />}>
             <Link to="/admin/categorias">   Categorías </Link>

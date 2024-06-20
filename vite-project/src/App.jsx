@@ -19,6 +19,7 @@ import InicioStart from './views/InicioHome';
 import Aprendamos from './views/Aprendamos';
 import Consejos from './views/Consejos';
 import Emergencia from './views/Emergencia';
+import QuestionForm from './components/admin/crearPreguntas/QuestionForm';
 
 // views que faltan
 
@@ -73,7 +74,8 @@ return (
         <Route path="/admin/nuevo-tema" element={<AddNewCategoryForm />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/configuracion" element={<AccountSettings/>} />
-        
+        <Route path="/admin/crear-preguntas" element={<QuestionForm/>} />
+
       </Route>
 
       <Route path="/juego" element={<GameContainer />} />

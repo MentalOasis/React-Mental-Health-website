@@ -190,7 +190,7 @@ function big() {
 const LEVELS = [
 	
 	
-     // nivel nieve completo, demasiado grande, no poner
+     // nivel nieve completo, demasiado grande, NO PONER
 	// [   
 		
 	// 	"ñ ñ                                               ",
@@ -228,7 +228,7 @@ const LEVELS = [
 	[   
 		
 		"                                                ",
-		"¿          $   $($  $                           ",
+		"    ¿       $   $($  $                           ",
 		"                            q + q      ($a       ",
 		"                            ¬¬¬¬¬    {¬¬¬¬      ",
 		"            [~~~~~~~]                |          ",
@@ -417,7 +417,7 @@ const levelConf = {
 		"¨": () => [k.sprite("snow-man"), k.area(), k.scale(0.3), k.pos(0, 15), k.anchor("bot"), hide,],
 		"/": () => [k.sprite("montaña"), k.anchor("bot"), k.pos(1000, 1200), k.scale(2)],
 		"?": () => [k.sprite("mar"), k.anchor("bot"), k.pos(1000, 900), k.scale(2)],
-		"¿": () => [k.sprite("bosque"), k.anchor("bot"), k.pos(1100, 1100), k.scale(2)],
+		"¿": () => [k.sprite("bosque"), k.anchor("bot"), k.pos(1100, 1100), k.scale(2.1)],
 		"¡": () => [k.sprite("nieve"), k.anchor("bot"), k.pos(800, 1100), k.scale(1.8)],
 		".": () => [k.sprite("espacio"), k.anchor("bot"), k.pos(800, 1100), k.scale(2)],
 		"`": () => [k.sprite("anaranjado"), k.anchor("bot"), k.pos(800, 1100), k.scale(3)],
