@@ -46,8 +46,30 @@
           color: #000000;
           /* Color del texto */
       }
+
+      .btn-iniciarsesion {
+        background-color: #b1f6eb;
+        /* Color de fondo */
+        border-color: #E6D4CF;
+        /* Color del borde */
+        color: #000000;
+        /* Color del texto */
+        margin-left: 10px;
+    }
+    
+    .btn-iniciarsesion:hover{
+      background-color: #fca0dc;
+        /* Color de fondo */
+        border-color: #E6D4CF;
+        /* Color del borde */
+        color: #000000;
+        /* Color del texto */
+    }
+
       /* Estilos de hover para ambos botones */
+      
       .btn-invitado:hover,
+      .btn-iniciarsesion:hover,
       .btn-registrarse:hover {
           opacity: 0.8;
           /* Reducción de la opacidad al pasar el mouse */

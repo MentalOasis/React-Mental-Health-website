@@ -48,6 +48,9 @@ const NavBarTransparente = () => {
             <li className="nav-item">
               <Link className="nav-link btn btn-outline-primary rounded-pill btn-registrarse"  to="/"  style={{ width: "100px", fontSize: "15px" }} ><span className="centered-text">Registrarse</span></Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link btn btn-outline-success rounded-pill me-2 btn-iniciarsesion"  to="/iniciar-sesion"  style={{ width: "120px", fontSize: "15px" }}><span className="centered-text">Iniciar Sesión</span></Link>
+            </li>
           </ul>
         </div>
       </div>
