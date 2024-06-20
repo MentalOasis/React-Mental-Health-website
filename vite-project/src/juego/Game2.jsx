@@ -4,7 +4,7 @@ import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs"; // Impor
 
 import axios from 'axios';
 
-
+let PUNTAJE = 0
 
 const Game = () => {
 	
@@ -146,6 +146,7 @@ const BIG_JUMP_FORCE = 1600
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 
 
+
 // custom component that makes stuff grow big
 function big() {
 	let timer = 0
@@ -224,111 +225,111 @@ const LEVELS = [
 	// ],
 	
 
-	// nivel selva, listo
-	[   
+// 	// nivel selva, listo
+// 	[   
 		
-		"                                                ",
-		"    ¿       $   $($  $                           ",
-		"                            q + q      ($a       ",
-		"                            ¬¬¬¬¬    {¬¬¬¬      ",
-		"            [~~~~~~~]                |          ",
-		"          ¬¬        ¬¬    $          |          ",
-		"     ( q                  $          |          ",
-		"    {¬¬¬                  $         v}          ",
-		"    |                  (  $         ¬¬          ",
-		"    |     $$           °  $                ($$  ",
-		"    |     ¬¬¬          °u $       $        ¬¬¬  ",
-		"    |                  °  $                     ",
-		"    |                  °  $                     ",
-		" a  }   ^^  vv   r  >  °  (v av     r   g g    r",
-		"¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    ¬¬¬¬¬¬¬¬¬¬¬¬¬",	
-	],
+// 		"                                                ",
+// 		"    ¿       $   $($  $                           ",
+// 		"                            q + q      ($a       ",
+// 		"                            ¬¬¬¬¬    {¬¬¬¬      ",
+// 		"            [~~~~~~~]                |          ",
+// 		"          ¬¬        ¬¬    $          |          ",
+// 		"     ( q                  $          |          ",
+// 		"    {¬¬¬                  $         v}          ",
+// 		"    |                  (  $         ¬¬          ",
+// 		"    |     $$           °  $                ($$  ",
+// 		"    |     ¬¬¬          °u $       $        ¬¬¬  ",
+// 		"    |                  °  $                     ",
+// 		"    |                  °  $                     ",
+// 		" a  }   ^^  vv   r  >  °  (v av     r   g g    r",
+// 		"¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬    ¬¬¬¬¬¬¬¬¬¬¬¬¬",	
+// 	],
 
-	// nivel rosadito
-    [  
-    " /              c           ",  
-    "                            ",                                    
-    "    c              c        ",
-    "           6             o  ",
-    "   1   1*_1_                ",
-    "                            ",
-    "                  (         ",
-    "  f )  f  e   e f _    ! i i",
-    "___________________    444s4",
-],
+// 	// nivel rosadito
+//     [  
+//     " /              c           ",  
+//     "                            ",                                    
+//     "    c              c        ",
+//     "           6             o  ",
+//     "   1   1*_1_                ",
+//     "                            ",
+//     "                  (         ",
+//     "  f )  f  e   e f _    ! i i",
+//     "___________________    444s4",
+// ],
 
-// nivel mario underground
-[
-    "£  .                           £",
-    "£                              £",
-    "£                              £",
-    "£                              £",
-    "£   1*1*11          x x        £",
-    "£                 x x x        £",
-    "£               x x x x x  @   £",
-    "£      b   b  x x xtx xtx      £",
-    "55555555555555555555555555555555",
-],
+// // nivel mario underground
+// [
+//     "£  .                           £",
+//     "£                              £",
+//     "£                              £",
+//     "£                              £",
+//     "£   1*1*11          x x        £",
+//     "£                 x x x        £",
+//     "£               x x x x x  @   £",
+//     "£      b   b  x x xtx xtx      £",
+//     "55555555555555555555555555555555",
+// ],
 
-// // nivel mar
-[
-    "     0      o",
-    "?   ==       ",
-    "        $$   ",
-    "  %    ===   ",
-    "             ",
-    "    ^^ f> = @",
-    " ============",
-],
-	[
-		"  ¡                       $",
-		"                          $",
-		"                          $",
-		"                          $",
-		"                          $",
-		"           $$         =   $",
-		"  %      ====         =   $",
-		"                      =   $",
-		"                      =    ",
-		"       ^^      = >    =   @",
-		"===========================",
-	],
+// // // nivel mar
+// [
+//     "     0      o",
+//     "?   ==       ",
+//     "        $$   ",
+//     "  %    ===   ",
+//     "             ",
+//     "    ^^ f> = @",
+//     " ============",
+// ],
+	// [
+	// 	"  ¡                       $",
+	// 	"                          $",
+	// 	"                          $",
+	// 	"                          $",
+	// 	"                          $",
+	// 	"           $$         =   $",
+	// 	"  %      ====         =   $",
+	// 	"                      =   $",
+	// 	"                      =    ",
+	// 	"       ^^      = >    =   @",
+	// 	"===========================",
+	// ],
 
-	// nivel spikes
-	[   
-		"   `                             ",
-		"      $    $    $    $     $     ",
-		"      $    $    $    $     $     ",
-		"                                 ",
-		"                                 ",
-		"                                 ",
-		"                           (     ",
-		"                           =     ",
-		"  ^^^^>^^^^>^^^^>^^^^>^^^^^     @",
-		" ================================",
-	],
+// 	// nivel spikes
+// 	[   
+// 		"   `                             ",
+// 		"      $    $    $    $     $     ",
+// 		"      $    $    $    $     $     ",
+// 		"                                 ",
+// 		"                                 ",
+// 		"                                 ",
+// 		"                           (     ",
+// 		"                           =     ",
+// 		"  ^^^^>^^^^>^^^^>^^^^>^^^^^     @",
+// 		" ================================",
+// 	],
 	
-	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
-	[ 
-	 "ñ ñ      .                                      ",
-		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
-		"ñ ñ               ñ$$$$$$             |         ",
-		"ñ ñ   ($        $ ñ$$($$$             |         ",
-		"ñ ñ   ll          ñ$$$$$$             |         ",
-		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
-		"ñ ñ     $ñññ |ñññññ                   lll{      ",
-		"ñ ñ    ;ññ   |              ll           |      ",
-		"ñ ñ,,,ññ     |                           |      ",
-	 "ñ ñññññ      |                           | ,$$$,",
-		"ñ            }  [~~~~](                  | lllll",
-		"ñ     ( ¨    lll     ll                  |      ",
-		"ñ     lll      ;                         |   $  ",
-		"ñ           $hhh!                        |      ",
-		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
-		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
-		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
-		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
-	],
+// 	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
+// 	[ 
+// 	 "ñ ñ      .                                      ",
+// 		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
+// 		"ñ ñ               ñ$$$$$$             |         ",
+// 		"ñ ñ   ($        $ ñ$$($$$             |         ",
+// 		"ñ ñ   ll          ñ$$$$$$             |         ",
+// 		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
+// 		"ñ ñ     $ñññ |ñññññ                   lll{      ",
+// 		"ñ ñ    ;ññ   |              ll           |      ",
+// 		"ñ ñ,,,ññ     |                           |      ",
+// 	 "ñ ñññññ      |                           | ,$$$,",
+// 		"ñ            }  [~~~~](                  | lllll",
+// 		"ñ     ( ¨    lll     ll                  |      ",
+// 		"ñ     lll      ;                         |   $  ",
+// 		"ñ           $hhh!                        |      ",
+// 		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
+// 		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
+// 		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
+// 		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
+// 	],
     
 	// nivel nieve exterior, ULTIMO NIVEL (es como que llego a su casita)
 	[   
@@ -438,6 +439,7 @@ const levelConf = {
 
 scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) => {
 
+	PUNTAJE = score
 	// add level to scene
 	const level = addLevel(LEVELS[levelId ?? 0], levelConf)
 
@@ -492,7 +494,9 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 				levelId: levelId + 1,
 				coins: coins,
 				score: score, 
+				
 			})
+
 		} else {
 			go("win")
 		}
@@ -612,7 +616,7 @@ let questionVisible = false;
 // Función para obtener una pregunta aleatoria
 function obtenerPreguntaAleatoria() {
     currentQuestionIndex = Math.floor(Math.random() * questions.length);
-    return questions[currentQuestionIndex];
+    return questions[currentQuestionIndex] ;
 }
 
 async function showQuestion() {
@@ -648,24 +652,30 @@ function hideQuestion() {
     player.move(MOVE_SPEED, 0);
 }
 
+
+
+
 // Función para verificar la respuesta
 function checkAnswer(answer) {
     const question = questions[currentQuestionIndex];
-	console.log(question.correcta)
-	console.log(answer)
-    if (answer === question.correcta) {
+	const correcta = question.correcta
+	// console.log(question.correcta)
+	// console.log(answer)
+
+    if (answer === correcta) {
         player.biggify(6);
         hideQuestion();
         score += 1; // Incrementa el puntaje
 		scoreLabel.text = "Puntaje: " + score
+		PUNTAJE = score
         // document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
         k.add([
-            text("¡Correcto! ¡Haz click para moverte!"), anchor("left"),
+            text("¡Correcto! ¡Haz click para moverte!"), 
         ]);
     } else {
         hideQuestion();
         k.add([
-            text("¡Incorrecto! ¡Haz click para moverte!"), anchor("left"),
+            text("¡Incorrecto! ¡Haz click para moverte!"), 
         ]);
     }
     onKeyPress(() => {
@@ -766,20 +776,32 @@ player.onCollide("apple", (a) => {
 scene("lose", () => {
 	k.add([
 		text("Perdiste! intentalo de nuevo!"), 
+		k.pos(350, 200),
+		k.fixed(),
+	])
+	k.add([
+		k.text("Tu puntaje fue : " + PUNTAJE ),
+		k.pos(350, 280),
+		k.fixed(),
 	])
 	k.onKeyPress(() => go("game"))
 })
 
 scene("win", () => {
 	k.add([
-		text("You Win"),
+		text("Ganaste!!"),
+		k.pos(530, 200),
+		k.fixed(),
+	])
+	k.add([
+		k.text("Muy bien! tu puntaje fue : " + PUNTAJE ),
+		k.pos(300, 280),
+		k.fixed(),
 	])
 	k.onKeyPress(() => go("game"))
 })
 
 go("game")
-
-
 
 
 
