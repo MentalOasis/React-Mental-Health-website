@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Navbar = () => {
+const Navbar2 = () => {
   return (
     <nav className="navbar navbar-color navbar-expand-lg navbar-light bg-light" style={{ padding: "15px" }}>
       <div className="container-fluid px-4">
@@ -46,17 +46,9 @@ const Navbar = () => {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
-          
-          <li className="nav-item">
-              <Link className="nav-link btn btn-outline-primary rounded-pill btn-registrarse" style={{ width: "100px", fontSize: "15px" }} to="/registrarse"><span className="centered-text">Registrarse</span></Link>
-            </li>  
             <li className="nav-item">
-              <Link className="nav-link btn btn-outline-success rounded-pill me-2 btn-iniciarsesion" style={{ width: "120px", fontSize: "15px" }} to="/iniciar-sesion"><span className="centered-text">Iniciar Sesión</span></Link>
+              <Link className="nav-link btn btn-outline-success rounded-pill me-2 btn-iniciarsesion" style={{ width: "120px", fontSize: "15px" }} to="/iniciar-sesion"><span className="centered-text">Cerrar Sesión</span></Link>
             </li>    
-            <li className="nav-item">
-              <Link className="nav-link btn btn-outline-success rounded-pill me-2 btn-invitado" style={{ width: "100px", fontSize: "15px" }} to="/invitado"><span className="centered-text">Invitado</span></Link>
-            </li>
-           
           </ul>
         </div>
       </div>
@@ -64,4 +56,4 @@ const Navbar = () => {
   );
 }
 
-export default Navbar;
+export default Navbar2;
