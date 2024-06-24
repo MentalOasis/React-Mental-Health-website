@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Question = require("../../models/question.models");
+
 const verificarRespuesta = async (req, res) => {
   const { preguntaId, respuestaUsuario } = req.body;
 
@@ -19,13 +20,13 @@ const verificarRespuesta = async (req, res) => {
           // Respuesta correcta
           return res.status(200).json({
               message: "Respuesta correcta",
-              correcta: true
+              error: false
           });
       } else {
           // Respuesta incorrecta
           return res.status(200).json({
               message: "Respuesta incorrecta",
-              correcta: false
+              error: true
           });
       }
   } catch (error) {

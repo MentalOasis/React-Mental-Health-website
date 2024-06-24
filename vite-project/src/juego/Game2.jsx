@@ -687,9 +687,10 @@ function hideQuestion() {
 		const preguntaId = questions[currentQuestionIndex]._id; // Obtenemos el _id de la pregunta actual
 		const data = { preguntaId, respuestaUsuario };
 
-		axios.post('/api/admin/verificar-respuesta', data)
+		axios.post('http://localhost:7000/api/admin/verificar-respuesta', data)
 			.then(response => {
 				const result = response.data;
+				
 				if (result.error) {
 					// Respuesta incorrecta
 					hideQuestion();
@@ -703,6 +704,7 @@ function hideQuestion() {
 					// Agregar lógica adicional según sea necesario
 				} else {
 					// Respuesta correcta
+					console.log("result.error:", result.error)
 					player.biggify(6);
 					hideQuestion();
 					score += 1; // Incrementa el puntaje

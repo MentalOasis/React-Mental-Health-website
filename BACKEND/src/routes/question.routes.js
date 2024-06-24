@@ -2,7 +2,7 @@
 const express = require("express");
 const showPregunta = require("../controllers/question/question.show")
 const router_question = express.Router();
-const verificarRespuesta = require("../controllers/question/question.correcta");
+const {verificarRespuesta} = require("../controllers/question/question.correcta");
 
 
 // // ruta para crear un usuario --- POST  
