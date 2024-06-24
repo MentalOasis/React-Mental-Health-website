@@ -5,12 +5,12 @@ const mongoose = require("mongoose")
 // crear el schema
 
 const questionSchema = mongoose.Schema({
-    titulo: String,
-    opcionA: String,
-    opcionB: String,
-    opcionC: String,
-    opcionD: String,
-    correcta: String
+    titulo: {type: String, required: true},
+    opcionA: {type: String, required: true},
+    opcionB: {type: String, required: true},
+    opcionC: {type: String, required: true},
+    opcionD: {type: String, required: true},
+    correcta: {type: String, required: true},
 })
 
 // crear el modelo

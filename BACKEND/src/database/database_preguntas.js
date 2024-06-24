@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose")
+const mongoUri = process.env.MONGO_URL;
 
 const dbConnection = async () => {
 
@@ -7,7 +8,7 @@ const dbConnection = async () => {
          // intenta hacer algo
          // esta conexión a la base de datos es asincrona   ------>>>>> se ejecuta en paralelo
          
-    await mongoose.connect("mongodb://localhost:27017/MentalOasis")
+    await mongoose.connect(mongoUri)
     console.log("Database connected")
 
     } catch (error) {

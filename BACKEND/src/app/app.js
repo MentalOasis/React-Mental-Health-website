@@ -1,9 +1,24 @@
 
+const mongoose = require('mongoose')
 const express = require('express')
 const morgan = require('morgan');
 const router = require('../routes/user.routes');
 const router_question = require('../routes/question.routes');
-const app = express()
+require('dotenv').config(); // Load environment variables from .env file
+
+const app = express() ;
+
+
+mongoose.connect(process.env.MONGO_URL, {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+    // useCreateIndex: true // Necesario para evitar MongoParseError
+})
+
+
+   
+
+
 
 const cors = require("cors");
 
@@ -17,6 +32,11 @@ app.use(express.urlencoded({ extended: false })); // para que express entienda l
 // si no funciona, borrar router y escribirlo de nuevo apretando el que corresponde (con la ruta)
 // app.use("/api/users", router); // definimos la ruta base para las rutas de usuario
 app.use("/api/admin", router_question); // definimos la ruta base para las rutas de usuario
+
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:5173' // Ajustar según tu configuración de frontend
+}));
 
 // clase profe que se cambio, primero request luego respuesta:
 // app.use("/api/users", (req, res) => {

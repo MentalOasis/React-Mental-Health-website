@@ -595,13 +595,13 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 
 
 // --------------------------------------------------------------------------------------------------------------------
-
-
+// version antigua question.show
 
 
 async function obtenerPreguntas() {
     try {
         const response = await axios.get('http://localhost:7000/api/admin/mostrar-preguntas');
+		console.log(response)
         return response.data.data; // Asumiendo que la respuesta tiene la estructura { data: { data: [...] } }
     } catch (error) {
         console.error('Error al obtener preguntas:', error);
@@ -655,33 +655,75 @@ function hideQuestion() {
 
 
 
-// Función para verificar la respuesta
-function checkAnswer(answer) {
-    const question = questions[currentQuestionIndex];
-	const correcta = question.correcta
-	// console.log(question.correcta)
-	// console.log(answer)
+// // Función para verificar la respuesta
+// function checkAnswer(answer) {
+//     const question = questions[currentQuestionIndex];
+// 	const correcta = question.correcta
+// 	// console.log(question.correcta)
+// 	// console.log(answer)
 
-    if (answer === correcta) {
-        player.biggify(6);
-        hideQuestion();
-        score += 1; // Incrementa el puntaje
-		scoreLabel.text = "Puntaje: " + score
-		PUNTAJE = score
-        // document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
-        k.add([
-            text("¡Correcto! ¡Haz click para moverte!"), 
-        ]);
-    } else {
-        hideQuestion();
-        k.add([
-            text("¡Incorrecto! ¡Haz click para moverte!"), 
-        ]);
-    }
-    onKeyPress(() => {
-        player.move(MOVE_SPEED, 0);
-    });
-}
+//     if (answer === correcta) {
+//         player.biggify(6);
+//         hideQuestion();
+//         score += 1; // Incrementa el puntaje
+// 		scoreLabel.text = "Puntaje: " + score
+// 		PUNTAJE = score
+//         // document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
+//         k.add([
+//             text("¡Correcto! ¡Haz click para moverte!"), 
+//         ]);
+//     } else {
+//         hideQuestion();
+//         k.add([
+//             text("¡Incorrecto! ¡Haz click para moverte!"), 
+//         ]);
+//     }
+//     onKeyPress(() => {
+//         player.move(MOVE_SPEED, 0);
+//     });
+// }
+
+	function checkAnswer(respuestaUsuario) {
+		const preguntaId = questions[currentQuestionIndex]._id; // Obtenemos el _id de la pregunta actual
+		const data = { preguntaId, respuestaUsuario };
+
+		axios.post('/api/admin/verificar-respuesta', data)
+			.then(response => {
+				const result = response.data;
+				if (result.error) {
+					// Respuesta incorrecta
+					hideQuestion();
+					k.add([
+						text("¡Incorrecto! ¡Haz click para moverte!"),
+					]);
+					onKeyPress(() => {
+						player.move(MOVE_SPEED, 0);
+					});
+					console.log("Respuesta incorrecta");
+					// Agregar lógica adicional según sea necesario
+				} else {
+					// Respuesta correcta
+					player.biggify(6);
+					hideQuestion();
+					score += 1; // Incrementa el puntaje
+					scoreLabel.text = "Puntaje: " + score
+					PUNTAJE = score
+					// document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
+					k.add([
+						text("¡Correcto! ¡Haz click para moverte!"),
+					]);
+					onKeyPress(() => {
+						player.move(MOVE_SPEED, 0);
+					});
+					console.log("Respuesta correcta");
+					// Agregar lógica adicional según sea necesario
+				}
+			})
+			.catch(error => {
+				console.error('Error al verificar respuesta:', error);
+				// Manejo de errores
+			});
+	}
 
 // Eventos de clic para los botones de respuesta
 document.getElementById('optionA').addEventListener('click', () => checkAnswer('opcionA'));
@@ -693,6 +735,88 @@ player.onCollide("apple", (a) => {
     destroy(a);
     showQuestion();
 });
+
+
+//---------------------------------------------------------------------------------------------------------
+
+// const [questions, setQuestions] = useState([]);
+// const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+// const [questionVisible, setQuestionVisible] = useState(false);
+
+
+// const obtenerPreguntaAleatoria = async () => {
+// 	try {
+// 		const response = await axios.get('http://localhost:7000/api/admin/mostrar-pregunta-aleatoria');
+// 		return response.data.data;
+// 	} catch (error) {
+// 		console.error('Error al obtener pregunta aleatoria:', error);
+// 		return null;
+// 	}
+// };
+
+// const showQuestion = async () => {
+// 	const question = await obtenerPreguntaAleatoria();
+// 	if (!question) {
+// 		console.error('No hay preguntas disponibles');
+// 		return;
+// 	}
+
+// 	setQuestions([question]);
+// 	setCurrentQuestionIndex(0);
+// 	setQuestionVisible(true);
+
+// 	document.getElementById('question').innerText = question.titulo;
+// 	document.getElementById('optionA').innerText = question.opcionA;
+// 	document.getElementById('optionB').innerText = question.opcionB;
+// 	document.getElementById('optionC').innerText = question.opcionC;
+// 	document.getElementById('optionD').innerText = question.opcionD;
+
+// 	document.getElementById('question-container').style.display = 'block';
+// };
+
+// const hideQuestion = () => {
+// 	setQuestionVisible(false);
+// 	document.getElementById('question-container').style.display = 'none';
+// 	player.move(MOVE_SPEED, 0);
+// };
+
+// const checkAnswer = async (answer) => {
+// 	const question = questions[currentQuestionIndex];
+// 	const questionId = question._id;
+
+// 	try {
+// 		const response = await axios.post('http://localhost:7000/api/admin/verificar-respuesta', {
+// 			questionId,
+// 			userAnswer: answer
+// 		});
+
+// 		const isCorrect = response.data.data.isCorrect;
+
+// 		if (isCorrect) {
+// 			player.biggify(6);
+// 			hideQuestion();
+// 			setScore(score + 1);
+// 			scoreLabel.text = "Puntaje: " + (score + 1);
+// 			PUNTAJE = score + 1;
+// 			k.add([
+// 				text("¡Correcto! ¡Haz click para moverte!"), 
+// 			]);
+// 		} else {
+// 			hideQuestion();
+// 			k.add([
+// 				text("¡Incorrecto! ¡Haz click para moverte!"), 
+// 			]);
+// 		}
+// 	} catch (error) {
+// 		console.error('Error al verificar la respuesta:', error);
+// 	}
+
+// }
+
+// player.onCollide("apple", (a) => {
+//     destroy(a);
+//     showQuestion();
+// });
 
 
 

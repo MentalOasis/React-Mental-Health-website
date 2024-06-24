@@ -1,7 +1,6 @@
 
 
 import "./style2.css"
-// import Game from "./Game2.jsx"
 import Game from "./Game2.jsx"
 
 
