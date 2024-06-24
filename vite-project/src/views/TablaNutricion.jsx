@@ -2,7 +2,7 @@ import React from 'react';
 
 const Consejos = () => {
     return (
-        <div>
+        <div  style={{ marginRight: '50px' , marginLeft: '50px', marginTop: '60px'}}>
             <h1 className="text-center">ALGUNOS CONSEJOS</h1>
             <br />
             <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -32,9 +32,9 @@ const Consejos = () => {
                 </div>
             </div>
             {/* -------------------------------------------------------------------------------------------------- */}
-            <h2 className="text-center">GUIA ALIMENTARIA DEL ADOLESCENTE</h2>
+            <h2 className="text-center" style={{ marginTop: '60px'}} >GUIA ALIMENTARIA DEL ADOLESCENTE</h2>
             <br />
-            <table className="table">
+            <table className="table" style={{ marginRight: '20px' , marginLeft: '20px', marginBottom: '80px'}}>
                 <thead>
                     <tr>
                         <th>Alimentos</th>

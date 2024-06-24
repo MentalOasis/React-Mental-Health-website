@@ -19,9 +19,9 @@ const Footer = () => {
                   <p className="text-body-secondary mb-0">© <span className="fw-semibold">XHIFIRE2024</span></p>
               </div>
               <p className="mini-paragraph text-center">Siguenos en nuestras Redes Sociales</p>
-              <div className="social-icons text-center">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" style={{ color: "#AC2BAC" , fontSize : "25px" }} >
-          <i className="bi bi-instagram"></i>
+              <div className="social-icons text-center" >
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" style={{  color: "#AC2BAC" , fontSize : "25px" }} >
+          <i className="bi bi-instagram" ></i>
         </a>
         <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer" style={{ color: "#791275", fontSize : "25px"  }} >
           <i className="bi bi-google"></i>

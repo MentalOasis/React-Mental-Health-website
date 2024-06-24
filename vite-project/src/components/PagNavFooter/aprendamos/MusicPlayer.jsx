@@ -8,7 +8,7 @@ const MusicPlayer = () => (
       <h2 className="song-title">Relajación</h2>
       <h3 className="artist">Xhisfire</h3>
     </div>
-    {/* <audio src="/audio/classicalpiano.mp3" controls></audio> */}
+    <audio src="/audio/classicalpiano.mp3" controls></audio>
   </div>
 );
 

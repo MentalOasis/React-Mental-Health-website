@@ -2,6 +2,7 @@ import React from 'react';
 import unnamed from '/pic/unnamed.jpg';
 import pixelcut from '/pic/pixelcut.png';
 import './InicioStyle.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,16 +19,16 @@ const Inicio = () => {
         </div>
 
         <div className="text-center">
-          <a href="juego/index.html">
+          <Link  to="/juego">
             <img src={pixelcut} className="zoom img-fluid custom-size" alt="..." />
-          </a>
+          </Link>
         </div>
 
         <div className="text-center mt-3">
-          <a className="btn inicio" href="juego/index.html" role="button">Juegos </a>
-          <a className="btn inicio" href="comoMeSiento.html" role="button">Emociones  </a>
-          <a className="btn inicio" href="aprendamos.html" role="button">Bienestar </a>
-          <a className="btn inicio" href="#" role="button">Verdad o Mito </a>
+          <Link className="btn inicio"  to="/juego" role="button">Juegos </Link>
+          <Link className="btn inicio" to="/aprendamos/como-me-siento" role="button">Emociones  </Link>
+          <Link className="btn inicio" to="/consejos" role="button">Bienestar </Link>
+          <Link className="btn inicio" to="/aprendamos/tipos-de-inteligencia" style={{ paddingLeft: '5px', paddingRight: '5px', width: '170px'}} role="button">Tipos de Inteligencia </Link>
         </div>
      
      </div>

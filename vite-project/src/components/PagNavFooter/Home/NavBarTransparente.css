@@ -17,24 +17,25 @@
   /* Color del texto */
 }
 
-.btn-invitado:hover {
-  background-color: #fca0dc;
-  /* Color de fondo */
-  border-color: #E6D4CF;
-  /* Color del borde */
-  color: #000000;
-  /* Color del texto */
+.btn-invitado:hover,
+.btn-invitado:active{
+  background-color: #fca0dc!important;
+    /* Color de fondo, necesita important por el active*/
+    border-color: #E6D4CF;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
 }
 
-.btn-registrarse:hover {
-  background-color: #d09def;
-  /* Color de fondo */
-  border-color: #DDCFE6;
-  /* Color del borde */
-  color: #000000;
-  /* Color del texto */
+.btn-registrarse:hover,
+.btn-registrarse:active{
+  background-color: #d09def!important;
+    /* Color de fondo */
+    border-color: #DDCFE6;
+    /* Color del borde */
+    color: #000000;
+    /* Color del texto */
 }
-
 /* Estilo para el botón de Registrarse */
 .btn-registrarse {
   background-color: #DDCFE6;
@@ -86,4 +87,9 @@
 .hover-sin-underline:hover {
   color: rgb(188, 143, 255) !important;
 
+}
+
+.dropdown-item:focus {
+  background-color: #fce6fc; 
+  color: black
 }

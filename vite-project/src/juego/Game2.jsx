@@ -613,6 +613,9 @@ let questions = [];
 let currentQuestionIndex = 0;
 let questionVisible = false;
 
+
+
+
 // Función para obtener una pregunta aleatoria
 function obtenerPreguntaAleatoria() {
     currentQuestionIndex = Math.floor(Math.random() * questions.length);
@@ -726,6 +729,26 @@ function hideQuestion() {
 				// Manejo de errores
 			});
 	}
+
+
+
+	const userId = 'ID_DEL_USUARIO'; // Reemplazar con el ID real del usuario
+
+
+	// fetch(/api/users / ${ userId } / score, {
+	// 	method: 'PUT',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	body: JSON.stringify({ score: PUNTAJE }),
+	// })
+	// 	.then(response => response.json())
+	// 	.then(updatedUser => {
+	// 		console.log('Puntaje actualizado:', updatedUser.score);
+	// 	})
+	// 	.catch(error => console.error('Error al actualizar puntaje:', error));
+
+
 
 // Eventos de clic para los botones de respuesta
 document.getElementById('optionA').addEventListener('click', () => checkAnswer('opcionA'));

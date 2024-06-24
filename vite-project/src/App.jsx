@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter , Routes, Route } from 'react-router-dom';
 // componentes
@@ -32,8 +32,11 @@ import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
 
 
 
+
+
 function App() {
   const [count, setCount] = useState(0)
+
 
   // return (
   //   <>
