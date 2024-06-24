@@ -8,17 +8,11 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const app = express() ;
 
-
 mongoose.connect(process.env.MONGO_URL, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
     // useCreateIndex: true // Necesario para evitar MongoParseError
 })
-
-
-   
-
-
 
 const cors = require("cors");
 

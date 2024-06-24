@@ -1,6 +1,6 @@
 
 // Importa el modelo de usuario
-const User = require("../../models/user.models");
+const User = require("../../models/user");
 
 // Controlador para actualizar y devolver el puntaje del usuario
 // const updateUserScore = async (req, res) => {
@@ -45,6 +45,5 @@ async function updateScore(req, res) {
     }
 }
 
-module.exports = {
-    updateScore
-};
+module.exports =  updateScore
+;
