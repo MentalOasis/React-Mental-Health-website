@@ -21,7 +21,7 @@ const GameContainer = () => {
                 </div>
             </div>
 
-            <iframe title="Juego" src="index.html" width="100%" height="100%" frameBorder="0"></iframe>
+            {/* <iframe title="Juego" src="index.html" width="100%" height="100%" frameBorder="0"></iframe> */}
         </>
     );
 }
