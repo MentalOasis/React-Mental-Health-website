@@ -200,13 +200,21 @@ const Login = () => {
         try {
             const response = await axios.post('/login', formData);
             const { data } = response;
+            console.log(data)
 
             if (data.error === 'El correo electrónico no está registrado') {
                 toast.error('El correo electrónico no está registrado');
-            } else if (data.message === 'Inicio de sesión exitoso') {
+            } else if (data.token) {
+
+                console.log('Token recibido:', data.token); // Verifica el token recibido
+                localStorage.setItem('token', data.token);
+                console.log(localStorage.getItem('token'));
+
                 toast.success('Inicio de sesión exitoso. Bienvenido a Mental Oasis');
                 setFormData({ email: '', password: '' });
                 navigate('/');
+
+            // } else if (data.message === 'Inicio de sesión exitoso') {
             } else {
                 toast.error('Error desconocido al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde.');
             }
@@ -264,7 +272,7 @@ const Login = () => {
                 <div className="login-message">
                     <h3>Bienvenido a Mental Oasis</h3>
                     <p>Accede a tu cuenta para explorar nuestros servicios exclusivos.</p>
-                    {/* <img src={perro} alt="Mental Oasis Logo" /> */}
+                    <img src={perro} alt="Mental Oasis Logo" />
                 </div>
             </div>
         </div>

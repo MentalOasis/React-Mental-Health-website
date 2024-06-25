@@ -3,6 +3,17 @@ const User = require('../../models/user');
 const { hashPassword, comparePassword } = require('../../helpers/auth');
 const jwt = require('jsonwebtoken');
 
+const generarToken = (user) =>{
+    const payload = {
+        id: user._id,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        score: user.score
+    };
+    const secret = process.env.JWT_SECRET; // Obtener la clave secreta desde una variable de entorno
+    return jwt.sign(payload, secret, { expiresIn: '1h' });
+};
+
 // Función de prueba
 const test = (req, res) => {
     res.json('Está funcionando');
@@ -44,10 +55,13 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
         });
 
+        const token = generarToken(newUser);
+        
         // Devolver el usuario creado en la respuesta
         res.status(201).json({
             message: 'Usuario registrado exitosamente',
-            user: newUser
+            user: newUser,
+            token: token
         });
 
     } catch (error) {
@@ -79,15 +93,21 @@ const loginUser = async (req, res) => {
             });
         }
 
+         // Generar token JWT después de iniciar sesión también se usa
+        const token = generarToken(user);
+
         // Si las credenciales son correctas, enviar una respuesta exitosa
         return res.status(200).json({
             message: 'Inicio de sesión exitoso',
             user: {
                 _id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                isAdmin: user.isAdmin,
+                score: user.score
                 // Puedes incluir otros datos del usuario si los necesitas
-            }
+            },
+            token: token
         });
 
     } catch (error) {
@@ -103,6 +123,7 @@ module.exports = {
     registerUser,
     loginUser
 };
+
 
 
 

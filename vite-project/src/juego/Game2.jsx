@@ -649,42 +649,12 @@ async function showQuestion() {
     document.getElementById('question-container').style.display = 'block';
 }
 
-function hideQuestion() {
-    questionVisible = false;
-    document.getElementById('question-container').style.display = 'none';
-    player.move(MOVE_SPEED, 0);
-}
+	function hideQuestion() {
+		questionVisible = false;
+		document.getElementById('question-container').style.display = 'none';
+		player.move(MOVE_SPEED, 0);
+	}
 
-
-
-
-// // Función para verificar la respuesta
-// function checkAnswer(answer) {
-//     const question = questions[currentQuestionIndex];
-// 	const correcta = question.correcta
-// 	// console.log(question.correcta)
-// 	// console.log(answer)
-
-//     if (answer === correcta) {
-//         player.biggify(6);
-//         hideQuestion();
-//         score += 1; // Incrementa el puntaje
-// 		scoreLabel.text = "Puntaje: " + score
-// 		PUNTAJE = score
-//         // document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
-//         k.add([
-//             text("¡Correcto! ¡Haz click para moverte!"), 
-//         ]);
-//     } else {
-//         hideQuestion();
-//         k.add([
-//             text("¡Incorrecto! ¡Haz click para moverte!"), 
-//         ]);
-//     }
-//     onKeyPress(() => {
-//         player.move(MOVE_SPEED, 0);
-//     });
-// }
 
 	function checkAnswer(respuestaUsuario) {
 		const preguntaId = questions[currentQuestionIndex]._id; // Obtenemos el _id de la pregunta actual
@@ -693,7 +663,7 @@ function hideQuestion() {
 		axios.post('http://localhost:7000/api/admin/verificar-respuesta', data)
 			.then(response => {
 				const result = response.data;
-				
+
 				if (result.error) {
 					// Respuesta incorrecta
 					hideQuestion();
@@ -730,23 +700,80 @@ function hideQuestion() {
 			});
 	}
 
+	//----------------------------------------------------------------------------------
 
 
-	const userId = 'ID_DEL_USUARIO'; // Reemplazar con el ID real del usuario
+const userId = 'ID_DEL_USUARIO';
+
+// Función para obtener el puntaje del usuario desde el backend
+async function obtenerPuntaje(userId) {
+    try {
+        const response = await axios.get(`/api/user/${userId}/score`);
+  
+        if (response.status === 200) {
+            return response.data.score;
+        } else {
+            console.error('Error al obtener puntaje:', response.statusText);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error al obtener puntaje:', error);
+        return null;
+    }
+}
+
+// Función para actualizar el puntaje del usuario en el backend
+async function actualizarPuntaje(userId, puntaje) {
+    try {
+        const response = await axios.put(`/api/user/${userId}/score`, { score: puntaje });
+  
+        if (response.status === 200) {
+            console.log('Puntaje actualizado:', response.data.score);
+        } else {
+            console.error('Error al actualizar puntaje:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al actualizar puntaje:', error);
+    }
+}
+
+// Componente de React para manejar el puntaje del usuario
+function PuntajeUsuario() {
+    const [puntaje, setPuntaje] = useState(0);
+    const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
+
+    useEffect(() => {
+        // Obtener el puntaje del usuario cuando se monta el componente
+        async function fetchPuntaje() {
+            const puntajeActual = await obtenerPuntaje(userId);
+            if (puntajeActual !== null) {
+                setPuntaje(puntajeActual);
+            }
+        }
+
+        fetchPuntaje();
+    }, [userId]);
+
+    // Función para manejar la lógica de actualización del puntaje
+    async function manejarActualizacionPuntaje(nuevoPuntaje) {
+        if (nuevoPuntaje > puntaje) {
+            setPuntaje(nuevoPuntaje);
+            await actualizarPuntaje(userId, nuevoPuntaje);
+        }
+    }
+
+    return (
+        <div>
+            <h1>Puntaje: {puntaje}</h1>
+            {/* Botones o lógica del juego para actualizar el puntaje */}
+            <button onClick={() => manejarActualizacionPuntaje(puntaje + 10)}>Ganar 10 puntos</button>
+        </div>
+    );
+}
 
 
-	// fetch(/api/users / ${ userId } / score, {
-	// 	method: 'PUT',
-	// 	headers: {
-	// 		'Content-Type': 'application/json',
-	// 	},
-	// 	body: JSON.stringify({ score: PUNTAJE }),
-	// })
-	// 	.then(response => response.json())
-	// 	.then(updatedUser => {
-	// 		console.log('Puntaje actualizado:', updatedUser.score);
-	// 	})
-	// 	.catch(error => console.error('Error al actualizar puntaje:', error));
+// -----------------------------------------------------------------------------
+
 
 
 

@@ -163,7 +163,7 @@ import { toast } from 'react-hot-toast';
 import './Register.css'; // Archivo de estilos CSS para Register
  //import winner from './winner.png';
 
-const Register = () => {
+ const Register = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({
         name: '',
@@ -235,9 +235,11 @@ const Register = () => {
             if (response.data.error) {
                 handleRegistrationError(response.data.error); // Función para manejar errores específicos
             } else {
+                // Almacenar el token en localStorage después de un registro exitoso
+                localStorage.setItem('token', response.data.token);
                 setData({ name: '', email: '', password: '' });
                 toast.success('Registro completado con éxito, ¡Bienvenido a Mental Oasis!');
-                navigate('/login');
+                navigate('/login'); // Redirigir al usuario a la página de inicio de sesión
             }
         } catch (error) {
             console.error('Error al registrar:', error);

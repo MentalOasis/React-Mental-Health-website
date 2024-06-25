@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-color navbar-expand-lg navbar-light bg-light" style={{ padding: "15px" }}>

@@ -45,5 +45,4 @@ async function updateScore(req, res) {
     }
 }
 
-module.exports =  updateScore
-;
+module.exports =  updateScore;
