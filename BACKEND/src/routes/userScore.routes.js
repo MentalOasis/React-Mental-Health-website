@@ -7,4 +7,8 @@ const getUserScore = require('../controllers/user/user.getScore');
 router.put('/api/user/:userId/score', updateUserScore);
 router.get('/api/user/:userId/score', getUserScore);
 
+
+  
+  
+
 module.exports = router;

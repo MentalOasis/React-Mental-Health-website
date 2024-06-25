@@ -1,38 +1,31 @@
 
-const app = require('./src/app/app.js');
-const dbConnection = require('./src/database/database_preguntas');
-
-
-
-app.listen(7000, () => {
-  console.log('Server on port 7000');
-});
-
-dbConnection();
-
-
-
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dotenv = require('dotenv').config();
+const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+
+// Importar rutas
 const authRoutes = require('./src/routes/usuario/authRoutes');
 const guestRoutes = require('./src/routes/usuario/guestRoutes');
 const passwordRoutes = require('./src/routes/usuario/password');
-
+const routerQuestion = require('./src/routes/question.routes');
+const userScoreRoutes = require('./src/routes/userScore.routes');
 
 // Conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGO_URL, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
-    // useCreateIndex: true // Necesario para evitar MongoParseError
+    // useCreateIndex: true,
 })
-    .then(() => console.log('Base de datos conectada'))
-    .catch((err) => console.error('Error al conectar a la base de datos:', err));
+.then(() => console.log('Base de datos conectada'))
+.catch((err) => console.error('Error al conectar a la base de datos:', err));
+
+const app = express();
 
 // Middleware
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -47,7 +40,11 @@ app.use(cors({
 app.use('/', authRoutes); // Rutas para autenticación
 app.use('/api/guests', guestRoutes); // Rutas para invitados
 app.use('/password', passwordRoutes); // Rutas para recuperación y restablecimiento de contraseña
+app.use('/api/admin', routerQuestion); // Rutas para preguntas
+app.use('/api/users', userScoreRoutes); // Rutas para puntajes de usuarios
 
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`));
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});

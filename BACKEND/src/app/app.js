@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const morgan = require('morgan');
-const router = require('../routes/user.routes');
+const router = require('../routes/userScore.routes');
 const router_question = require('../routes/question.routes');
 require('dotenv').config(); // Load environment variables from .env file
 

@@ -272,7 +272,7 @@ const Login = () => {
                 <div className="login-message">
                     <h3>Bienvenido a Mental Oasis</h3>
                     <p>Accede a tu cuenta para explorar nuestros servicios exclusivos.</p>
-                    <img src={perro} alt="Mental Oasis Logo" />
+                    {/* <img src={perro} alt="Mental Oasis Logo" /> */}
                 </div>
             </div>
         </div>

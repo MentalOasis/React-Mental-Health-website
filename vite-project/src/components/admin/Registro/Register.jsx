@@ -311,7 +311,7 @@ import './Register.css'; // Archivo de estilos CSS para Register
                 <div className="register-message">
                     <h3>Bienvenido a Mental Oasis</h3>
                     <p>Regístrate para poder ingresar y jugar Mental Oasis</p>
-                    <img src={winner} alt="Mental Oasis Logo" />
+                    {/* <img src={winner} alt="Mental Oasis Logo" /> */}
                 </div>
             </div>
         </div>

@@ -600,7 +600,7 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 
 async function obtenerPreguntas() {
     try {
-        const response = await axios.get('http://localhost:7000/api/admin/mostrar-preguntas');
+        const response = await axios.get('http://localhost:8000/api/admin/mostrar-preguntas');
 		console.log(response)
         return response.data.data; // Asumiendo que la respuesta tiene la estructura { data: { data: [...] } }
     } catch (error) {
@@ -614,7 +614,17 @@ let currentQuestionIndex = 0;
 let questionVisible = false;
 
 
-
+// // Función para obtener una pregunta aleatoria del backend
+// async function obtenerPreguntaAleatoria() {
+// 	try {
+// 	  const response = await axios.get('http://localhost:7000/api/admin/mostrar-pregunta-aleatoria');
+// 	  return response.data.data; // Se asume que el backend responde con el formato adecuado
+// 	} catch (error) {
+// 	  console.error('Error al obtener pregunta aleatoria:', error);
+// 	  return null;
+// 	}
+//   }
+  
 
 // Función para obtener una pregunta aleatoria
 function obtenerPreguntaAleatoria() {
@@ -660,7 +670,7 @@ async function showQuestion() {
 		const preguntaId = questions[currentQuestionIndex]._id; // Obtenemos el _id de la pregunta actual
 		const data = { preguntaId, respuestaUsuario };
 
-		axios.post('http://localhost:7000/api/admin/verificar-respuesta', data)
+		axios.post('http://localhost:8000/api/admin/verificar-respuesta', data)
 			.then(response => {
 				const result = response.data;
 
