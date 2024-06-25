@@ -28,7 +28,8 @@ import SobreNosotras from './views/SobreNosotras';
 import TablaNutricion from './views/TablaNutricion';
 import GameContainer from './juego/GameContainer';
 import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
-
+import Login from './components/admin/Registro/Login';
+import Register from './components/admin/Registro/Register';
 
 
 
@@ -82,7 +83,10 @@ return (
       </Route>
 
       <Route path="/juego" element={<GameContainer />} />
-      <Route path="/registrarse" element={<Iniciar />} />
+      <Route path="/registrarse" element={<Register />} />
+      <Route path="/iniciar-sesion" element={<Login />} /> 
+      
+
 
 
     </Routes>
