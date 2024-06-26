@@ -35,7 +35,7 @@ import { Toaster } from 'react-hot-toast';
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.withCredentials = true;
 
-
+import ProtectedRoute from './ProtectedRoute';
 
 
 
@@ -78,11 +78,21 @@ function App() {
           <Route path="/admin/crear-preguntas" element={<QuestionForm />} />
 
         </Route>
-
-        <Route path="/juego" element={<GameContainer />} />
+{/* 
+        <Route path="/juego" element={<GameContainer />} /> */}
         <Route path="/registrarse" element={<Register />} />
         <Route path="/iniciar-sesion" element={<Login />} />
 
+        <Route
+          path="/juego"
+          element={
+            <ProtectedRoute>
+              <GameContainer />
+            </ProtectedRoute>
+          }
+        />
+
+       
       </Routes>
 
     </BrowserRouter>

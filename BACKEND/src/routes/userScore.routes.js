@@ -4,9 +4,9 @@ const updateScore  = require('../controllers/user/user.updateScore');
 const getUserScore = require('../controllers/user/user.getScore');
 
 
-router.get('/api/user/:userId/getscore', getUserScore);
+router.get('/:userId/getscore', getUserScore);
 // Ruta para actualizar el puntaje de un usuario
-router.post('/api/user/:userId/putscore', updateScore);
+router.post('/:userId/putscore', updateScore);
 
   
 

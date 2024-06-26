@@ -1,6 +1,7 @@
 
 import "./style2.css";
 import Game from "./Game2.jsx";
+import BotonVolver from "./BotonVolver.jsx"
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -124,6 +125,7 @@ const GameContainer = () => {
                     <button className="option-btn" id="optionD" onClick={() => handleRespuestaClick('opcionD')}></button>
                 </div>
                 <Game />
+                <BotonVolver/>
             </div>
             <button onClick={mostrarPreguntaAleatoria}>Mostrar Pregunta Aleatoria</button>
         </>

@@ -41,7 +41,7 @@ app.use('/', authRoutes); // Rutas para autenticación
 app.use('/api/guests', guestRoutes); // Rutas para invitados
 app.use('/password', passwordRoutes); // Rutas para recuperación y restablecimiento de contraseña
 app.use('/api/admin', routerQuestion); // Rutas para preguntas
-app.use('/api/users', userScoreRoutes); // Rutas para puntajes de usuarios
+app.use('/api/user', userScoreRoutes); // Rutas para puntajes de usuarios
 
 const port = process.env.PORT || 8000;
 
