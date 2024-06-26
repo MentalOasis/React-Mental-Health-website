@@ -26,7 +26,7 @@ const GameContainer = () => {
 
     const obtenerPreguntas = async () => {
         try {
-            const response = await axios.get('http://localhost:7000/api/admin/mostrar-preguntas');
+            const response = await axios.get('http://localhost:8000/api/admin/mostrar-preguntas');
             return response.data.data; // Asumiendo que la respuesta tiene la estructura { data: { data: [...] } }
         } catch (error) {
             console.error('Error al obtener preguntas:', error);
@@ -68,7 +68,7 @@ const GameContainer = () => {
                 return;
             }
 
-            const response = await axios.post('http://localhost:7000/api/verificar-respuesta', {
+            const response = await axios.post('http://localhost:8000/api/verificar-respuesta', {
                 preguntaId: preguntaActual._id,
                 respuestaUsuario: respuesta
             });
@@ -99,7 +99,7 @@ const GameContainer = () => {
 
     const actualizarPuntajeEnBackend = async (nuevoPuntaje) => {
         try {
-            const response = await axios.put(`http://localhost:7000/api/user/${userId}/score`, {
+            const response = await axios.put(`http://localhost:8000/api/user/${userId}/score`, {
                 score: nuevoPuntaje
             });
 
@@ -131,4 +131,5 @@ const GameContainer = () => {
 };
 
 export default GameContainer;
+
 

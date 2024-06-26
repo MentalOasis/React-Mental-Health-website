@@ -12,27 +12,40 @@ const verificarRespuesta = async (req, res) => {
       const pregunta = await Question.findById(preguntaId);
 
       if (!pregunta) {
-          return res.status(404).json({ message: "Pregunta no encontrada" });
-      }
+        return res.status(404).json({ error: 'Pregunta no encontrada' });
+    }
 
-      // Verificar si la respuesta del usuario es correcta
-      if (pregunta.correcta === respuestaUsuario) {
-          // Respuesta correcta
-          return res.status(200).json({
-              message: "Respuesta correcta",
-              error: false
-          });
-      } else {
-          // Respuesta incorrecta
-          return res.status(200).json({
-              message: "Respuesta incorrecta",
-              error: true
-          });
-      }
-  } catch (error) {
-      console.error("Error al verificar respuesta:", error);
-      return res.status(500).json({ message: "Error al verificar respuesta" });
-  }
+    // Aquí deberías tener la lógica para comparar la respuesta del usuario
+    const isCorrect = (respuestaUsuario === pregunta.respuestaCorrecta);
+
+    // Si la respuesta es correcta, actualiza el puntaje del usuario
+    if (isCorrect) {
+        const userId = req.usuario.id; // Obtener el ID del usuario del token decodificado
+
+        // Obtener el usuario de la base de datos
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        // Incrementar el puntaje del usuario
+        user.score = user.score + 1;
+        await user.save(); // Guardar el usuario actualizado en la base de datos
+
+        // Devolver una respuesta exitosa
+        return res.status(200).json({
+            message: 'Respuesta correcta. Puntaje actualizado',
+            score: user.score
+        });
+    } else {
+        // Manejar caso de respuesta incorrecta si es necesario
+        return res.status(200).json({ message: 'Respuesta incorrecta' });
+    }
+
+} catch (error) {
+    console.error('Error al verificar respuesta:', error);
+    return res.status(500).json({ error: 'Error interno del servidor' });
+}
 };
 
 module.exports = {verificarRespuesta};

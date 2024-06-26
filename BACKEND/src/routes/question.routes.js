@@ -3,6 +3,7 @@ const express = require("express");
 const showPregunta = require("../controllers/question/question.show")
 const router_question = express.Router();
 const {verificarRespuesta} = require("../controllers/question/question.correcta");
+const verificarToken = require('../middleware/verificarToken');
 
 
 // // ruta para crear un usuario --- POST  
@@ -19,8 +20,8 @@ const {verificarRespuesta} = require("../controllers/question/question.correcta"
 
 router_question.get("/mostrar-preguntas", showPregunta);
 
-// Ruta POST para verificar la respuesta del usuario
-router_question.post("/verificar-respuesta", verificarRespuesta);
+// Ruta para verificar la respuesta del usuario
+router_question.post('/verificar-respuesta',  verificarRespuesta, verificarToken);
 
 // clase profe, antes de tener controllers:
 // router.get("/listar-usuarios", (req, res) => {

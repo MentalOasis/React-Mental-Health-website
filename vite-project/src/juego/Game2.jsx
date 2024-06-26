@@ -594,6 +594,82 @@ scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) =>
 	})
 
 
+//------------------------------------------------------
+
+const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
+
+
+// const userId = '667ae1326a99fe57d2a48d42';
+
+// Función para obtener el puntaje del usuario desde el backend
+async function obtenerPuntaje(userId) {
+    try {
+        const response = await axios.get(`http://localhost:8000/api/user/${userId}/score`);
+
+        if (response.status === 200) {
+            return response.data.score;
+        } else {
+            console.error('Error al obtener puntaje:', response.statusText);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error al obtener puntaje:', error);
+        return null;
+    }
+}
+
+
+
+// Función para actualizar el puntaje del usuario en el backend
+async function actualizarPuntaje(userId, puntaje) {
+	try {
+		const response = await axios.put(`http://localhost:8000/api/user/${userId}/score`, { score: puntaje });
+
+		if (response.status === 200) {
+			console.log('Puntaje actualizado:', response.data.score);
+		} else {
+			console.error('Error al actualizar puntaje:', response.statusText);
+		}
+	} catch (error) {
+		console.error('Error al actualizar puntaje:', error);
+	}
+}
+
+// Componente de React para manejar el puntaje del usuario
+function PuntajeUsuario() {
+	const [puntaje, setPuntaje] = useState(0);
+	const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
+
+	useEffect(() => {
+		// Obtener el puntaje del usuario cuando se monta el componente
+		async function fetchPuntaje() {
+			const puntajeActual = await obtenerPuntaje(userId);
+			if (puntajeActual !== null) {
+				setPuntaje(puntajeActual);
+			}
+		}
+
+		fetchPuntaje();
+	}, [userId]);
+
+	// Función para manejar la lógica de actualización del puntaje
+	async function manejarActualizacionPuntaje(nuevoPuntaje) {
+		if (nuevoPuntaje > puntaje) {
+			setPuntaje(nuevoPuntaje);
+			await actualizarPuntaje(userId, nuevoPuntaje);
+		}
+	}
+
+	return (
+		<div>
+			<h1>Puntaje: {puntaje}</h1>
+			{/* Botones o lógica del juego para actualizar el puntaje */}
+			<button onClick={() => manejarActualizacionPuntaje(puntaje + 10)}>Ganar 10 puntos</button>
+		</div>
+	);
+}
+
+
 // --------------------------------------------------------------------------------------------------------------------
 // version antigua question.show
 
@@ -614,50 +690,38 @@ let currentQuestionIndex = 0;
 let questionVisible = false;
 
 
-// // Función para obtener una pregunta aleatoria del backend
-// async function obtenerPreguntaAleatoria() {
-// 	try {
-// 	  const response = await axios.get('http://localhost:7000/api/admin/mostrar-pregunta-aleatoria');
-// 	  return response.data.data; // Se asume que el backend responde con el formato adecuado
-// 	} catch (error) {
-// 	  console.error('Error al obtener pregunta aleatoria:', error);
-// 	  return null;
-// 	}
-//   }
-  
-
 // Función para obtener una pregunta aleatoria
 function obtenerPreguntaAleatoria() {
     currentQuestionIndex = Math.floor(Math.random() * questions.length);
     return questions[currentQuestionIndex] ;
 }
 
-async function showQuestion() {
-    if (questions.length === 0) {
-        questions = await obtenerPreguntas();
-    }
+	async function showQuestion() {
+		if (questions.length === 0) {
+			questions = await obtenerPreguntas();
+		}
 
-    if (questions.length === 0) {
-        console.error('No hay preguntas disponibles');
-        return;
-    }
+		if (questions.length === 0) {
+			console.error('No hay preguntas disponibles');
+			return;
+		}
 
-    questionVisible = true;
-    const question = obtenerPreguntaAleatoria();
-    const questionElem = document.getElementById('question');
-    const optionAElem = document.getElementById('optionA');
-    const optionBElem = document.getElementById('optionB');
-    const optionCElem = document.getElementById('optionC');
-    const optionDElem = document.getElementById('optionD');
+		questionVisible = true;
+		const question = obtenerPreguntaAleatoria();
+		const questionElem = document.getElementById('question');
+		const optionAElem = document.getElementById('optionA');
+		const optionBElem = document.getElementById('optionB');
+		const optionCElem = document.getElementById('optionC');
+		const optionDElem = document.getElementById('optionD');
 
-    questionElem.innerText = question.titulo;
-    optionAElem.innerText = question.opcionA;
-    optionBElem.innerText = question.opcionB;
-    optionCElem.innerText = question.opcionC;
-    optionDElem.innerText = question.opcionD;
+		questionElem.innerText = question.titulo;
+		optionAElem.innerText = question.opcionA;
+		optionBElem.innerText = question.opcionB;
+		optionCElem.innerText = question.opcionC;
+		optionDElem.innerText = question.opcionD;
 
-    document.getElementById('question-container').style.display = 'block';
-}
+		document.getElementById('question-container').style.display = 'block';
+	}
 
 	function hideQuestion() {
 		questionVisible = false;
@@ -693,6 +757,7 @@ async function showQuestion() {
 					score += 1; // Incrementa el puntaje
 					scoreLabel.text = "Puntaje: " + score
 					PUNTAJE = score
+					actualizarPuntaje(userId, PUNTAJE)
 					// document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
 					k.add([
 						text("¡Correcto! ¡Haz click para moverte!"),
@@ -712,74 +777,6 @@ async function showQuestion() {
 
 	//----------------------------------------------------------------------------------
 
-
-const userId = 'ID_DEL_USUARIO';
-
-// Función para obtener el puntaje del usuario desde el backend
-async function obtenerPuntaje(userId) {
-    try {
-        const response = await axios.get(`/api/user/${userId}/score`);
-  
-        if (response.status === 200) {
-            return response.data.score;
-        } else {
-            console.error('Error al obtener puntaje:', response.statusText);
-            return null;
-        }
-    } catch (error) {
-        console.error('Error al obtener puntaje:', error);
-        return null;
-    }
-}
-
-// Función para actualizar el puntaje del usuario en el backend
-async function actualizarPuntaje(userId, puntaje) {
-    try {
-        const response = await axios.put(`/api/user/${userId}/score`, { score: puntaje });
-  
-        if (response.status === 200) {
-            console.log('Puntaje actualizado:', response.data.score);
-        } else {
-            console.error('Error al actualizar puntaje:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error al actualizar puntaje:', error);
-    }
-}
-
-// Componente de React para manejar el puntaje del usuario
-function PuntajeUsuario() {
-    const [puntaje, setPuntaje] = useState(0);
-    const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
-
-    useEffect(() => {
-        // Obtener el puntaje del usuario cuando se monta el componente
-        async function fetchPuntaje() {
-            const puntajeActual = await obtenerPuntaje(userId);
-            if (puntajeActual !== null) {
-                setPuntaje(puntajeActual);
-            }
-        }
-
-        fetchPuntaje();
-    }, [userId]);
-
-    // Función para manejar la lógica de actualización del puntaje
-    async function manejarActualizacionPuntaje(nuevoPuntaje) {
-        if (nuevoPuntaje > puntaje) {
-            setPuntaje(nuevoPuntaje);
-            await actualizarPuntaje(userId, nuevoPuntaje);
-        }
-    }
-
-    return (
-        <div>
-            <h1>Puntaje: {puntaje}</h1>
-            {/* Botones o lógica del juego para actualizar el puntaje */}
-            <button onClick={() => manejarActualizacionPuntaje(puntaje + 10)}>Ganar 10 puntos</button>
-        </div>
-    );
-}
 
 
 // -----------------------------------------------------------------------------
@@ -808,7 +805,7 @@ player.onCollide("apple", (a) => {
 
 // const obtenerPreguntaAleatoria = async () => {
 // 	try {
-// 		const response = await axios.get('http://localhost:7000/api/admin/mostrar-pregunta-aleatoria');
+// 		const response = await axios.get('http://localhost:8000/api/admin/mostrar-pregunta-aleatoria');
 // 		return response.data.data;
 // 	} catch (error) {
 // 		console.error('Error al obtener pregunta aleatoria:', error);
@@ -847,7 +844,7 @@ player.onCollide("apple", (a) => {
 // 	const questionId = question._id;
 
 // 	try {
-// 		const response = await axios.post('http://localhost:7000/api/admin/verificar-respuesta', {
+// 		const response = await axios.post('http://localhost:8000/api/admin/verificar-respuesta', {
 // 			questionId,
 // 			userAnswer: answer
 // 		});
