@@ -97,19 +97,19 @@ const GameContainer = () => {
         }
     };
 
-    const actualizarPuntajeEnBackend = async (nuevoPuntaje) => {
-        try {
-            const response = await axios.put(`http://localhost:8000/api/user/${userId}/score`, {
-                score: nuevoPuntaje
-            });
+    // const actualizarPuntajeEnBackend = async (nuevoPuntaje) => {
+    //     try {
+    //         const response = await axios.put(`http://localhost:8000/api/user/${userId}/score`, {
+    //             score: nuevoPuntaje
+    //         });
 
-            const updatedUser = response.data; // Suponiendo que el backend devuelve el usuario actualizado con el nuevo puntaje
-            return updatedUser.score;
-        } catch (error) {
-            console.error('Error al actualizar puntaje en el backend:', error);
-            return null;
-        }
-    };
+    //         const updatedUser = response.data; // Suponiendo que el backend devuelve el usuario actualizado con el nuevo puntaje
+    //         return updatedUser.score;
+    //     } catch (error) {
+    //         console.error('Error al actualizar puntaje en el backend:', error);
+    //         return null;
+    //     }
+    // };
 
     
 

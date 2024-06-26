@@ -208,6 +208,7 @@ const Login = () => {
 
                 console.log('Token recibido:', data.token); // Verifica el token recibido
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('userId', data.user._id )
                 console.log(localStorage.getItem('token'));
 
                 toast.success('Inicio de sesión exitoso. Bienvenido a Mental Oasis');

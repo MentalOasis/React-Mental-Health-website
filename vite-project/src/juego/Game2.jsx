@@ -4,11 +4,13 @@ import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs"; // Impor
 
 import axios from 'axios';
 
-let PUNTAJE = 0
+// let PUNTAJE = 0
 
 const Game = () => {
 	
+    const [PUNTAJE, setScore] = useState(0);
 	const gameContainerRef = useRef(null);
+
 	useEffect(() => {
 	  if (gameContainerRef.current) {
 		// Initialize Kaplay.js with the DOM element reference
@@ -439,7 +441,7 @@ const levelConf = {
 
 scene("game", ({ levelId, coins, score } = { levelId: 0, coins: 0, score: 0}) => {
 
-	PUNTAJE = score
+	// PUNTAJE = score
 	// add level to scene
 	const level = addLevel(LEVELS[levelId ?? 0], levelConf)
 
@@ -603,8 +605,9 @@ const userId = localStorage.getItem('userId'); // Obtener el userId desde localS
 
 // Función para obtener el puntaje del usuario desde el backend
 async function obtenerPuntaje(userId) {
+	console.log(userId)
     try {
-        const response = await axios.get(`http://localhost:8000/api/user/${userId}/score`);
+        const response = await axios.get(`http://localhost:8000/api/user/${userId}/getscore`);
 
         if (response.status === 200) {
             return response.data.score;
@@ -623,7 +626,8 @@ async function obtenerPuntaje(userId) {
 // Función para actualizar el puntaje del usuario en el backend
 async function actualizarPuntaje(userId, puntaje) {
 	try {
-		const response = await axios.put(`http://localhost:8000/api/user/${userId}/score`, { score: puntaje });
+		console.log(puntaje)
+		const response = await axios.post(`http://localhost:8000/api/user/${userId}/putscore`, { score: puntaje });
 
 		if (response.status === 200) {
 			console.log('Puntaje actualizado:', response.data.score);
@@ -733,6 +737,7 @@ function obtenerPreguntaAleatoria() {
 	function checkAnswer(respuestaUsuario) {
 		const preguntaId = questions[currentQuestionIndex]._id; // Obtenemos el _id de la pregunta actual
 		const data = { preguntaId, respuestaUsuario };
+		console.log("userId", userId)
 
 		axios.post('http://localhost:8000/api/admin/verificar-respuesta', data)
 			.then(response => {
@@ -756,8 +761,10 @@ function obtenerPreguntaAleatoria() {
 					hideQuestion();
 					score += 1; // Incrementa el puntaje
 					scoreLabel.text = "Puntaje: " + score
-					PUNTAJE = score
-					actualizarPuntaje(userId, PUNTAJE)
+					// PUNTAJE = score
+					const nuevoPuntaje = score 
+					setScore(nuevoPuntaje);
+					actualizarPuntaje(userId, nuevoPuntaje)
 					// document.getElementById('score').innerText = "Puntaje: " + score; // Actualiza el texto del puntaje en la interfaz
 					k.add([
 						text("¡Correcto! ¡Haz click para moverte!"),
