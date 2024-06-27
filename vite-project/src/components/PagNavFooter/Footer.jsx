@@ -40,16 +40,16 @@ const Footer = () => {
           <div className="col-xs-12 col-md-6 col-lg-3">
               <a className="h5 mb-3 hover-sin-underline">MENÚ RÁPIDO</a>
               <div className="mb-2 mt-4">
-                  <a className="text-white text-decoration-none hover-underline" href="#">ODS 3</a>
+                  <a className="text-white text-decoration-none hover-underline" href="https://www.un.org/sustainabledevelopment/es/health/">ODS 3</a>
               </div>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Salud Mental</a>
+                  <a className="text-white text-decoration-none hover-underline" href="https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response#:~:text=La%20salud%20mental%20es%20un,la%20mejora%20de%20su%20comunidad.">Salud Mental</a>
               </div>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Depresión</a>
+                  <a className="text-white text-decoration-none hover-underline" href="https://www.paho.org/es/temas/depresion#:~:text=La%20depresi%C3%B3n%20es%20una%20enfermedad%20que%20se%20caracteriza%20por%20una,durante%20al%20menos%20dos%20semanas.">Depresión</a>
               </div>
               <div className="mb-2">
-                  <a className="text-white text-decoration-none hover-underline" href="#">Estrés</a>
+                  <a className="text-white text-decoration-none hover-underline" href="https://www.who.int/es/news-room/questions-and-answers/item/stress#:~:text=%C2%BFQu%C3%A9%20es%20el%20estr%C3%A9s%3F,las%20amenazas%20y%20a%20otros%20est%C3%ADmulos.">Estrés</a>
               </div>
           </div>
           <div className="col-xs-12 col-md-6 col-lg-3">

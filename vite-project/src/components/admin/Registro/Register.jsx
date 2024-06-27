@@ -239,7 +239,7 @@ import './Register.css'; // Archivo de estilos CSS para Register
                 localStorage.setItem('token', response.data.token);
                 setData({ name: '', email: '', password: '' });
                 toast.success('Registro completado con éxito, ¡Bienvenido a Mental Oasis!');
-                navigate('/login'); // Redirigir al usuario a la página de inicio de sesión
+                navigate('/iniciar-sesion'); // Redirigir al usuario a la página de inicio de sesión
             }
         } catch (error) {
             console.error('Error al registrar:', error);
