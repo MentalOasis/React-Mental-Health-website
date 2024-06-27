@@ -2,6 +2,7 @@
 
 const User = require('../models/user'); // Importa tu modelo de usuario correspondiente
 const { hashPassword } = require('../helpers/auth');
+// const { comparePassword, hashPassword } = require('../auth/auth');
 
 // Controlador para restablecer la contraseña
 exports.resetPassword = async (req, res) => {
