@@ -49,7 +49,9 @@ function addButton(txt, p, f) {
 
     return btn;
 }
-// let PUNTAJE = 0
+
+//variable global para escena final
+ let puntaje_global = 0
 
 const Game = () => {
 	
@@ -293,17 +295,17 @@ const LEVELS = [
 // 	],
 
 // 	// nivel rosadito
-//     [  
-//     " /              c           ",  
-//     "                            ",                                    
-//     "    c              c        ",
-//     "           6             o  ",
-//     "   1   1*_1_                ",
-//     "                            ",
-//     "                  (         ",
-//     "  f )  f  e   e f _    ! i i",
-//     "___________________    444s4",
-// ],
+    [  
+    " /              c           ",  
+    "                            ",                                    
+    "    c              c        ",
+    "           6             o  ",
+    "   1   1*_1_                ",
+    "                            ",
+    "                  (         ",
+    "  f )  f  e   e f _    ! i i",
+    "___________________    444s4",
+],
 
 // // nivel mario underground
 // [
@@ -356,27 +358,27 @@ const LEVELS = [
 // 		" ================================",
 // 	],
 	
-	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
-	[ 
-	 "ñ ñ      .                                      ",
-		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
-		"ñ ñ               ñ$$$$$$             |         ",
-		"ñ ñ   ($        $ ñ$$($$$             |         ",
-		"ñ ñ   ll          ñ$$$$$$             |         ",
-		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
-		"ñ ñ     $ñññ |ñññññ                   lll{      ",
-		"ñ ñ    ;ññ   |              ll           |      ",
-		"ñ ñ,,,ññ     |                           |      ",
-	 "ñ ñññññ      |                           | ,$$$,",
-		"ñ            }  [~~~~](                  | lllll",
-		"ñ     ( ¨    lll     ll                  |      ",
-		"ñ     lll      ;                         |   $  ",
-		"ñ           $hhh!                        |      ",
-		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
-		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
-		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
-		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
-	],
+	// // nivel nieve interior (subterraneo), PENULTIMO NIVEL
+	// [ 
+	//  "ñ ñ      .                                      ",
+	// 	"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
+	// 	"ñ ñ               ñ$$$$$$             |         ",
+	// 	"ñ ñ   ($        $ ñ$$($$$             |         ",
+	// 	"ñ ñ   ll          ñ$$$$$$             |         ",
+	// 	"ñ ñ         ${  ¨ ñññññññ             } ;       ",
+	// 	"ñ ñ     $ñññ |ñññññ                   lll{      ",
+	// 	"ñ ñ    ;ññ   |              ll           |      ",
+	// 	"ñ ñ,,,ññ     |                           |      ",
+	//  "ñ ñññññ      |                           | ,$$$,",
+	// 	"ñ            }  [~~~~](                  | lllll",
+	// 	"ñ     ( ¨    lll     ll                  |      ",
+	// 	"ñ     lll      ;                         |   $  ",
+	// 	"ñ           $hhh!                        |      ",
+	// 	"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
+	// 	"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
+	// 	"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
+	// 	"ññññññññññññññññññññññññññññññññññññññññññññññññ",
+	// ],
     
 	// nivel nieve exterior, ULTIMO NIVEL (es como que llego a su casita)
 	[   
@@ -806,7 +808,7 @@ function obtenerPreguntaAleatoria() {
 					hideQuestion();
 					score += 1; // Incrementa el puntaje
 					scoreLabel.text = "Puntaje: " + score
-					// PUNTAJE = score
+					puntaje_global = score
 					const nuevoPuntaje = score 
 					setScore(nuevoPuntaje);
 					actualizarPuntaje(userId, nuevoPuntaje)
@@ -827,8 +829,6 @@ function obtenerPreguntaAleatoria() {
 			});
 	}
 
-	//----------------------------------------------------------------------------------
-
 
 
 // -----------------------------------------------------------------------------
@@ -846,89 +846,6 @@ player.onCollide("apple", (a) => {
     destroy(a);
     showQuestion();
 });
-
-
-//---------------------------------------------------------------------------------------------------------
-
-// const [questions, setQuestions] = useState([]);
-// const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-// const [questionVisible, setQuestionVisible] = useState(false);
-
-
-// const obtenerPreguntaAleatoria = async () => {
-// 	try {
-// 		const response = await axios.get('http://localhost:8000/api/admin/mostrar-pregunta-aleatoria');
-// 		return response.data.data;
-// 	} catch (error) {
-// 		console.error('Error al obtener pregunta aleatoria:', error);
-// 		return null;
-// 	}
-// };
-
-// const showQuestion = async () => {
-// 	const question = await obtenerPreguntaAleatoria();
-// 	if (!question) {
-// 		console.error('No hay preguntas disponibles');
-// 		return;
-// 	}
-
-// 	setQuestions([question]);
-// 	setCurrentQuestionIndex(0);
-// 	setQuestionVisible(true);
-
-// 	document.getElementById('question').innerText = question.titulo;
-// 	document.getElementById('optionA').innerText = question.opcionA;
-// 	document.getElementById('optionB').innerText = question.opcionB;
-// 	document.getElementById('optionC').innerText = question.opcionC;
-// 	document.getElementById('optionD').innerText = question.opcionD;
-
-// 	document.getElementById('question-container').style.display = 'block';
-// };
-
-// const hideQuestion = () => {
-// 	setQuestionVisible(false);
-// 	document.getElementById('question-container').style.display = 'none';
-// 	player.move(MOVE_SPEED, 0);
-// };
-
-// const checkAnswer = async (answer) => {
-// 	const question = questions[currentQuestionIndex];
-// 	const questionId = question._id;
-
-// 	try {
-// 		const response = await axios.post('http://localhost:8000/api/admin/verificar-respuesta', {
-// 			questionId,
-// 			userAnswer: answer
-// 		});
-
-// 		const isCorrect = response.data.data.isCorrect;
-
-// 		if (isCorrect) {
-// 			player.biggify(6);
-// 			hideQuestion();
-// 			setScore(score + 1);
-// 			scoreLabel.text = "Puntaje: " + (score + 1);
-// 			PUNTAJE = score + 1;
-// 			k.add([
-// 				text("¡Correcto! ¡Haz click para moverte!"), 
-// 			]);
-// 		} else {
-// 			hideQuestion();
-// 			k.add([
-// 				text("¡Incorrecto! ¡Haz click para moverte!"), 
-// 			]);
-// 		}
-// 	} catch (error) {
-// 		console.error('Error al verificar la respuesta:', error);
-// 	}
-
-// }
-
-// player.onCollide("apple", (a) => {
-//     destroy(a);
-//     showQuestion();
-// });
-
 
 
 
@@ -1060,7 +977,7 @@ scene("lose", () => {
 		
 	])
 	k.add([
-		k.text("Tu puntaje fue : " + PUNTAJE ),
+		k.text("Tu puntaje fue : " + puntaje_global ),
 		k.pos(350, 280),
 		k.fixed(),
 		
@@ -1079,7 +996,7 @@ scene("win", () => {
 		k.fixed(),
 	])
 	k.add([
-		k.text("Muy bien! tu puntaje fue : " + PUNTAJE ),
+		k.text("Muy bien! tu puntaje fue : " + puntaje_global),
 		k.pos(300, 280),
 		k.fixed(),
 	])
