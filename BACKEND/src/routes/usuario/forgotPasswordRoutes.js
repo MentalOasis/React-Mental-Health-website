@@ -1,16 +1,11 @@
 
 
-const nodemailer = require('nodemailer');
-const User = require('../models/user'); // Reemplaza con el modelo de usuario correspondiente
-
-
-// routes/forgotPasswordRoutes.js
 const express = require('express');
 const router = express.Router();
-const { forgotPassword } = require('../controllers/forgotPasswordController');
+const { forgotPassword } = require('../../controllers/user/forgotPasswordController');
 
 // Ruta para manejar la solicitud de restablecimiento de contraseña
-router.post('/forgotPassword', forgotPassword);
+router.post('/forgot-password', forgotPassword);
 
 module.exports = router;
 

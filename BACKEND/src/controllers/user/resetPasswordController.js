@@ -1,7 +1,7 @@
 // En resetPasswordController.js
 
 const User = require('../models/user'); // Importa tu modelo de usuario correspondiente
-const { comparePassword, hashPassword } = require('../auth/auth'); // Importa las funciones de hash y comparación de contraseñas
+const { hashPassword } = require('../helpers/auth');
 
 // Controlador para restablecer la contraseña
 exports.resetPassword = async (req, res) => {
@@ -15,6 +15,7 @@ exports.resetPassword = async (req, res) => {
             resetPasswordExpires: { $gt: Date.now() }
         });
 
+        // Si no se encuentra un usuario válido con el token
         if (!user) {
             return res.status(401).json({ success: false, message: 'Token inválido o expirado.' });
         }
@@ -22,7 +23,7 @@ exports.resetPassword = async (req, res) => {
         // Hashear la nueva contraseña
         const hashedPassword = await hashPassword(password);
 
-        // Actualizar la contraseña del usuario
+        // Actualizar la contraseña del usuario y limpiar los campos de reseteo
         user.password = hashedPassword;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;

@@ -2,27 +2,24 @@
 // controllers/forgotPasswordController.js
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const User = require('../models/user');
-const { hashPassword } = require('../helpers/auth');
+const User = require('../../models/user');
+const { hashPassword } = require('../../helpers/auth');
 
-// Generar un token único para restablecimiento de contraseña
+
+// Genera un token único para restablecimiento de contraseña
 const generatePasswordResetToken = (user) => {
     return jwt.sign({ _id: user._id }, process.env.JWT_RESET_PASSWORD, { expiresIn: '15m' });
 };
 
-// Enviar correo electrónico con instrucciones para restablecer contraseña
+// Envía el correo electrónico con las instrucciones para restablecer la contraseña
 const sendPasswordResetEmail = (email, resetToken) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
-        // service: 'gmail',
         auth: {
             user: process.env.EMAIL_ACCOUNT,
             pass: process.env.PASS_EMAIL_ACCOUNT
-        },
-        tls: {
-            rejectUnauthorized: false
         }
     });
 
@@ -30,12 +27,7 @@ const sendPasswordResetEmail = (email, resetToken) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Restablecer Contraseña - Mental Oasis',
-        text: `Hola,\n\n
-                Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Haz clic en el siguiente enlace para restablecer tu contraseña:\n\n
-                ${process.env.CLIENT_URL}/reset/${resetToken}\n\n
-                Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje.\n\n
-                Saludos,\n
-                Equipo de Soporte - Mental Oasis`
+        text: `Hola,\n\nHemos recibido una solicitud para restablecer la contraseña de tu cuenta. Haz clic en el siguiente enlace para restablecer tu contraseña:\n\n${process.env.CLIENT_URL}/reset/${resetToken}\n\nSi no solicitaste restablecer tu contraseña, puedes ignorar este mensaje.\n\nSaludos,\nEquipo de Soporte - Mental Oasis`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -58,15 +50,15 @@ exports.forgotPassword = async (req, res) => {
             return res.status(404).json({ success: false, message: 'El correo electrónico proporcionado no está registrado.' });
         }
 
-        // Generar un token único para restablecimiento de contraseña
+        // Genera un token único para restablecimiento de contraseña
         const resetToken = generatePasswordResetToken(user);
 
-        // Guardar el token en el usuario
+        // Guarda el token en el usuario
         user.resetPasswordToken = resetToken;
         user.resetPasswordExpires = Date.now() + 900000; // 15 minutos en milisegundos
         await user.save();
 
-        // Enviar correo electrónico con el token generado
+        // Envia el correo electrónico con el token generado
         sendPasswordResetEmail(email, resetToken);
 
         res.json({ 

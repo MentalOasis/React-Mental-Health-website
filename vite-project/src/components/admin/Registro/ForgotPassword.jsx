@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import './Login.css'; // Reutilizamos estilos CSS de Login
 import unicornio from '/pic/unicornio.jpeg'; // Importamos la imagen (debe ajustarse según la ubicación real)
 
+
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');

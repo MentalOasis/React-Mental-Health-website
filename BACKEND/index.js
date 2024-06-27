@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 // Importar rutas
 const authRoutes = require('./src/routes/usuario/authRoutes');
 const guestRoutes = require('./src/routes/usuario/guestRoutes');
+const forgotPasswordRoutes = require('./src/routes//usuario/forgotPasswordRoutes.js'); 
 const passwordRoutes = require('./src/routes/usuario/password');
 const routerQuestion = require('./src/routes/question.routes');
 const userScoreRoutes = require('./src/routes/userScore.routes');
@@ -37,11 +38,16 @@ app.use(cors({
 }));
 
 // Rutas
-app.use('/', authRoutes); // Rutas para autenticación
-app.use('/api/guests', guestRoutes); // Rutas para invitados
+
 app.use('/password', passwordRoutes); // Rutas para recuperación y restablecimiento de contraseña
 app.use('/api/admin', routerQuestion); // Rutas para preguntas
 app.use('/api/user', userScoreRoutes); // Rutas para puntajes de usuarios
+
+// Rutas
+app.use('/', authRoutes); // Rutas para autenticación
+app.use('/api/guests', guestRoutes); // Ruta para invitado
+app.use('/api', forgotPasswordRoutes); // Rutas para restablecimiento de contraseña
+app.use('/api', forgotPasswordRoutes); //Ruta para volver a tener contraseña nueva
 
 const port = process.env.PORT || 8000;
 
