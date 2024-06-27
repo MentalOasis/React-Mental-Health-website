@@ -2,6 +2,7 @@
 import "./style2.css";
 import Game from "./Game2.jsx";
 import BotonVolver from "./BotonVolver.jsx"
+import InvisibleButton from "./BtnJugar.jsx";
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -126,6 +127,10 @@ const GameContainer = () => {
                 </div>
                 <Game />
                 <BotonVolver/>
+                {/* <div id="game-container" style={{ position: 'relative', width: '800px', height: '600px' }}>
+            <InvisibleButton position={{ x: 650, y: 400 }} />
+        </div> */}
+                
             </div>
             <button onClick={mostrarPreguntaAleatoria}>Mostrar Pregunta Aleatoria</button>
         </>

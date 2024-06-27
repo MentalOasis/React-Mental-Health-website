@@ -1,9 +1,54 @@
 
 import React, { useEffect, useRef, useState} from 'react';
 import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs"; // Importa Kaboom
+import { useNavigate } from 'react-router-dom';
+
 
 import axios from 'axios';
 
+
+
+// Define la función addButton
+function addButton(txt, p, f) {
+    // Add a parent background object
+    const btn = k.add([
+        k.rect(240, 80, { radius: 8 }),
+        k.pos(p),
+        k.area(),
+        k.scale(1),
+        k.anchor("center"),
+        k.outline(4),
+    ]);
+
+    // Add a child object that displays the text
+    btn.add([
+        k.text(txt),
+        k.anchor("center"),
+        k.color(0, 0, 0),
+    ]);
+
+    // onHoverUpdate() comes from area() component
+    // it runs every frame when the object is being hovered
+    btn.onHoverUpdate(() => {
+        const t = k.time() * 10;
+        btn.color = k.hsl2rgb((t / 10) % 1, 0.6, 0.7);
+        btn.scale = k.vec2(1.2);
+        k.setCursor("pointer");
+    });
+
+    // onHoverEnd() comes from area() component
+    // it runs once when the object stopped being hovered
+    btn.onHoverEnd(() => {
+        btn.scale = k.vec2(1);
+        btn.color = k.rgb();
+    });
+
+    // onClick() comes from area() component
+    // it runs once when the object is clicked
+    btn.onClick(f);
+
+    return btn;
+}
 // let PUNTAJE = 0
 
 const Game = () => {
@@ -273,7 +318,7 @@ const LEVELS = [
 //     "55555555555555555555555555555555",
 // ],
 
-// // // nivel mar
+// // nivel mar
 // [
 //     "     0      o",
 //     "?   ==       ",
@@ -283,19 +328,19 @@ const LEVELS = [
 //     "    ^^ f> = @",
 //     " ============",
 // ],
-	// [
-	// 	"  ¡                       $",
-	// 	"                          $",
-	// 	"                          $",
-	// 	"                          $",
-	// 	"                          $",
-	// 	"           $$         =   $",
-	// 	"  %      ====         =   $",
-	// 	"                      =   $",
-	// 	"                      =    ",
-	// 	"       ^^      = >    =   @",
-	// 	"===========================",
-	// ],
+// 	[
+// 		"  ¡                       $",
+// 		"                          $",
+// 		"                          $",
+// 		"                          $",
+// 		"                          $",
+// 		"           $$         =   $",
+// 		"  %      ====         =   $",
+// 		"                      =   $",
+// 		"                      =    ",
+// 		"       ^^      = >    =   @",
+// 		"===========================",
+// 	],
 
 // 	// nivel spikes
 // 	[   
@@ -311,27 +356,27 @@ const LEVELS = [
 // 		" ================================",
 // 	],
 	
-// 	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
-// 	[ 
-// 	 "ñ ñ      .                                      ",
-// 		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
-// 		"ñ ñ               ñ$$$$$$             |         ",
-// 		"ñ ñ   ($        $ ñ$$($$$             |         ",
-// 		"ñ ñ   ll          ñ$$$$$$             |         ",
-// 		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
-// 		"ñ ñ     $ñññ |ñññññ                   lll{      ",
-// 		"ñ ñ    ;ññ   |              ll           |      ",
-// 		"ñ ñ,,,ññ     |                           |      ",
-// 	 "ñ ñññññ      |                           | ,$$$,",
-// 		"ñ            }  [~~~~](                  | lllll",
-// 		"ñ     ( ¨    lll     ll                  |      ",
-// 		"ñ     lll      ;                         |   $  ",
-// 		"ñ           $hhh!                        |      ",
-// 		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
-// 		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
-// 		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
-// 		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
-// 	],
+	// nivel nieve interior (subterraneo), PENULTIMO NIVEL
+	[ 
+	 "ñ ñ      .                                      ",
+		"ñ ñjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj@jjjjjjjjj",
+		"ñ ñ               ñ$$$$$$             |         ",
+		"ñ ñ   ($        $ ñ$$($$$             |         ",
+		"ñ ñ   ll          ñ$$$$$$             |         ",
+		"ñ ñ         ${  ¨ ñññññññ             } ;       ",
+		"ñ ñ     $ñññ |ñññññ                   lll{      ",
+		"ñ ñ    ;ññ   |              ll           |      ",
+		"ñ ñ,,,ññ     |                           |      ",
+	 "ñ ñññññ      |                           | ,$$$,",
+		"ñ            }  [~~~~](                  | lllll",
+		"ñ     ( ¨    lll     ll                  |      ",
+		"ñ     lll      ;                         |   $  ",
+		"ñ           $hhh!                        |      ",
+		"ñ   ;$ g  $ hñññh    $ ( $        h,g    }   ( ,",
+		"ñhhhhhhhhhhhñññññ,,,,hhhhhhh;    ;ññhhhhhhhhhhhh",
+		"ñññññññññññññññññññññññññññññ >> ñññññññññññññññ",
+		"ññññññññññññññññññññññññññññññññññññññññññññññññ",
+	],
     
 	// nivel nieve exterior, ULTIMO NIVEL (es como que llego a su casita)
 	[   
@@ -962,20 +1007,70 @@ player.onCollide("apple", (a) => {
 
 })
 
-// score, coins, coinsLabel, scoreLabel dice que no estan definidas si las pongo aqui :c
-scene("lose", () => {
+// Define la función addButton
+function addButton(txt, p, f) {
+    // Add a parent background object
+    const btn = k.add([
+        k.rect(240, 80, { radius: 8 }),
+        k.pos(p),
+        k.area(),
+        k.scale(1),
+        k.anchor("center"),
+        k.outline(4),
+    ]);
+
+    // Add a child object that displays the text
+    btn.add([
+        k.text(txt),
+        k.anchor("center"),
+        k.color(0, 0, 0),
+    ]);
+
+    // onHoverUpdate() comes from area() component
+    // it runs every frame when the object is being hovered
+    btn.onHoverUpdate(() => {
+        const t = k.time() * 10;
+        btn.color = k.hsl2rgb((t / 10) % 1, 0.6, 0.7);
+        btn.scale = k.vec2(1.2);
+        k.setCursor("pointer");
+    });
+
+    // onHoverEnd() comes from area() component
+    // it runs once when the object stopped being hovered
+    btn.onHoverEnd(() => {
+        btn.scale = k.vec2(1);
+        btn.color = k.rgb();
+    });
+
+    // onClick() comes from area() component
+    // it runs once when the object is clicked
+    btn.onClick(f);
+
+    return btn;
+}
+
+
+
+
+scene("lose", () => {	
 	k.add([
 		text("Perdiste! intentalo de nuevo!"), 
 		k.pos(350, 200),
 		k.fixed(),
+		
 	])
 	k.add([
 		k.text("Tu puntaje fue : " + PUNTAJE ),
 		k.pos(350, 280),
 		k.fixed(),
+		
 	])
+	// addButton("Jugar ", vec2(650, 400), () => navigate("/juego"));
+	
 	k.onKeyPress(() => go("game"))
 })
+
+
 
 scene("win", () => {
 	k.add([

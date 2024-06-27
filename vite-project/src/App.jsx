@@ -29,6 +29,9 @@ import GameContainer from './juego/GameContainer';
 import Iniciar from './components/ingreso/iniciarSesion/Iniciar';
 import Login from './components/admin/Registro/Login';
 import Register from './components/admin/Registro/Register';
+import ForgotPassword from './components/admin/Registro/ForgotPassword';
+import ResetPassword from './components/admin/Registro/ResetPassword';
+import GuestLogin from './components/admin/Registro/GuestLogin';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -82,6 +85,9 @@ function App() {
         <Route path="/juego" element={<GameContainer />} /> */}
         <Route path="/registrarse" element={<Register />} />
         <Route path="/iniciar-sesion" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/guest-login" element={<GuestLogin />} />
 
         <Route
           path="/juego"

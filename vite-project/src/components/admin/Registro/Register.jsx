@@ -161,7 +161,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import './Register.css'; // Archivo de estilos CSS para Register
- //import winner from './winner.png';
+ import winner from '/pic/winner.png';
 
  const Register = () => {
     const navigate = useNavigate();
@@ -311,7 +311,7 @@ import './Register.css'; // Archivo de estilos CSS para Register
                 <div className="register-message">
                     <h3>Bienvenido a Mental Oasis</h3>
                     <p>Regístrate para poder ingresar y jugar Mental Oasis</p>
-                    {/* <img src={winner} alt="Mental Oasis Logo" /> */}
+                    <img src={winner} alt="Mental Oasis Logo" />
                 </div>
             </div>
         </div>
