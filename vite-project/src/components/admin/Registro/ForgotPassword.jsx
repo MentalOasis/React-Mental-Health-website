@@ -20,7 +20,7 @@ const ForgotPassword = () => {
 
             if (data.success) {
                 toast.success('Se ha enviado un correo electrónico con instrucciones para restablecer tu contraseña');
-                navigate('/login');
+                navigate('/');
             } else {
                 toast.error('El correo electrónico proporcionado no está registrado');
             }

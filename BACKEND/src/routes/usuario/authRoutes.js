@@ -47,7 +47,7 @@ router.post(
 
 // Ruta para iniciar sesión de usuarios existentes
 router.post(
-    '/login',
+    '/iniciar-sesion',
     [
         // Validaciones de campos usando express-validator
         body('email').notEmpty().withMessage('El correo electrónico es requerido').bail().isEmail().withMessage('El correo electrónico no es válido'),
