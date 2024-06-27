@@ -24,12 +24,12 @@ const ResetPassword = () => {
         }
 
         try {
-            const response = await axios.post('/api/reset-password/${token}', { password, token });
+            const response = await axios.post(`/api/reset/${token}`, { password, token });
             const { data } = response;
 
             if (data.success) {
                 toast.success('Contraseña restablecida correctamente. Ahora puedes iniciar sesión con tu nueva contraseña.');
-                navigate('/login');
+                navigate('/iniciar-sesion');
             } else {
                 toast.error('Error al restablecer la contraseña. Por favor, inténtalo de nuevo más tarde.');
             }

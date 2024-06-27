@@ -58,7 +58,7 @@ router.post('/forgot-password', async (req, res) => {
 });
 
 // POST request to reset password
-router.post('/reset-password/:token', async (req, res) => {
+router.post('/reset/:token', async (req, res) => {
     const { token } = req.params;
     const { password } = req.body;
 
