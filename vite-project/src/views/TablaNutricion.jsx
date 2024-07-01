@@ -8,7 +8,7 @@ const Consejos = () => {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito1.jpeg" className="card-img-top card-img mx-auto d-block" alt="..."/>
+                        <img src="/pic/perrito1.jpeg" className="card-img-top card-img mx-auto d-block" style={{ padding: '60px'}} alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">Recuerda que todos somos diferentes, por lo tanto visita a tu nutricionista para que te apoye con una pauta adaptada a tus necesidades.</h5>
                         </div>
@@ -16,7 +16,7 @@ const Consejos = () => {
                 </div>
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito2.jpeg" className="card-img-top card-img mx-auto d-block" alt="..."/>
+                        <img src="/pic/perrito2.jpeg" className="card-img-top card-img mx-auto d-block" style={{ padding: '60px', paddingTop: "30px", paddingBottom: "30px"}} alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">Recuerda apoyar tus procesos de cambios de hábitos con un psicologo/a.</h5>
                         </div>
@@ -24,7 +24,7 @@ const Consejos = () => {
                 </div>
                 <div className="col">
                     <div className="card h-100">
-                        <img src="/pic/perrito.jpeg" className="card-img-top card-img mx-auto d-block" alt="..."/>
+                        <img src="/pic/perrito.jpeg" className="card-img-top card-img mx-auto d-block" style={{ padding: '60px', paddingBottom: "40px"}} alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">No sientas culpa por comer comida rápida de vez en cuando, también es sano y válido darse gustos.</h5>
                         </div>

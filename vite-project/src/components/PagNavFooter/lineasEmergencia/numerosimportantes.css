@@ -82,7 +82,7 @@
    top: 0;
    left: 0;
    width: 100vw;
-   height: 70vh;
+   height: 68vh;
    background-image: url('./pic/imagen0.jpg');
    background-size: cover;
    background-position: center;
@@ -101,6 +101,7 @@
    margin-left: 8vh;
    margin-right: 8vh;
    margin-top: -38px;
+   margin-bottom: 120px;
    letter-spacing: 0.05em;
    
 }
