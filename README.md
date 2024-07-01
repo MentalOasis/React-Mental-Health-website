@@ -76,7 +76,10 @@ Para una experiencia personalizada y segura, hemos implementado:
 
 ## Demo del Proyecto
 
+<!-- 
+![Watch the video](https://github.com/MentalOasis/React-Mental-Health-website/blob/rama-susi/vite-project/public/readMe/PagsFrontGif1.gif) -->
 
-![Watch the video](https://github.com/MentalOasis/React-Mental-Health-website/blob/rama-susi/vite-project/public/readMe/PagsFrontGif1.gif)
+
+![Watch the video](/vite-project/public/readMe/PagsFrontGif1.gif)
 
 > **Nota**: El GIF puede tardar un poco en cargarse. Por favor, ten paciencia mientras se carga completamente.
