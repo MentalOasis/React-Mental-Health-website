@@ -38,8 +38,9 @@ For a personalized and secure experience, we have implemented:
 
 > **Note**: The GIF may take a while to load. Please be patient while it charges fully. It is located below the Spanish section.
 
-
----------------------  **Español** -------------------------
+<hr>
+<p align="center"><strong>Español</strong></p>
+<hr>
 
 **Mental Oasis** es un proyecto dedicado a promover información sobre la salud mental y hábitos saludables entre jóvenes de 14 a 18 años. Nuestro enfoque principal es un juego interactivo de plataformas, similar a Mario Bros, diseñado para educar y entretener a través de preguntas de opción múltiple. Utilizamos la biblioteca Kaboom.js para la implementación del juego, y desarrollamos la plataforma dentro del marco de un bootcamp full stack con JavaScript.
 
